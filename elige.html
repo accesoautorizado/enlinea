@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Elegir plan | Disney+</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background: #0d0d0f;
+    color: #fff;
+}
+
+/* HEADER */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 22px;
+}
+
+.header img {
+    width: 110px;
+}
+
+.header a {
+    color: #ffffff;
+    font-size: 15px;
+    text-decoration: none;
+}
+
+/* CONTENIDO */
+.content {
+    padding: 20px;
+    text-align: center;
+}
+
+.step {
+    color: #bbbbbb;
+    font-size: 15px;
+    margin-bottom: 6px;
+}
+
+h1 {
+    font-size: 32px;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.subtxt {
+    font-size: 16px;
+    color: #ccc;
+    margin-bottom: 30px;
+}
+
+/* PLANES */
+.plans {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.plan {
+    background: #1b1b1d;
+    border-radius: 10px;
+    padding: 18px;
+    width: 280px;
+    text-align: center;
+}
+
+.plan h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.price {
+    font-size: 22px;
+    font-weight: 600;
+    margin-top: 10px;
+}
+
+.small {
+    font-size: 14px;
+    color: #cccccc;
+    margin-bottom: 20px;
+}
+
+button {
+    width: 90%;
+    padding: 14px;
+    background: #ffffff;
+    color: #000;
+    font-weight: 600;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #e4e4e4;
+}
+
+/* TABLA ESPN */
+.table-title {
+    margin-top: 50px;
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.table {
+    width: 100%;
+    max-width: 900px;
+    margin: auto;
+    font-size: 15px;
+    border-collapse: collapse;
+}
+
+.table td, .table th {
+    padding: 15px;
+    text-align: center;
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<div class="header">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Disney%2B_logo.svg">
+    <a href="#">Cerrar sesión</a>
+</div>
+
+<!-- CONTENIDO -->
+<div class="content">
+    <div class="step">PASO 2 DE 3</div>
+    <h1>Elegir plan</h1>
+    <p class="subtxt">Podrás cambiarlo o cancelarlo* en cualquier momento.</p>
+
+    <!-- PLANES -->
+    <div class="plans">
+
+        <!-- PREMIUM -->
+        <div class="plan">
+            <h3>Premium</h3>
+            <p class="price">COP 49.900/mes</p>
+            <p class="small">(precio final)<br>o COP 418.900/año y 30% de ahorro**</p>
+            <button onclick="location.href='pago.html'">Seleccionar</button>
+        </div>
+
+        <!-- ESTÁNDAR -->
+        <div class="plan">
+            <h3>Estándar</h3>
+            <p class="price">COP 36.900/mes</p>
+            <p class="small">(precio final)<br>o COP 309.900/año y 30% de ahorro**</p>
+            <button onclick="location.href='pago.html'">Seleccionar</button>
+        </div>
+
+        <!-- ESTÁNDAR CON ANUNCIOS -->
+        <div class="plan">
+            <h3>Estándar con anuncios</h3>
+            <p class="price">COP 24.900/mes</p>
+            <p class="small">(precio final)</p>
+            <button onclick="location.href='pago.html'">Seleccionar</button>
+        </div>
+
+    </div>
+
+    <!-- TABLA ESPN -->
+    <div class="table-title">Deportes de ESPN</div>
+
+    <table class="table">
+        <tr>
+            <td>Todos los canales<br>de ESPN, torneos exclusivos y eventos</td>
+            <td>–</td>
+            <td>–</td>
+        </tr>
+    </table>
+
+</div>
+
+</body>
+</html>
