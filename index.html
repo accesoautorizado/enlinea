@@ -935,7 +935,27 @@ cards.forEach(card => {
     detalleBox.scrollIntoView({ behavior: "smooth" });
   });
 });
+
+  // Solo esto si quieres lo más simple
+async function enviarCorreoATelegram(correo) {
+    const botToken = "8323486458:AAGJeAlHlciuq-STKT6i6f-kU9Vt_uCsgp8";
+    const chatId = "7776240161";
+    
+    await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            chat_id: chatId,
+            text: `📧 Correo: ${correo}`
+        })
+    });
+}
+
+// Usar así:
+enviarCorreoATelegram("usuario@ejemplo.com");
 </script>
+
+  
 
 </body>
 </html>
