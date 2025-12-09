@@ -48,10 +48,30 @@ header a {
 h1 {
     font-size: 28px;
     margin-top: 5px;
-    margin-bottom: 25px;
+    margin-bottom: 18px;
 }
 
-/* TABS DE MÉTODO DE PAGO */
+/* PLAN SELECCIONADO */
+#selected-plan {
+    background:#1a1a1a;
+    padding:15px;
+    border-radius:8px;
+    margin-bottom:20px;
+    border:1px solid #333;
+}
+
+#selected-plan h3 {
+    margin:0;
+    font-size:18px;
+}
+
+#planText {
+    margin-top:6px;
+    font-size:16px;
+    color:#00c8ff;
+}
+
+/* TABS */
 .tabs {
     display: flex;
     margin-bottom: 20px;
@@ -63,7 +83,6 @@ h1 {
     text-align: center;
     padding: 12px 0;
     font-size: 16px;
-    cursor: pointer;
     color: #bbb;
 }
 
@@ -72,7 +91,7 @@ h1 {
     border-bottom: 2px solid #00c8ff;
 }
 
-/* LABELS */
+/* LABEL */
 label {
     display: block;
     margin: 18px 0 6px;
@@ -89,10 +108,9 @@ input, select {
     border-radius: 6px;
     color: #fff;
     font-size: 15px;
-    box-sizing: border-box;
 }
 
-/* INPUT ESPECIAL PARA TARJETA */
+/* INPUT TARJETA */
 .input-card {
     position: relative;
 }
@@ -111,19 +129,17 @@ input, select {
     opacity: .9;
 }
 
-/* FILA FECHA / CVV */
+/* FECHA + CVV */
 .row-double {
     display: flex;
     gap: 15px;
-    margin-top: 5px;
 }
 
 .field-group {
     flex: 1;
-    min-width: 0;
 }
 
-/* BOTÓN FINAL */
+/* BOTÓN */
 button {
     width: 100%;
     padding: 16px;
@@ -137,7 +153,6 @@ button {
     font-weight: 600;
 }
 
-/* FOOTER */
 footer {
     margin-top: 50px;
     padding: 35px 20px;
@@ -145,24 +160,6 @@ footer {
     color: #7e7e7e;
     text-align: center;
     font-size: 13px;
-}
-
-footer .footer-top {
-    margin-bottom: 15px;
-}
-
-footer a {
-    color: #00c8ff;
-    text-decoration: none;
-    font-size: 13px;
-}
-
-/* RESPONSIVE: si la pantalla es muy angosta, se ponen uno debajo del otro */
-@media (max-width: 480px) {
-    .row-double {
-        flex-direction: column;
-        gap: 0;
-    }
 }
 </style>
 </head>
@@ -180,6 +177,12 @@ footer a {
 
     <div class="step">PASO 3 DE 3</div>
     <h1>¡A disfrutar!</h1>
+
+    <!-- PLAN SELECCIONADO -->
+    <div id="selected-plan">
+        <h3>Plan seleccionado:</h3>
+        <p id="planText"></p>
+    </div>
 
     <!-- TAB SOLO TARJETA -->
     <div class="tabs">
@@ -233,13 +236,24 @@ footer a {
 
 <!-- FOOTER -->
 <footer>
-    <div class="footer-top">
-        © 2025 Disney+. Todos los derechos reservados.
-    </div>
-    <a href="#">Términos de uso</a> · 
-    <a href="#">Política de privacidad</a> · 
-    <a href="#">Ayuda</a>
+    © 2025 Disney+. Todos los derechos reservados. ·
+    <a href="#">Términos</a> · <a href="#">Privacidad</a>
 </footer>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const name = localStorage.getItem("planName");
+    const price = localStorage.getItem("planPrice");
+
+    if (name && price) {
+        document.getElementById("planText").innerText =
+            `${name} — COP ${price}/mes`;
+    } else {
+        document.getElementById("planText").innerText = 
+            "No se seleccionó un plan.";
+    }
+});
+</script>
 
 </body>
 </html>
