@@ -5,19 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Acuerdo de suscripción | Disney+</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
-* {
-    box-sizing: border-box;
-}
-
 body {
     margin: 0;
     font-family: 'Inter', sans-serif;
     background: #0d0d0f;
     color: #e0e0e0;
-    line-height: 1.5;
 }
 
 /* HEADER */
@@ -25,162 +20,99 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 18px 22px;
+    padding: 22px;
     border-bottom: 1px solid #222;
-    background: #0d0d0f;
-    position: sticky;
-    top: 0;
-    z-index: 100;
 }
 
 .header img {
     width: 110px;
-    height: auto;
 }
 
 .header a {
-    color: #a0a0a0;
-    font-size: 14px;
-    text-decoration: none;
-    transition: color 0.2s;
-}
-
-.header a:hover {
     color: #ffffff;
-    text-decoration: underline;
+    font-size: 15px;
+    text-decoration: none;
 }
 
 /* CONTENIDO */
 .content {
-    padding: 30px 24px 120px;
+    padding: 24px;
     max-width: 900px;
-    margin: 0 auto;
+    margin: auto;
 }
 
 .step {
     color: #bbbbbb;
-    font-size: 13px;
-    margin-bottom: 8px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
+    font-size: 14px;
+    margin-bottom: 6px;
 }
 
 h1 {
-    margin: 0 0 25px 0;
+    margin: 0;
     font-size: 32px;
-    font-weight: 700;
+    font-weight: 600;
     color: #ffffff;
-    line-height: 1.2;
+    margin-bottom: 20px;
 }
 
-.subtitle {
-    color: #a0a0a0;
+h2 {
+    font-size: 20px;
+    color: #ffffff;
+    margin-top: 30px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #333;
+    padding-bottom: 8px;
+}
+
+h3 {
     font-size: 16px;
-    margin-bottom: 30px;
+    color: #ffffff;
+    margin-top: 20px;
+    margin-bottom: 10px;
 }
 
 p {
     font-size: 15px;
-    line-height: 1.6;
-    margin-bottom: 20px;
+    line-height: 1.55;
+    margin-bottom: 18px;
 }
 
-.legal-highlight {
-    background: rgba(255, 255, 255, 0.05);
-    border-left: 4px solid #0063e5;
-    padding: 18px 20px;
-    margin: 30px 0;
-    border-radius: 0 6px 6px 0;
-}
-
-.legal-highlight strong {
+strong {
     color: #ffffff;
 }
 
 .legal-note {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid #333;
+    padding: 15px;
+    margin: 25px 0;
+    border-radius: 5px;
     font-size: 14px;
-    color: #a0a0a0;
-    border-top: 1px solid #222;
-    padding-top: 20px;
-    margin-top: 40px;
 }
 
-/* BOTÓN STICKY */
+/* BOTÓN */
 .btn-area {
-    background: rgba(13, 13, 15, 0.95);
-    padding: 22px 24px;
-    position: fixed;
+    background: #0d0d0fdd;
+    padding: 28px 20px;
+    position: sticky;
     bottom: 0;
-    left: 0;
-    right: 0;
-    backdrop-filter: blur(10px);
-    border-top: 1px solid #222;
-    z-index: 100;
-    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
 }
 
 button {
     width: 100%;
-    padding: 18px 24px;
+    padding: 18px;
     background: #ffffff;
     border: none;
-    border-radius: 8px;
+    border-radius: 10px;
     font-size: 17px;
-    color: #000000;
-    font-weight: 700;
+    color: #000;
+    font-weight: 600;
     cursor: pointer;
-    transition: all 0.2s ease;
 }
 
 button:hover {
-    background: #f0f0f0;
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
-}
-
-button:active {
-    transform: translateY(0);
-}
-
-/* SCROLLBAR PERSONALIZADA */
-.content::-webkit-scrollbar {
-    width: 8px;
-}
-
-.content::-webkit-scrollbar-track {
-    background: #1a1a1d;
-}
-
-.content::-webkit-scrollbar-thumb {
-    background: #444;
-    border-radius: 4px;
-}
-
-.content::-webkit-scrollbar-thumb:hover {
-    background: #555;
-}
-
-/* RESPONSIVE */
-@media (max-width: 768px) {
-    .content {
-        padding: 25px 20px 120px;
-    }
-    
-    h1 {
-        font-size: 28px;
-    }
-    
-    .header {
-        padding: 15px 20px;
-    }
-    
-    .header img {
-        width: 95px;
-    }
-    
-    .btn-area {
-        padding: 18px 20px;
-    }
+    background: #dcdcdc;
 }
 </style>
 </head>
@@ -189,90 +121,89 @@ button:active {
 
 <!-- HEADER -->
 <div class="header">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Disney%2B_logo.svg" alt="Disney+ Logo">
-    <a href="#" onclick="return confirm('¿Estás seguro de que deseas cerrar sesión? Se perderá el progreso.');">Cerrar sesión</a>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Disney%2B_logo.svg">
+    <a href="#">Cerrar sesión</a>
 </div>
 
 <!-- CONTENIDO -->
 <div class="content">
+
     <div class="step">PASO 1 DE 3</div>
     <h1>Acuerdo de suscripción</h1>
-    <div class="subtitle">Revise cuidadosamente los términos antes de continuar</div>
 
     <p><strong>Acuerdo de Suscripción a Disney+ (Colombia)</strong><br>
-    <em>Actualización: 15 de abril de 2025</em></p>
-
-    <div class="legal-highlight">
-        <strong>ATENCIÓN IMPORTANTE:</strong> Este es un resumen visual del acuerdo. El documento legal completo está disponible en el acuerdo completo. Al continuar, usted acepta todos los términos y condiciones de Disney+.
-    </div>
-
-    <p>
-        Es un gusto para nosotros brindarle el servicio Disney+ descripto abajo para su disfrute y entretenimiento personal de conformidad con este acuerdo de suscripción (el "Acuerdo de Suscripción" o el "Acuerdo"). <strong>POR FAVOR LEER EL ACUERDO CON CUIDADO YA QUE ESTABLECE LOS TÉRMINOS Y CONDICIONES PARA EL USO DEL SERVICIO.</strong>
-    </p>
-
-    <p>
-        The Walt Disney Company Colombia S.A.S. ("Disney”, "nosotros", "nos", "nuestro"), con domicilio social en Calle 70 Bis No. 4 – 41, Bogotá D.C., Colombia y número de NIT 800.236.937-1 le da la bienvenida al Servicio Disney+ (en adelante, el "Servicio").
-    </p>
-
-    <p>
-        Disney+ es un servicio de suscripción de streaming de video personalizado que incluye el sitio web, la aplicación, reproductor de video, software relacionado, contenido y los servicios relacionados de Disney+.
-    </p>
-
-    <p>
-        La aceptación del Acuerdo de Suscripción es válida para cualquier categoría y/u oferta del Servicio al que usted se suscriba. Este acuerdo puede ser reemplazado o complementado por términos específicos de su categoría de suscripción.
-    </p>
-
-    <p>
-        Al hacer clic en "Aceptar y continuar", usted confirma que:
-    </p>
-    
-    <ul style="padding-left: 20px; margin-bottom: 30px;">
-        <li>Tiene 18 años o más y es residente en Colombia</li>
-        <li>Acepta el <a href="#" style="color: #0063e5;">Acuerdo de Suscripción completo</a> y la <a href="#" style="color: #0063e5;">Política de Privacidad</a></li>
-        <li>Autoriza el procesamiento de datos según la Política de Privacidad</li>
-        <li>Es responsable del uso de su cuenta y del contenido accedido</li>
-    </ul>
+    <strong>Actualización: 15 de abril de 2025</strong></p>
 
     <div class="legal-note">
-        <strong>Nota legal:</strong> Este es un resumen visual. El acuerdo legal vinculante está disponible en los Términos de Servicio completos. Disney puede modificar estos términos notificándole con 30 días de antelación. Tiene derecho a cancelar si no acepta los cambios.
+        <strong>IMPORTANTE:</strong> Al hacer clic en "Aceptar y continuar", usted acepta todos los términos y condiciones a continuación.
     </div>
+
+    <p>Es un gusto para nosotros brindarle el servicio Disney+ descripto abajo para su disfrute y entretenimiento personal de conformidad con este acuerdo de suscripción (el "Acuerdo de Suscripción" o el "Acuerdo"). <strong>POR FAVOR LEER EL ACUERDO CON CUIDADO YA QUE ESTABLECE LOS TÉRMINOS Y CONDICIONES PARA EL USO DEL SERVICIO.</strong></p>
+
+    <p>The Walt Disney Company Colombia S.A.S. ("Disney", "nosotros", "nos", "nuestro"), con domicilio social en Calle 70 Bis No. 4 – 41, Bogotá D.C., Colombia y número de NIT es 800.236.937-1 le da la bienvenida al Servicio Disney+ (en adelante, el "Servicio").</p>
+
+    <p>Disney+ es un servicio de suscripción de "streaming" de video personalizado que incluye el sitio web, la aplicación, player de video y software relacionado, contenido y los servicios relacionados de Disney+.</p>
+
+    <h2>TÉRMINOS Y CONDICIONES AL SERVICIO</h2>
+
+    <h3>1. REQUISITOS PARA SER USUARIO Y SUSCRIPCIÓN</h3>
+    
+    <p><strong>a. Requisitos y Límites de Edad.</strong> Solo los residentes en países en los que se ofrezca el Servicio (en conjunto, el "Territorio") son aptos para registrarse como Suscriptores del Servicio. El presente Acuerdo de Suscripción rige para los residentes de Colombia. Debe tener la edad mínima legal para adquirir el Servicio, ser Titular de Cuenta o Miembro Extra. Los menores de edad e incapaces, las empresas, asociaciones y demás personas jurídicas no pueden suscribirse al Servicio ni utilizarlo sin la supervisión de sus padres y/o tutores legales. Como suscriptor, será responsable de todos los actos realizados por las personas a su cargo al utilizar el Servicio incluyendo cambios a su suscripción y costos adicionales incurridos por aquellos. Al acceder y utilizar el Servicio usted confirma que es mayor de edad y cuenta con la capacidad legal para suscribirse al Servicio.</p>
+    
+    <p><strong>b. Suscripción y Seguridad.</strong> Solo las personas físicas que creen una cuenta del Servicio aporten cierta información (por ejemplo, una dirección de correo electrónico válida) y acepten el Acuerdo de Suscripción son elegibles como Suscriptores del Servicio. Usted es responsable de mantener la confidencialidad y seguridad de su nombre de usuario y contraseña y de todas las actividades que se produzcan desde o a través de su cuenta del Servicio mientras se utilice el Servicio.</p>
+    
+    <p><strong>c. Compartir Cuenta.</strong> A los efectos de este Acuerdo, "Hogar" significa la colección de dispositivos asociados con su residencia personal primaria que son usados por los individuos que allí residen. A menos que su plan del Servicio o este Acuerdo lo permita, usted no podrá compartir su suscripción con personas fuera de su Hogar.</p>
+
+    <h3>2. CONDICIONES DE LA SUSCRIPCIÓN</h3>
+    
+    <p><strong>a. Categoría de Servicio y Otras Ofertas.</strong> Nosotros podremos ofrecer planes u opciones diferentes (cada uno "Categoría de Servicio") del Servicio. Diferentes Categorías de Servicio u otras ofertas, pueden diferir, entre otros y sin limitación, en relación a precio, promociones, inclusión y/o colocación de publicidad, numero de perfiles, elegibilidad de usuario, restricciones de contenido y técnicas, características, disponibilidad de contenido, calidad de video y/o audio, especificaciones adicionales, funcionalidad, disponibilidad de descarga y de dispositivos.</p>
+    
+    <p><strong>b. Facturación de la Suscripción y Renovación Automática.</strong> Su suscripción al Servicio incluye el registro a un plan de pagos recurrentes periódicos. Su suscripción (incluyendo Miembro Extra, cuando aplique) se renovará automáticamente al finalizar el período de facturación indicado, salvo que usted la cancele conforme a las instrucciones de cancelación que figuran más adelante sin penalidades ni cargos adicionales por cancelación o terminación anticipada. El pago se imputará al método de pago que usted haya elegido al confirmar la contratación y al comienzo de cada nuevo período de facturación, salvo que la cancele en tiempo y forma.</p>
+    
+    <p><strong>c. Reversión de pago.</strong> Bajo las leyes aplicables en Colombia, tendrás derecho a la reversión del pago cuando: (i) hayas sido objeto de fraude; (ii) el pago realizado corresponde a una transacción no solicitada; (iii) no tuviste acceso al Servicio; (iv) el Servicio no se corresponda con lo que fue solicitado o es defectuoso. Tendrás cinco (5) días hábiles desde el momento en que entres en conocimiento de las circunstancias arriba indicadas para contactarnos, cancelar el Servicio y notificar al emisor del medio de pago electrónico utilizado para realizar la compra.</p>
+    
+    <p><strong>d. Periodo de Prueba Gratuito, Descuentos y Promociones.</strong> Su suscripción o suscripciones al Servicio podrían comenzar con un período de prueba gratuito, un descuento, una promoción u otro beneficio. No se garantiza la disponibilidad de un período de prueba gratuito, un descuento, una promoción u otro beneficio. Por la presente usted también acepta y autoriza que su primer pago sea cobrado a través del medio de pago elegido inmediatamente después de un período de prueba gratuito, si aplica, salvo que se cancele.</p>
+    
+    <p><strong>e. Modificación de Suscripción. Cancelación, Política de Reembolsos y Derecho de Desistimiento.</strong> Puede darnos instrucciones para cancelar su suscripción en cualquier momento antes de que finalice el período de facturación corriente o el período de prueba gratuita, descuento o promoción. Usted podría disponer de un derecho de desistimiento por ley comenzando desde que se haya aceptado este Acuerdo según las leyes aplicables en su país. No obstante, perderás este derecho de desistimiento si hubiera comenzado la ejecución del Contenido.</p>
+    
+    <p>Para cancelar su suscripción al Servicio, visita www.disneyplus.com/account/cancel-subscription, y haga clic en "Cancelación" o contacta nuestro Centro de Ayuda.</p>
+
+    <h3>3. LICENCIA DE DERECHOS PROPIEDAD INTELECTUAL Y RESTRICCIONES</h3>
+    
+    <p><strong>a. Licencia.</strong> En el Territorio y sujeto a los términos y las condiciones que se recogen en este Acuerdo de Suscripción, Disney otorga un derecho limitado, de uso personal, intransferible, no susceptible de cesión, revocable, no exclusivo y no susceptible de sublicencia para hacer uso personal, no comercial del Servicio y recibir emisiones en línea (streams) de o descargar temporalmente materiales amparados por derechos de autor, marcas comerciales, nombres de dominio u otras leyes de propiedad intelectual o industrial.</p>
+    
+    <p><strong>b. Restricciones a Su Uso del Contenido.</strong> Como condición de su licencia, usted acepta que no podrá y acuerda no copiar, reproducir o fijar el Contenido; retransmitir, transmitir, emitir o ejecutar el Contenido disponible a través del Servicio por cualquier método o proceso; crear obras derivadas del Contenido o permitir a terceros que violen las restricciones anteriores.</p>
+
+    <h3>4. CONDICIONES DE USO</h3>
+    
+    <p>El uso del Servicio requiere dispositivos compatibles; ciertos programas pueden requerir actualizaciones periódicas y su uso del Servicio puede verse afectado por el rendimiento de estos dispositivos o programas u otros elementos fuera de nuestro control. Debe tener una conexión a Internet de alta velocidad para poder acceder y utilizar algunos aspectos del Servicio.</p>
+
+    <h3>5. USO E INTERCAMBIO DE SU INFORMACIÓN</h3>
+    
+    <p>CUANDO SE REGISTRAS PARA UTILIZAR EL SERVICIO, SE LE PUEDE SOLICITAR QUE APORTES CIERTA INFORMACIÓN PERSONAL. PODEMOS TAMBIEN RECOLECTAR AUTOMÁTICAMENTE INFORMACIÓN PERSONAL PARA AYUDARNOS A PERSONALIZAR LA PUBLICIDAD, MEJORAR LA EXPERIENCIA DEL USUARIO Y OTROS FINES, COMO SE DETALLAN EN NUESTRA POLÍTICA DE PRIVACIDAD. USTED RECONOCE QUE LA COLECCIÓN Y PROCESAMIENTO DE INFORMACIÓN PERSONAL ES INHERENTE A LA PROVISIÓN DEL SERVICIO, Y SI USTED NO ACEPTA EL PROCESAMIENTO DE LA INFORMACION PERSONAL, USTED NO PODRA UTILIZAR EL SERVICIO.</p>
+
+    <h3>6. SUSPENSIÓN Y TERMINACIÓN</h3>
+    
+    <p>Usted reconoce y acepta que Disney pueda restringir, suspender o terminar su acceso a parte o a la totalidad del Servicio y a cualquier Contenido de Disney en caso de que Disney considere que está utilizando o ha utilizado el Servicio en contravención del Acuerdo de Suscripción o de la legislación y normativa aplicables.</p>
+
+    <h3>7. DISPOSICIONES ADICIONALES</h3>
+    
+    <p>El Contenido que reciba a través del Servicio está previsto exclusivamente con fines informativos y de entretenimiento. El Contenido no constituye asesoramiento o diagnóstico jurídico, financiero, profesional, médico o de salud, y no se puede usar a tales efectos.</p>
+    
+    <p>Por cualquier controversia resultante de o relativa a este Acuerdo, las partes expresamente acuerdan que dicha disputa será referida a y resuelta en forma definitiva mediante arbitraje administrado por el Centro de Arbitraje y Conciliación de la Cámara de Comercio de Bogotá.</p>
+    
+    <p>El presente Acuerdo de Suscripción y toda controversia o reclamación que se derive o surja de la relación con este Acuerdo de Suscripción se regirá e interpretará de conformidad con la legislación aplicable según lo previsto en la normativa de defensa del consumidor aplicable.</p>
+
+    <div class="legal-note">
+        <strong>ACEPTACIÓN FINAL:</strong> Al hacer clic en "Aceptar y continuar", usted confirma que ha leído, entendido y acepta todos los términos y condiciones establecidos en este Acuerdo de Suscripción, así como nuestra Política de Privacidad.
+    </div>
+
 </div>
 
 <!-- BOTÓN STICKY -->
 <div class="btn-area">
-    <button onclick="acceptAgreement()">ACEPTAR Y CONTINUAR</button>
+    <button onclick="location.href='pago.html'">ACEPTAR Y CONTINUAR</button>
 </div>
-
-<script>
-function acceptAgreement() {
-    // Aquí normalmente se enviaría la aceptación a un servidor
-    // Por ahora solo redirigimos
-    const confirmed = confirm("¿Confirmas que has leído y aceptas el Acuerdo de Suscripción y la Política de Privacidad de Disney+?");
-    
-    if (confirmed) {
-        // Simular envío de aceptación
-        console.log("Acuerdo aceptado - Timestamp:", new Date().toISOString());
-        
-        // Redirigir al siguiente paso (pago)
-        window.location.href = "pago.html";
-    } else {
-        alert("Debes aceptar el acuerdo para continuar con la suscripción.");
-    }
-}
-
-// Scroll suave para mejor experiencia
-document.addEventListener('DOMContentLoaded', function() {
-    const content = document.querySelector('.content');
-    
-    // Opcional: Mostrar porcentaje leído
-    window.addEventListener('scroll', function() {
-        const scrolled = (window.scrollY / (content.scrollHeight - window.innerHeight)) * 100;
-        if (scrolled > 70) {
-            document.querySelector('.btn-area').style.opacity = '1';
-        }
-    });
-});
-</script>
 
 </body>
 </html>
