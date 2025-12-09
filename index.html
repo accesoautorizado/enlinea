@@ -234,7 +234,7 @@ p {
 }
 
 /* ============================================================ */
-/*               TABLA COMPARATIVA DE PLANES                   */
+/*           TABLA COMPARATIVA ESTILO DISNEY+ (ADAPTADA)       */
 /* ============================================================ */
 
 .comparison-section {
@@ -253,58 +253,85 @@ p {
   opacity: .9;
 }
 
-.comparison-table {
+/* contenedor general de filas */
+.comparison-table-body {
   width: 100%;
-  border-collapse: collapse;
 }
 
+/* cada fila */
 .comparison-row {
   display: grid;
-  grid-template-columns: 1.2fr 1fr 1fr 1fr;
+  grid-template-columns: 1.4fr 1fr 1fr 1fr;
   border-bottom: 1px solid #222;
   padding: 18px 0;
+  align-items: stretch;
+}
+
+/* columna de descripción */
+.comparison-feature {
+  padding: 0 10px;
+  display: flex;
   align-items: center;
+  text-align: left;
 }
 
-.comparison-row p {
+.comparison-feature p {
   margin: 0;
-  opacity: .85;
-}
-
-.comparison-header {
   font-size: 15px;
   line-height: 1.4;
+  opacity: .9;
 }
 
+/* celdas de cada plan */
 .comparison-cell {
+  padding: 0 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   text-align: center;
-  font-size: 15px;
 }
 
+/* “fondo clarito” como Disney+ en la columna destacada */
+.cell-highlight {
+  background: rgba(148, 163, 184, 0.18); /* similar a bg-onSurfaceVariant/10 */
+  border-radius: 10px;
+}
+
+/* enlaces de precios */
 .comparison-price a {
   color: #00C8FF;
   text-decoration: underline;
   font-size: 14px;
 }
 
-.comparison-check svg,
-.comparison-dash svg {
-  opacity: .85;
-  height: 22px;
+/* íconos */
+.check-icon svg,
+.dash-icon svg {
+  height: 26px;
+  opacity: .9;
+}
+
+/* números (4, 2, etc.) */
+.comparison-number {
+  font-size: 16px;
+  font-weight: 400;
 }
 
 /* RESPONSIVE */
-@media(max-width: 780px) {
+@media (max-width: 780px) {
   .comparison-row {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     row-gap: 10px;
-    padding: 20px 5px;
+    padding: 16px 0;
   }
 
-  .comparison-cell:nth-child(3),
-  .comparison-cell:nth-child(4) {
-    border-top: 1px solid #222;
-    padding-top: 12px;
+  .comparison-feature {
+    text-align: center;
+    justify-content: center;
+  }
+
+  .comparison-cell {
+    padding: 8px 0;
   }
 }
 
@@ -384,8 +411,11 @@ footer p {
   <div class="overlay"></div>
   <div class="content">
     <img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Disney%2B_logo.svg" class="logo">
+
     <h2>Series exclusivas, éxitos del cine, el deporte de ESPN y más</h2>
+
     <p>Planes desde <b>COP 24.900/mes</b></p>
+
     <div class="form">
       <input type="email" placeholder="Correo electrónico">
       <button class="btn">SUSCRIBIRME AHORA</button>
@@ -393,7 +423,7 @@ footer p {
   </div>
 </div>
 
-<!-- PLANES -->
+<!-- PLANES DEBAJO -->
 <div class="populares-container">
 
   <div class="populares-planes">
@@ -421,49 +451,219 @@ footer p {
 </div>
 
 <!-- ======================================================= -->
-<!--                 TABLA COMPARATIVA AQUI                  -->
+<!--        TABLA COMPARATIVA ADAPTADA ESTILO DISNEY+        -->
 <!-- ======================================================= -->
 
 <div class="comparison-section">
-
   <h3 class="comparison-title">Compara nuestros planes</h3>
 
-  <!-- FILA 1 -->
-  <div class="comparison-row">
-    <div class="comparison-header">
-      <p><b>Plan anual</b><br>Disfruta de 12 meses al precio de 9**</p>
-    </div>
-    <div class="comparison-cell comparison-price">
-      <a href="#">COP 418.900/año</a>
-    </div>
-    <div class="comparison-cell comparison-price">
-      <a href="#">COP 309.900/año</a>
-    </div>
-    <div class="comparison-cell comparison-dash">
-      <svg width="37" height="37"><path d="M28.875 17.525v1.953a1.307 1.307 0 01-1.306 1.305H10.18a1.306 1.306 0 01-1.306-1.305v-1.956c0-.72.585-1.305 1.306-1.305l17.389.002c.721 0 1.306.584 1.305 1.306z" fill="white" fill-opacity=".3"/></svg>
-    </div>
-  </div>
+  <div class="comparison-table-body">
 
-  <!-- FILA 2 -->
-  <div class="comparison-row">
-    <div class="comparison-header">
-      <p>Todos los canales de ESPN y más de 500 eventos por mes***</p>
-    </div>
-    <div class="comparison-cell comparison-check">
-      <svg width="25" height="18" viewBox="0 0 25 18"><path fill="#00C8FF" d="M20.8 0.7L9.27 12.27 3.85 6.85c-.62-.62-1.62-.62-2.24 0l-.82.82c-.62.62-.62 1.62 0 2.24l7.36 7.36c.62.62 1.62.62 2.24 0L23.87 3.79c.62-.62.62-1.62 0-2.24l-.82-.82c-.62-.62-1.62-.62-2.24 0z"/></svg>
-    </div>
-    <div class="comparison-cell comparison-dash">
-      <svg width="37" height="37"><path fill="white" fill-opacity=".3" d="M28.875 17.525v1.953a1.307 1.307 0 01-1.306 1.305H10.18a1.306 1.306 0 01-1.306-1.305v-1.956c0-.72.585-1.305 1.306-1.305l17.389.002c.721 0 1.306.584 1.305 1.306z"/></svg>
-    </div>
-    <div class="comparison-cell comparison-dash">
-      <svg width="37" height="37"><path fill="white" fill-opacity=".3" d="M28.875 17.525v1.953a1.307 1.307 0 01-1.306 1.305H10.18a1.306 1.306 0 01-1.306-1.305v-1.956c0-.72.585-1.305 1.306-1.305l17.389.002c.721 0 1.306.584 1.305 1.306z"/></svg>
-    </div>
-  </div>
+    <!-- FILA 1 - PLAN ANUAL -->
+    <div class="comparison-row">
+      <div class="comparison-feature">
+        <p><strong>Plan anual</strong><br>Disfruta de 12 meses al precio de 9**</p>
+      </div>
 
+      <div class="comparison-cell cell-highlight">
+        <p class="comparison-price">
+          <a href="#">COP 418.900/año (final)**</a>
+        </p>
+      </div>
+
+      <div class="comparison-cell">
+        <p class="comparison-price">
+          <a href="#">COP 309.900/año (final)**</a>
+        </p>
+      </div>
+
+      <div class="comparison-cell">
+        <div class="dash-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="37" height="37" viewBox="0 0 37 37" fill="none">
+            <path d="M28.875 17.525v1.953a1.307 1.307 0 0 1-1.306 1.305H10.18a1.306 1.306 0 0 1-1.306-1.305v-1.956c0-.72.585-1.305 1.306-1.305l17.389.002c.721 0 1.306.584 1.305 1.306z" fill="white" fill-opacity=".3"></path>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- FILA 2 - ESPN -->
+    <div class="comparison-row">
+      <div class="comparison-feature">
+        <p>Todos los canales de ESPN, torneos y más de 500 eventos exclusivos por mes***</p>
+      </div>
+
+      <div class="comparison-cell cell-highlight">
+        <div class="check-icon">
+          <svg width="25" height="18" viewBox="0 0 25 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20.8142 0.733645L9.27242 12.2746L3.85204 6.85426C3.2349 6.23712 2.23455 6.23712 1.61741 6.85426L0.796352 7.67532C0.179211 8.29246 0.179211 9.29358 0.796352 9.91073L8.15587 17.2672C8.77301 17.8843 9.77336 17.8843 10.3905 17.2672L23.8706 3.78934C24.4878 3.1722 24.4878 2.17184 23.8706 1.55393L23.0496 0.732875C22.4324 0.115734 21.4321 0.115734 20.8149 0.732875L20.8142 0.733645Z" fill="#00C8FF"></path>
+          </svg>
+        </div>
+      </div>
+
+      <div class="comparison-cell">
+        <div class="dash-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="37" height="37" viewBox="0 0 37 37" fill="none">
+            <path d="M28.875 17.525v1.953a1.307 1.307 0 0 1-1.306 1.305H10.18a1.306 1.306 0 0 1-1.306-1.305v-1.956c0-.72.585-1.305 1.306-1.305l17.389.002c.721 0 1.306.584 1.305 1.306z" fill="white" fill-opacity=".3"></path>
+          </svg>
+        </div>
+      </div>
+
+      <div class="comparison-cell">
+        <div class="dash-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="37" height="37" viewBox="0 0 37 37" fill="none">
+            <path d="M28.875 17.525v1.953a1.307 1.307 0 0 1-1.306 1.305H10.18a1.306 1.306 0 0 1-1.306-1.305v-1.956c0-.72.585-1.305 1.306-1.305l17.389.002c.721 0 1.306.584 1.305 1.306z" fill="white" fill-opacity=".3"></path>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- FILA 3 - ESTRENOS Y CATÁLOGO -->
+    <div class="comparison-row">
+      <div class="comparison-feature">
+        <p>Estrenos de películas, series originales y clásicos de Disney, Pixar, Marvel, Star Wars, National Geographic y Hulu</p>
+      </div>
+
+      <div class="comparison-cell cell-highlight">
+        <div class="check-icon">
+          <svg width="25" height="18" viewBox="0 0 25 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20.8142 0.733645L9.27242 12.2746L3.85204 6.85426C3.2349 6.23712 2.23455 6.23712 1.61741 6.85426L0.796352 7.67532C0.179211 8.29246 0.179211 9.29358 0.796352 9.91073L8.15587 17.2672C8.77301 17.8843 9.77336 17.8843 10.3905 17.2672L23.8706 3.78934C24.4878 3.1722 24.4878 2.17184 23.8706 1.55393L23.0496 0.732875C22.4324 0.115734 21.4321 0.115734 20.8149 0.732875L20.8142 0.733645Z" fill="#00C8FF"></path>
+          </svg>
+        </div>
+      </div>
+
+      <div class="comparison-cell">
+        <div class="check-icon">
+          <svg width="25" height="18" viewBox="0 0 25 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20.8142 0.733645L9.27242 12.2746L3.85204 6.85426C3.2349 6.23712 2.23455 6.23712 1.61741 6.85426L0.796352 7.67532C0.179211 8.29246 0.179211 9.29358 0.796352 9.91073L8.15587 17.2672C8.77301 17.8843 9.77336 17.8843 10.3905 17.2672L23.8706 3.78934C24.4878 3.1722 24.4878 2.17184 23.8706 1.55393L23.0496 0.732875C22.4324 0.115734 21.4321 0.115734 20.8149 0.732875L20.8142 0.733645Z" fill="#00C8FF"></path>
+          </svg>
+        </div>
+      </div>
+
+      <div class="comparison-cell">
+        <div class="check-icon">
+          <svg width="25" height="18" viewBox="0 0 25 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20.8142 0.733645L9.27242 12.2746L3.85204 6.85426C3.2349 6.23712 2.23455 6.23712 1.61741 6.85426L0.796352 7.67532C0.179211 8.29246 0.179211 9.29358 0.796352 9.91073L8.15587 17.2672C8.77301 17.8843 9.77336 17.8843 10.3905 17.2672L23.8706 3.78934C24.4878 3.1722 24.4878 2.17184 23.8706 1.55393L23.0496 0.732875C22.4324 0.115734 21.4321 0.115734 20.8149 0.732875L20.8142 0.733645Z" fill="#00C8FF"></path>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- FILA 4 - SIN ANUNCIOS -->
+    <div class="comparison-row">
+      <div class="comparison-feature">
+        <p>Películas y series sin interrupciones publicitarias****</p>
+      </div>
+
+      <div class="comparison-cell cell-highlight">
+        <div class="check-icon">
+          <svg width="25" height="18" viewBox="0 0 25 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20.8142 0.733645L9.27242 12.2746L3.85204 6.85426C3.2349 6.23712 2.23455 6.23712 1.61741 6.85426L0.796352 7.67532C0.179211 8.29246 0.179211 9.29358 0.796352 9.91073L8.15587 17.2672C8.77301 17.8843 9.77336 17.8843 10.3905 17.2672L23.8706 3.78934C24.4878 3.1722 24.4878 2.17184 23.8706 1.55393L23.0496 0.732875C22.4324 0.115734 21.4321 0.115734 20.8149 0.732875L20.8142 0.733645Z" fill="#00C8FF"></path>
+          </svg>
+        </div>
+      </div>
+
+      <div class="comparison-cell">
+        <div class="check-icon">
+          <svg width="25" height="18" viewBox="0 0 25 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20.8142 0.733645L9.27242 12.2746L3.85204 6.85426C3.2349 6.23712 2.23455 6.23712 1.61741 6.85426L0.796352 7.67532C0.179211 8.29246 0.179211 9.29358 0.796352 9.91073L8.15587 17.2672C8.77301 17.8843 9.77336 17.8843 10.3905 17.2672L23.8706 3.78934C24.4878 3.1722 24.4878 2.17184 23.8706 1.55393L23.0496 0.732875C22.4324 0.115734 21.4321 0.115734 20.8149 0.732875L20.8142 0.733645Z" fill="#00C8FF"></path>
+          </svg>
+        </div>
+      </div>
+
+      <div class="comparison-cell">
+        <div class="dash-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="37" height="37" viewBox="0 0 37 37" fill="none">
+            <path d="M28.875 17.525v1.953a1.307 1.307 0 0 1-1.306 1.305H10.18a1.306 1.306 0 0 1-1.306-1.305v-1.956c0-.72.585-1.305 1.306-1.305l17.389.002c.721 0 1.306.584 1.305 1.306z" fill="white" fill-opacity=".3"></path>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- FILA 5 - 4K UHD / DOLBY ATMOS -->
+    <div class="comparison-row">
+      <div class="comparison-feature">
+        <p>Calidad de video hasta 4K UHD/HDR y sonido Dolby Atmos*****</p>
+      </div>
+
+      <div class="comparison-cell cell-highlight">
+        <div class="check-icon">
+          <svg width="25" height="18" viewBox="0 0 25 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20.8142 0.733645L9.27242 12.2746L3.85204 6.85426C3.2349 6.23712 2.23455 6.23712 1.61741 6.85426L0.796352 7.67532C0.179211 8.29246 0.179211 9.29358 0.796352 9.91073L8.15587 17.2672C8.77301 17.8843 9.77336 17.8843 10.3905 17.2672L23.8706 3.78934C24.4878 3.1722 24.4878 2.17184 23.8706 1.55393L23.0496 0.732875C22.4324 0.115734 21.4321 0.115734 20.8149 0.732875L20.8142 0.733645Z" fill="#00C8FF"></path>
+          </svg>
+        </div>
+      </div>
+
+      <div class="comparison-cell">
+        <div class="dash-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="37" height="37" viewBox="0 0 37 37" fill="none">
+            <path d="M28.875 17.525v1.953a1.307 1.307 0 0 1-1.306 1.305H10.18a1.306 1.306 0 0 1-1.306-1.305v-1.956c0-.72.585-1.305 1.306-1.305l17.389.002c.721 0 1.306.584 1.305 1.306z" fill="white" fill-opacity=".3"></path>
+          </svg>
+        </div>
+      </div>
+
+      <div class="comparison-cell">
+        <div class="dash-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="37" height="37" viewBox="0 0 37 37" fill="none">
+            <path d="M28.875 17.525v1.953a1.307 1.307 0 0 1-1.306 1.305H10.18a1.306 1.306 0 0 1-1.306-1.305v-1.956c0-.72.585-1.305 1.306-1.305l17.389.002c.721 0 1.306.584 1.305 1.306z" fill="white" fill-opacity=".3"></path>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- FILA 6 - DISPOSITIVOS SIMULTÁNEOS -->
+    <div class="comparison-row">
+      <div class="comparison-feature">
+        <p>Dispositivos para ver en simultáneo</p>
+      </div>
+
+      <div class="comparison-cell cell-highlight">
+        <span class="comparison-number">4</span>
+      </div>
+
+      <div class="comparison-cell">
+        <span class="comparison-number">2</span>
+      </div>
+
+      <div class="comparison-cell">
+        <span class="comparison-number">2</span>
+      </div>
+    </div>
+
+    <!-- FILA 7 - DESCARGAS -->
+    <div class="comparison-row">
+      <div class="comparison-feature">
+        <p>Descargas para ver tus favoritos sin conexión ni demoras</p>
+      </div>
+
+      <div class="comparison-cell cell-highlight">
+        <div class="check-icon">
+          <svg width="25" height="18" viewBox="0 0 25 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20.8142 0.733645L9.27242 12.2746L3.85204 6.85426C3.2349 6.23712 2.23455 6.23712 1.61741 6.85426L0.796352 7.67532C0.179211 8.29246 0.179211 9.29358 0.796352 9.91073L8.15587 17.2672C8.77301 17.8843 9.77336 17.8843 10.3905 17.2672L23.8706 3.78934C24.4878 3.1722 24.4878 2.17184 23.8706 1.55393L23.0496 0.732875C22.4324 0.115734 21.4321 0.115734 20.8149 0.732875L20.8142 0.733645Z" fill="#00C8FF"></path>
+          </svg>
+        </div>
+      </div>
+
+      <div class="comparison-cell">
+        <div class="check-icon">
+          <svg width="25" height="18" viewBox="0 0 25 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20.8142 0.733645L9.27242 12.2746L3.85204 6.85426C3.2349 6.23712 2.23455 6.23712 1.61741 6.85426L0.796352 7.67532C0.179211 8.29246 0.179211 9.29358 0.796352 9.91073L8.15587 17.2672C8.77301 17.8843 9.77336 17.8843 10.3905 17.2672L23.8706 3.78934C24.4878 3.1722 24.4878 2.17184 23.8706 1.55393L23.0496 0.732875C22.4324 0.115734 21.4321 0.115734 20.8149 0.732875L20.8142 0.733645Z" fill="#00C8FF"></path>
+          </svg>
+        </div>
+      </div>
+
+      <div class="comparison-cell">
+        <div class="dash-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="37" height="37" viewBox="0 0 37 37" fill="none">
+            <path d="M28.875 17.525v1.953a1.307 1.307 0 0 1-1.306 1.305H10.18a1.306 1.306 0 0 1-1.306-1.305v-1.956c0-.72.585-1.305 1.306-1.305l17.389.002c.721 0 1.306.584 1.305 1.306z" fill="white" fill-opacity=".3"></path>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+  </div>
 </div>
 
-
-<!-- ESPN + Disney -->
+<!-- ESPN + DISNEY SECTION -->
 <div class="espn-section">
 
   <p>
@@ -498,6 +698,7 @@ footer p {
 
 </div>
 
+<!-- FOOTER -->
 <footer>
   <div class="logos">
     <img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Disney%2B_logo.svg">
@@ -511,6 +712,7 @@ footer p {
   <p>© 2025 Plataforma+. Todos los derechos reservados.</p>
 </footer>
 
+<!-- SCRIPT -->
 <script>
 const imagenes = [
   "https://disney.images.edge.bamgrid.com/ripcut-delivery/v2/variant/disney/306F5EDFDA4042AE78A10D7B3534E05CB3E2828EF9538023A13C968C7EE44309/compose?format=webp&width=660",
