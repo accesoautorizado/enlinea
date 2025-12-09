@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Plataforma+</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+/* ------------------------------------------------- */
+/* BASE GENERAL */
+/* ------------------------------------------------- */
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', sans-serif;
+  background: #000;
+  color: #fff;
+  overflow-x: hidden;
+}
+
+* { box-sizing: border-box; }
+
+/* Suavizado visual */
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ------------------------------------------------- */
+/* HEADER REALISTA */
+/* ------------------------------------------------- */
+header {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 18px 30px;
+  display: flex;
+  justify-content: flex-end;
+  z-index: 50;
+  background: linear-gradient(180deg, rgba(0,0,0,.8), transparent);
+  backdrop-filter: blur(6px);
+}
+
+header a {
+  color: white;
+  font-weight: 300;
+  text-decoration: none;
+  border: 1.3px solid rgba(255,255,255,0.6);
+  padding: 9px 20px;
+  border-radius: 8px;
+  transition: .25s;
+  letter-spacing: 1px;
+  background: rgba(255,255,255,0.08);
+}
+
+header a:hover {
+  background: rgba(255,255,255,0.25);
+  border-color: white;
+}
+
+/* ------------------------------------------------- */
+/* HERO MÁS REALISTA */
+/* ------------------------------------------------- */
+.hero {
+  width: 100%;
+  height: 620px;
+  background-size: cover;
+  background-position: center top;
+  transition: background-image 1.2s ease-in-out;
+  position: relative;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 65%;
+  background: linear-gradient(180deg, transparent, #000);
+}
+
+.content {
+  position: absolute;
+  bottom: 75px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 85%;
+  text-align: center;
+  animation: fadeIn .9s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity:0; transform: translate(-50%, 20px); }
+  to   { opacity:1; transform: translate(-50%, 0); }
+}
+
+.logo {
+  width: 180px;
+  filter: drop-shadow(0 2px 8px rgba(0,0,0,.6));
+  margin-bottom: 18px;
+}
+
+h2 {
+  font-size: 28px;
+  font-weight: 300;
+  line-height: 1.4;
+  text-shadow: 0 3px 8px #000;
+}
+
+p {
+  font-size: 17px;
+  opacity: 0.85;
+}
+
+/* Inputs del hero */
+.form input {
+  width: 100%;
+  padding: 18px;
+  border-radius: 6px;
+  border: 1px solid #333;
+  margin-top: 12px;
+  font-size: 16px;
+  background: rgba(255,255,255,0.06);
+  color: white;
+  backdrop-filter: blur(6px);
+  transition: .25s;
+}
+
+.form input:focus {
+  outline: none;
+  border: 1px solid #00C8FF;
+}
+
+/* Botón */
+.btn {
+  width: 100%;
+  background: linear-gradient(90deg, #00C8FF, #00A8D6);
+  color: black;
+  border: none;
+  padding: 16px;
+  font-size: 15px;
+  border-radius: 6px;
+  margin-top: 12px;
+  cursor: pointer;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  transition: .3s;
+}
+
+.btn:hover {
+  background: linear-gradient(90deg, #00D6FF, #00BDEC);
+  transform: scale(1.02);
+}
+
+/* ------------------------------------------------- */
+/* CARDS DE PLANES MÁS REALES */
+/* ------------------------------------------------- */
+
+.populares-container {
+  background: #000;
+  padding: 40px 18px;
+}
+
+.populares-planes {
+  display: flex;
+  gap: 15px;
+  overflow-x: auto;
+  padding-bottom: 10px;
+  scroll-snap-type: x mandatory;
+}
+
+.populares-planes::-webkit-scrollbar {
+  height: 5px;
+}
+.populares-planes::-webkit-scrollbar-thumb {
+  background: #222;
+  border-radius: 50px;
+}
+
+.plan-card {
+  min-width: 190px;
+  background: #111827;
+  padding: 22px 16px;
+  border-radius: 14px;
+  border: 1px solid #1f2937;
+  text-align: center;
+  cursor: pointer;
+  scroll-snap-align: start;
+  transition: .28s ease;
+  position: relative;
+  box-shadow: 0 4px 20px rgba(0,0,0,.3);
+}
+
+.plan-card:hover {
+  transform: translateY(-4px);
+  border-color: #00C8FF;
+}
+
+.plan-card.active {
+  border-color: #00C8FF;
+  box-shadow: 0 6px 25px rgba(0,200,255,.3);
+}
+
+.plan-title {
+  font-size: 18px;
+  font-weight: 300;
+  padding: 12px 35px;
+  border-radius: 6px;
+  border: 1.5px solid #02d6e8;
+  display: inline-block;
+  margin-bottom: 10px;
+  transition: .3s ease;
+}
+
+.plan-card.active .plan-title {
+  background: #00C8FF;
+  color: black;
+}
+
+.plan-price {
+  margin-top: 10px;
+  font-size: 15px;
+  opacity: .8;
+  line-height: 1.5;
+}
+
+.badge-popular {
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #E5E7EB;
+  color: #000;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 12px;
+  border-radius: 20px;
+}
+
+/* Detalle plan */
+#detalle-plan {
+  background: #111;
+  border: 1px solid #222;
+  padding: 20px;
+  border-radius: 12px;
+  margin-top: 25px;
+  font-weight: 300;
+  display: none;
+  animation: fadePlan .35s ease;
+}
+
+@keyframes fadePlan {
+  from { opacity:0; transform: translateY(12px); }
+  to   { opacity:1; transform: translateY(0); }
+}
+
+.btn-comprar {
+  width: 100%;
+  background: #00C8FF;
+  color: black;
+  border: none;
+  padding: 14px;
+  border-radius: 6px;
+  margin-top: 15px;
+  cursor: pointer;
+  letter-spacing: 1px;
+  font-weight: 600;
+  transition: .25s;
+}
+
+.btn-comprar:hover {
+  background: #00D6FF;
+  transform: scale(1.03);
+}
+
+/* ------------------------------------------------- */
+/* FOOTER REALISTA */
+/* ------------------------------------------------- */
+
+footer {
+  padding: 60px 20px;
+  text-align: center;
+  background: #000;
+  margin-top: 40px;
+}
+
+footer .logos {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 18px;
+  opacity: .75;
+}
+
+footer p {
+  opacity: .55;
+  margin-top: 20px;
+  font-size: 13px;
+}
+</style>
+</head>
