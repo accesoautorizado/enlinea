@@ -5,68 +5,66 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Iniciar sesión | MyDisney</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
 <style>
 body {
     margin: 0;
     font-family: 'Inter', sans-serif;
-    background: linear-gradient(180deg, #033057, #001323);
+    background: linear-gradient(180deg, #03254f, #001226);
+    color: #000;
 }
 
 /* LOGO SUPERIOR */
 .logo-area {
     text-align: center;
-    padding-top: 35px;
-    padding-bottom: 10px;
+    padding-top: 45px;
+    padding-bottom: 15px;
 }
 
 .logo-area img {
-    width: 165px;
-    filter: brightness(1200%);
+    width: 160px;
+    filter: brightness(4.5);
 }
 
-/* TARJETA BLANCA */
+/* TARJETA PRINCIPAL */
 .container {
-    max-width: 500px;
-    margin: 20px auto 0;
     background: #fff;
-    border-radius: 28px;
-    padding: 38px 25px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.18);
+    border-radius: 28px 28px 0 0;
+    padding: 40px 25px;
+    margin-top: 20px;
 }
 
-/* LOGO MyDisney */
-.container img {
-    width: 115px;
-    margin-bottom: 12px;
+/* LOGO MYDISNEY */
+.mydisney-logo {
+    width: 120px;
+    margin-bottom: 10px;
 }
 
+/* TITULO */
 h1 {
     font-size: 26px;
     font-weight: 600;
-    color: #000;
+    margin-bottom: 10px;
 }
 
+/* SUBTEXTO */
 .subtxt {
     font-size: 15px;
-    color: #444;
-    line-height: 1.4;
-    margin-top: 12px;
-    margin-bottom: 28px;
+    color: #555;
+    line-height: 1.45;
+    margin-bottom: 25px;
 }
 
-/* INPUT CORREGIDO */
+/* INPUT */
 input {
     width: 100%;
-    box-sizing: border-box; /* 🔥 evita que sobresalga */
-    padding: 18px;
-    border: 1px solid #d8d8d8;
+    padding: 17px;
+    border: 1px solid #d1d5db;
     border-radius: 12px;
-    background: #f4f5f7;
     font-size: 15px;
-    margin-bottom: 22px;
-    outline: none;
+    background: #f4f5f7;
+    margin-bottom: 20px;
 }
 
 /* BOTÓN */
@@ -82,51 +80,40 @@ button {
     font-weight: 500;
 }
 
-button:hover {
-    background: #1a1a1a;
+/* BLOQUE INFERIOR (BLANCO) */
+.bottom-info {
+    background: #ffffff;
+    padding: 35px 25px 20px 25px;
 }
 
-/* BLOQUE BLANCO INFERIOR */
-.info-wrapper {
-    width: 100%;
-    background: #fff; /* como Disney+ */
-    margin-top: 35px;
-    padding: 35px 20px;
-    text-align: left;
-    box-sizing: border-box;
-}
-
-/* TEXTO */
-.info-block {
-    max-width: 600px;
-    margin: 0 auto;
-    color: #000;
+/* PÁRRAFOS */
+.bottom-info p {
+    color: #333;
     font-size: 15px;
     line-height: 1.5;
 }
 
 /* ENLACE */
-.info-block a {
-    color: #0077cc;
-    text-decoration: none;
+.link {
+    color: #007bff;
 }
 
-/* LOGOS INFERIORES */
+/* LOGOS */
 .brands {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
     gap: 22px;
-    margin-top: 22px;
+    margin-top: 25px;
 }
 
 .brands img {
-    height: 32px;
-    opacity: 0.75;
+    height: 30px;
+    opacity: 0.8;
 }
-
 </style>
 </head>
+
 <body>
 
 <!-- LOGO SUPERIOR -->
@@ -134,10 +121,10 @@ button:hover {
     <img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Disney%2B_logo.svg">
 </div>
 
-<!-- TARJETA DE LOGIN -->
+<!-- FORMULARIO -->
 <div class="container">
 
-    <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/My_Disney_logo.png">
+    <img class="mydisney-logo" src="https://upload.wikimedia.org/wikipedia/commons/f/f3/My_Disney_Logo.png">
 
     <h1>Escribir correo para continuar</h1>
 
@@ -149,17 +136,21 @@ button:hover {
     <input type="email" placeholder="Correo electrónico">
 
     <button>Continuar</button>
+
 </div>
 
-<!-- BLOQUE BLANCO INFERIOR EXACTO COMO DISNEY+ -->
-<div class="info-wrapper">
-    <div class="info-block">
-        <strong>Disney+ es parte de la Familia de Compañías Walt Disney</strong><br><br>
+<!-- BLOQUE BLANCO INFERIOR -->
+<div class="bottom-info">
+
+    <p><strong>Disney+ es parte de la Familia de Compañías Walt Disney</strong></p>
+
+    <p>
         MyDisney te permite iniciar sesión fácilmente en los servicios y experiencias
         de la Familia de Compañías Walt Disney, como Disney+, ESPN, Walt Disney World
-        <a href="#">y muchos más.</a>
-    </div>
+        <span class="link">y muchos más.</span>
+    </p>
 
+    <!-- LOGOS -->
     <div class="brands">
         <img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Disney_wordmark.svg">
         <img src="https://upload.wikimedia.org/wikipedia/commons/8/80/ABC_Network_logo.svg">
@@ -169,6 +160,7 @@ button:hover {
         <img src="https://upload.wikimedia.org/wikipedia/commons/8/8f/National-Geographic-Logo.svg">
         <img src="https://upload.wikimedia.org/wikipedia/commons/5/5a/Hulu_Logo.svg">
     </div>
+
 </div>
 
 </body>
