@@ -3,128 +3,131 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Iniciar sesión | MyDisney</title>
+<title>Iniciar sesión | Disney+</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
 <style>
+
+/* FONDO GRADIENTE EXACTO */
 body {
     margin: 0;
     font-family: 'Inter', sans-serif;
-    background: linear-gradient(180deg, #002c56, #001429);
-    color: #000;
-}
-
-/* CONTENEDOR PRINCIPAL */
-.container {
-    max-width: 500px;
-    margin: 0 auto;
-    margin-top: 40px;
-    background: #fff;
-    border-radius: 28px;
-    padding: 35px 28px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.18);
+    background: linear-gradient(180deg, #002c57 0%, #001527 100%);
 }
 
 /* LOGO SUPERIOR */
-.logo-area {
-    text-align: center;
-    margin-top: 35px;
-    margin-bottom: 25px;
+.logo-top {
+    width: 170px;
+    display: block;
+    margin: 35px auto 10px auto;
 }
 
-.logo-area img {
-    width: 170px;
-    filter: brightness(1000%);
+/* CONTENEDOR BLANCO EXACTO */
+.card {
+    width: 100%;
+    max-width: 650px;
+    background: #ffffff;
+    margin: 0 auto;
+    padding: 45px 28px;
+    border-radius: 35px 35px 0 0; /* curva exacta arriba */
+    margin-top: 40px;
+}
+
+/* LOGO MyDisney */
+.mydisney {
+    width: 130px;
+    margin-bottom: 15px;
 }
 
 /* TITULO */
-h1 {
-    font-size: 26px;
+.card h1 {
+    font-size: 28px;
     font-weight: 600;
     color: #000;
+    margin-bottom: 12px;
 }
 
 /* SUBTEXTO */
-.subtxt {
-    font-size: 15px;
-    color: #555;
-    line-height: 1.4;
-    margin-top: 10px;
-    margin-bottom: 25px;
+.subtitle {
+    font-size: 16px;
+    color: #4b4b4b;
+    margin-bottom: 28px;
+    line-height: 1.5;
 }
 
-/* INPUT */
+/* INPUT EXACTO */
 input {
     width: 100%;
     padding: 18px;
-    border: 1px solid #d8d8d8;
     border-radius: 10px;
+    border: 1px solid #d1d5db;
     background: #f3f4f6;
-    font-size: 15px;
-    margin-bottom: 18px;
+    font-size: 16px;
+    margin-bottom: 22px;
 }
 
-/* BOTÓN */
+/* BOTÓN EXACTO */
 button {
     width: 100%;
     padding: 18px;
     background: #000;
-    color: #fff;
     border: none;
     border-radius: 40px;
-    font-size: 17px;
-    cursor: pointer;
-    margin-top: 5px;
+    color: #fff;
+    font-size: 18px;
     font-weight: 500;
+    cursor: pointer;
 }
 
 button:hover {
-    background: #222;
+    background: #1a1a1a;
 }
 
-/* TEXTO INFERIOR */
-.info-block {
-    padding: 25px;
-    text-align: left;
+/* TEXTO INFORMATIVO ABAJO */
+.info {
+    max-width: 620px;
+    margin: 40px auto;
+    padding: 0 25px;
     color: #fff;
-    max-width: 600px;
-    margin: 35px auto;
-    font-size: 15px;
+    font-size: 16px;
     line-height: 1.5;
+}
+
+.info a {
+    color: #4cc2ff;
 }
 
 /* LOGOS INFERIORES */
 .brands {
     display: flex;
     justify-content: center;
-    gap: 22px;
+    gap: 26px;
     flex-wrap: wrap;
-    margin-top: 15px;
+    margin: 20px 0 40px 0;
 }
 
 .brands img {
-    height: 32px;
-    opacity: 0.7;
+    height: 28px;
+    opacity: .6;
 }
-</style>
 
+</style>
 </head>
+
 <body>
 
-<!-- LOGO SUPERIOR -->
-<div class="logo-area">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Disney%2B_logo.svg">
-</div>
+<!-- LOGO -->
+<img class="logo-top" src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Disney%2B_logo.svg">
 
-<!-- TARJETA DE LOGIN -->
-<div class="container">
+<!-- FORMULARIO -->
+<div class="card">
 
-    <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/My_Disney_logo.png" style="width:110px; margin-bottom:10px;">
+    <img class="mydisney" src="https://upload.wikimedia.org/wikipedia/commons/3/3c/My_Disney_logo.png">
 
     <h1>Escribir correo para continuar</h1>
 
-    <p class="subtxt">
+    <p class="subtitle">
         Es necesario iniciar sesión en Disney+ con tu cuenta de MyDisney.
         En caso de no tener una, recibirás indicaciones para crearla.
     </p>
@@ -134,14 +137,14 @@ button:hover {
     <button>Continuar</button>
 </div>
 
-<!-- TEXTO INFORMATIVO -->
-<div class="info-block">
+<!-- INFORMACIÓN -->
+<div class="info">
     <strong>Disney+ es parte de la Familia de Compañías Walt Disney</strong><br><br>
     MyDisney te permite iniciar sesión fácilmente en los servicios y experiencias de la Familia de Compañías Walt Disney,
-    como Disney+, ESPN, Walt Disney World <a style="color:#48bfff;">y muchos más.</a>
+    como Disney+, ESPN, Walt Disney World <a href="#">y muchos más.</a>
 </div>
 
-<!-- LOGOS INFERIORES -->
+<!-- LOGOS -->
 <div class="brands">
     <img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Disney_wordmark.svg">
     <img src="https://upload.wikimedia.org/wikipedia/commons/8/80/ABC_Network_logo.svg">
