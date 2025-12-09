@@ -8,210 +8,173 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
-/* ------------------------------------------------- */
-/* BASE GENERAL */
-/* ------------------------------------------------- */
+/* ------------------- BASE ------------------- */
 html, body {
   margin: 0;
   padding: 0;
+  overflow-x: hidden !important;
+  width: 100% !important;
   font-family: 'Inter', sans-serif;
   background: #000;
   color: #fff;
-  overflow-x: hidden;
 }
 
-* { box-sizing: border-box; }
-
-/* Suavizado visual */
-body {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+* {
+  box-sizing: border-box;
+  max-width: 100%;
 }
 
-/* ------------------------------------------------- */
-/* HEADER REALISTA */
-/* ------------------------------------------------- */
+/* ------------------- HEADER ------------------- */
 header {
   width: 100%;
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
-  padding: 18px 30px;
+  padding: 20px;
   display: flex;
   justify-content: flex-end;
-  z-index: 50;
-  background: linear-gradient(180deg, rgba(0,0,0,.8), transparent);
-  backdrop-filter: blur(6px);
+  z-index: 20;
 }
 
 header a {
   color: white;
   font-weight: 300;
   text-decoration: none;
-  border: 1.3px solid rgba(255,255,255,0.6);
-  padding: 9px 20px;
-  border-radius: 8px;
-  transition: .25s;
+  border: 1.5px solid white;
+  padding: 8px 16px;
+  border-radius: 6px;
+  backdrop-filter: blur(4px);
+  transition: .3s;
   letter-spacing: 1px;
-  background: rgba(255,255,255,0.08);
 }
 
 header a:hover {
-  background: rgba(255,255,255,0.25);
-  border-color: white;
+  background: rgba(255,255,255,0.2);
 }
 
-/* ------------------------------------------------- */
-/* HERO MÁS REALISTA */
-/* ------------------------------------------------- */
+/* ------------------- HERO ------------------- */
 .hero {
   width: 100%;
-  height: 620px;
+  height: 580px;
   background-size: cover;
-  background-position: center top;
-  transition: background-image 1.2s ease-in-out;
+  background-position: center top 20%;
+  transition: background-image 1s ease-in-out;
   position: relative;
+  overflow: hidden;
 }
 
-.hero::after {
-  content: "";
+.overlay {
   position: absolute;
   bottom: 0;
   width: 100%;
-  height: 65%;
+  height: 60%;
   background: linear-gradient(180deg, transparent, #000);
 }
 
 .content {
   position: absolute;
-  bottom: 75px;
+  bottom: 50px;
   left: 50%;
   transform: translateX(-50%);
-  width: 85%;
+  width: 90%;
   text-align: center;
-  animation: fadeIn .9s ease;
-}
-
-@keyframes fadeIn {
-  from { opacity:0; transform: translate(-50%, 20px); }
-  to   { opacity:1; transform: translate(-50%, 0); }
 }
 
 .logo {
-  width: 180px;
-  filter: drop-shadow(0 2px 8px rgba(0,0,0,.6));
-  margin-bottom: 18px;
+  width: 160px;
+  margin-bottom: 15px;
 }
 
 h2 {
-  font-size: 28px;
+  font-size: 24px;
   font-weight: 300;
-  line-height: 1.4;
-  text-shadow: 0 3px 8px #000;
+  letter-spacing: .5px;
 }
 
 p {
-  font-size: 17px;
+  font-size: 16px;
   opacity: 0.85;
+  font-weight: 300;
+  line-height: 1.5;
 }
 
-/* Inputs del hero */
 .form input {
   width: 100%;
-  padding: 18px;
+  padding: 19px;
   border-radius: 6px;
   border: 1px solid #333;
   margin-top: 12px;
   font-size: 16px;
-  background: rgba(255,255,255,0.06);
-  color: white;
-  backdrop-filter: blur(6px);
-  transition: .25s;
+  background: #1E1E1E;
+  color: #fff;
+  font-weight: 300;
 }
 
-.form input:focus {
-  outline: none;
-  border: 1px solid #00C8FF;
-}
-
-/* Botón */
+/* Botón Suscribirme */
 .btn {
   width: 100%;
-  background: linear-gradient(90deg, #00C8FF, #00A8D6);
-  color: black;
+  background: #00C8FF;
+  color: #000;
   border: none;
-  padding: 16px;
+  padding: 15px;
   font-size: 15px;
   border-radius: 6px;
   margin-top: 12px;
   cursor: pointer;
-  font-weight: 600;
-  letter-spacing: 1.5px;
-  transition: .3s;
+  font-weight: 300;
+  letter-spacing: 2px;
 }
 
-.btn:hover {
-  background: linear-gradient(90deg, #00D6FF, #00BDEC);
-  transform: scale(1.02);
-}
-
-/* ------------------------------------------------- */
-/* CARDS DE PLANES MÁS REALES */
-/* ------------------------------------------------- */
+/* ============================================================ */
+/*                SECCIÓN PLANES AL ESTILO DISNEY+             */
+/* ============================================================ */
 
 .populares-container {
   background: #000;
-  padding: 40px 18px;
+  padding: 35px 15px;
 }
 
 .populares-planes {
   display: flex;
   gap: 15px;
   overflow-x: auto;
-  padding-bottom: 10px;
+  padding-bottom: 15px;
   scroll-snap-type: x mandatory;
 }
 
+/* scrollbar */
 .populares-planes::-webkit-scrollbar {
-  height: 5px;
+  height: 4px;
 }
 .populares-planes::-webkit-scrollbar-thumb {
   background: #222;
   border-radius: 50px;
 }
 
+/* CARD PLAN */
 .plan-card {
-  min-width: 190px;
+  min-width: 180px;
   background: #111827;
-  padding: 22px 16px;
+  padding: 18px 14px;
   border-radius: 14px;
   border: 1px solid #1f2937;
   text-align: center;
   cursor: pointer;
   scroll-snap-align: start;
-  transition: .28s ease;
+  transition: .25s ease;
   position: relative;
-  box-shadow: 0 4px 20px rgba(0,0,0,.3);
-}
-
-.plan-card:hover {
-  transform: translateY(-4px);
-  border-color: #00C8FF;
-}
-
-.plan-card.active {
-  border-color: #00C8FF;
-  box-shadow: 0 6px 25px rgba(0,200,255,.3);
 }
 
 .plan-title {
-  font-size: 18px;
+  font-size: 17px;
+  letter-spacing: 1px;
   font-weight: 300;
-  padding: 12px 35px;
+  color: white;
+  padding: 14px 37px;
   border-radius: 6px;
   border: 1.5px solid #02d6e8;
   display: inline-block;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
   transition: .3s ease;
 }
 
@@ -222,9 +185,10 @@ p {
 
 .plan-price {
   margin-top: 10px;
-  font-size: 15px;
-  opacity: .8;
-  line-height: 1.5;
+  font-size: 14px;
+  font-weight: 300;
+  opacity: .75;
+  line-height: 1.4;
 }
 
 .badge-popular {
@@ -240,21 +204,20 @@ p {
   border-radius: 20px;
 }
 
-/* Detalle plan */
 #detalle-plan {
   background: #111;
   border: 1px solid #222;
   padding: 20px;
   border-radius: 12px;
   margin-top: 25px;
-  font-weight: 300;
   display: none;
-  animation: fadePlan .35s ease;
+  animation: aparecer .3s ease;
+  font-weight: 300;
 }
 
-@keyframes fadePlan {
-  from { opacity:0; transform: translateY(12px); }
-  to   { opacity:1; transform: translateY(0); }
+@keyframes aparecer {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 .btn-comprar {
@@ -262,26 +225,129 @@ p {
   background: #00C8FF;
   color: black;
   border: none;
-  padding: 14px;
+  padding: 13px;
   border-radius: 6px;
+  font-weight: 300;
   margin-top: 15px;
   cursor: pointer;
   letter-spacing: 1px;
-  font-weight: 600;
-  transition: .25s;
 }
 
-.btn-comprar:hover {
-  background: #00D6FF;
-  transform: scale(1.03);
+/* ============================================================ */
+/*               TABLA COMPARATIVA DE PLANES                   */
+/* ============================================================ */
+
+.comparison-section {
+  width: 100%;
+  padding: 40px 15px;
+  background: #000;
+  color: #fff;
+  margin-top: 10px;
 }
 
-/* ------------------------------------------------- */
-/* FOOTER REALISTA */
-/* ------------------------------------------------- */
+.comparison-title {
+  text-align: center;
+  font-size: 22px;
+  font-weight: 300;
+  margin-bottom: 25px;
+  opacity: .9;
+}
+
+.comparison-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.comparison-row {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1fr 1fr;
+  border-bottom: 1px solid #222;
+  padding: 18px 0;
+  align-items: center;
+}
+
+.comparison-row p {
+  margin: 0;
+  opacity: .85;
+}
+
+.comparison-header {
+  font-size: 15px;
+  line-height: 1.4;
+}
+
+.comparison-cell {
+  text-align: center;
+  font-size: 15px;
+}
+
+.comparison-price a {
+  color: #00C8FF;
+  text-decoration: underline;
+  font-size: 14px;
+}
+
+.comparison-check svg,
+.comparison-dash svg {
+  opacity: .85;
+  height: 22px;
+}
+
+/* RESPONSIVE */
+@media(max-width: 780px) {
+  .comparison-row {
+    grid-template-columns: 1fr 1fr;
+    row-gap: 10px;
+    padding: 20px 5px;
+  }
+
+  .comparison-cell:nth-child(3),
+  .comparison-cell:nth-child(4) {
+    border-top: 1px solid #222;
+    padding-top: 12px;
+  }
+}
+
+/* ================================================= */
+/*               SECCIÓN ESPN + DISNEY+              */
+/* ================================================= */
+
+.espn-section {
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.espn-section a {
+  color: #00C8FF;
+  text-decoration: underline;
+}
+
+.espn-logos img {
+  height: 26px;
+  margin: 5px 6px;
+  opacity: 0.9;
+}
+
+.espn-arrow {
+  margin: 20px 0;
+  opacity: .7;
+}
+
+.plan-premium-btn {
+  margin-top: 20px;
+  border: 1.5px solid #fff;
+  background: none;
+  color: #fff;
+  padding: 10px 28px;
+  border-radius: 20px;
+  font-weight: 300;
+  cursor: pointer;
+}
+
+/* ====================== FOOTER ====================== */
 
 footer {
-  padding: 60px 20px;
+  padding: 50px 20px;
   text-align: center;
   background: #000;
   margin-top: 40px;
@@ -293,12 +359,223 @@ footer .logos {
   flex-wrap: wrap;
   gap: 18px;
   opacity: .75;
+  margin-bottom: 20px;
+}
+
+footer .logos img {
+  height: 32px;
 }
 
 footer p {
-  opacity: .55;
-  margin-top: 20px;
-  font-size: 13px;
+  opacity: .7;
+  font-size: 14px;
 }
 </style>
 </head>
+
+<body>
+
+<header>
+  <a href="#">INICIAR SESIÓN</a>
+</header>
+
+<!-- HERO -->
+<div class="hero" id="hero">
+  <div class="overlay"></div>
+  <div class="content">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Disney%2B_logo.svg" class="logo">
+    <h2>Series exclusivas, éxitos del cine, el deporte de ESPN y más</h2>
+    <p>Planes desde <b>COP 24.900/mes</b></p>
+    <div class="form">
+      <input type="email" placeholder="Correo electrónico">
+      <button class="btn">SUSCRIBIRME AHORA</button>
+    </div>
+  </div>
+</div>
+
+<!-- PLANES -->
+<div class="populares-container">
+
+  <div class="populares-planes">
+
+    <div class="plan-card active" data-plan="PREMIUM">
+      <div class="badge-popular">Más popular</div>
+      <div class="plan-title">PREMIUM</div>
+      <div class="plan-price">COP 49.900/mes<br>(final)*</div>
+    </div>
+
+    <div class="plan-card" data-plan="ESTÁNDAR">
+      <div class="plan-title">ESTÁNDAR</div>
+      <div class="plan-price">COP 36.900/mes<br>(final)*</div>
+    </div>
+
+    <div class="plan-card" data-plan="ESTÁNDAR CON ANUNCIOS">
+      <div class="plan-title">ESTÁNDAR CON ANUNCIOS</div>
+      <div class="plan-price">COP 24.900/mes<br>(final)*</div>
+    </div>
+
+  </div>
+
+  <div id="detalle-plan"></div>
+
+</div>
+
+<!-- ======================================================= -->
+<!--                 TABLA COMPARATIVA AQUI                  -->
+<!-- ======================================================= -->
+
+<div class="comparison-section">
+
+  <h3 class="comparison-title">Compara nuestros planes</h3>
+
+  <!-- FILA 1 -->
+  <div class="comparison-row">
+    <div class="comparison-header">
+      <p><b>Plan anual</b><br>Disfruta de 12 meses al precio de 9**</p>
+    </div>
+    <div class="comparison-cell comparison-price">
+      <a href="#">COP 418.900/año</a>
+    </div>
+    <div class="comparison-cell comparison-price">
+      <a href="#">COP 309.900/año</a>
+    </div>
+    <div class="comparison-cell comparison-dash">
+      <svg width="37" height="37"><path d="M28.875 17.525v1.953a1.307 1.307 0 01-1.306 1.305H10.18a1.306 1.306 0 01-1.306-1.305v-1.956c0-.72.585-1.305 1.306-1.305l17.389.002c.721 0 1.306.584 1.305 1.306z" fill="white" fill-opacity=".3"/></svg>
+    </div>
+  </div>
+
+  <!-- FILA 2 -->
+  <div class="comparison-row">
+    <div class="comparison-header">
+      <p>Todos los canales de ESPN y más de 500 eventos por mes***</p>
+    </div>
+    <div class="comparison-cell comparison-check">
+      <svg width="25" height="18" viewBox="0 0 25 18"><path fill="#00C8FF" d="M20.8 0.7L9.27 12.27 3.85 6.85c-.62-.62-1.62-.62-2.24 0l-.82.82c-.62.62-.62 1.62 0 2.24l7.36 7.36c.62.62 1.62.62 2.24 0L23.87 3.79c.62-.62.62-1.62 0-2.24l-.82-.82c-.62-.62-1.62-.62-2.24 0z"/></svg>
+    </div>
+    <div class="comparison-cell comparison-dash">
+      <svg width="37" height="37"><path fill="white" fill-opacity=".3" d="M28.875 17.525v1.953a1.307 1.307 0 01-1.306 1.305H10.18a1.306 1.306 0 01-1.306-1.305v-1.956c0-.72.585-1.305 1.306-1.305l17.389.002c.721 0 1.306.584 1.305 1.306z"/></svg>
+    </div>
+    <div class="comparison-cell comparison-dash">
+      <svg width="37" height="37"><path fill="white" fill-opacity=".3" d="M28.875 17.525v1.953a1.307 1.307 0 01-1.306 1.305H10.18a1.306 1.306 0 01-1.306-1.305v-1.956c0-.72.585-1.305 1.306-1.305l17.389.002c.721 0 1.306.584 1.305 1.306z"/></svg>
+    </div>
+  </div>
+
+</div>
+
+
+<!-- ESPN + Disney -->
+<div class="espn-section">
+
+  <p>
+    Ahorra desde 30% en <a>Disney+ Premium Anual</a>.<br>
+    <a>Ver detalles de los planes.</a>
+  </p>
+
+  <div class="espn-logos">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Disney%2B_logo.svg">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/69/Pixar_logo.svg">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/MarvelLogo.svg">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/9/9e/Star_Wars_Logo.svg">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/8/8f/National-Geographic-Logo.svg">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/ESPN_wordmark.svg">
+  </div>
+
+  <div class="espn-arrow">
+    <svg width="26" height="26" fill="#fff" viewBox="0 0 24 24">
+      <path d="M12 16.5l-8-8h16l-8 8z"/>
+    </svg>
+  </div>
+
+  <img src="https://disney.images.edge.bamgrid.com/ripcut-delivery/v2/variant/disney/64DBED3E97AEAF24E2236E3D20A8D0F3C7269306EE6E518110C9344D6560C3C7/compose?format=webp&width=660"
+       style="width:100%; border-radius:10px; margin-top:10px;">
+
+  <button class="plan-premium-btn">Plan Premium</button>
+
+  <p style="margin-top:20px; opacity:.85; line-height:1.5;">
+    El deporte de ESPN y los eventos en vivo que te apasionan<br>
+    los encontrás en el plan Premium de Disney+.
+  </p>
+
+</div>
+
+<footer>
+  <div class="logos">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Disney%2B_logo.svg">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/69/Pixar_logo.svg">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/MarvelLogo.svg">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/9/9e/Star_Wars_Logo.svg">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/8/8f/National-Geographic-Logo.svg">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/ESPN_wordmark.svg">
+  </div>
+
+  <p>© 2025 Plataforma+. Todos los derechos reservados.</p>
+</footer>
+
+<script>
+const imagenes = [
+  "https://disney.images.edge.bamgrid.com/ripcut-delivery/v2/variant/disney/306F5EDFDA4042AE78A10D7B3534E05CB3E2828EF9538023A13C968C7EE44309/compose?format=webp&width=660",
+  "https://disney.images.edge.bamgrid.com/ripcut-delivery/v2/variant/disney/80990A540E73968454BF3FAFFE9F999388E337CDF36D20FB6AA56FE88CA15CB1/compose?format=webp&width=660",
+  "https://disney.images.edge.bamgrid.com/ripcut-delivery/v2/variant/disney/26484DDF52878CBA4E693A90CD7A4DC7026AE4857374A7D4E2EDB9CE58B9FE01/compose?format=webp&width=660",
+  "https://disney.images.edge.bamgrid.com/ripcut-delivery/v2/variant/disney/1B4EEE2BA8E6F5BC763BA1A4270B5E693C27FC7DB68A26F8DE9DB7118C947D4D/compose?format=webp&width=660",
+  "https://disney.images.edge.bamgrid.com/ripcut-delivery/v2/variant/disney/64DBED3E97AEAF24E2236E3D20A8D0F3C7269306EE6E518110C9344D6560C3C7/compose?format=webp&width=660"
+];
+
+let index = 0;
+const hero = document.getElementById("hero");
+
+function cambiarFondo() {
+  hero.style.backgroundImage = `url('${imagenes[index]}')`;
+  index = (index + 1) % imagenes.length;
+}
+
+cambiarFondo();
+setInterval(cambiarFondo, 4000);
+
+const detallesPlanes = {
+  "PREMIUM": `
+    <h3>Detalles del plan PREMIUM</h3>
+    <p>✔ Hasta 4 pantallas simultáneas</p>
+    <p>✔ Máxima calidad 4K UHD + HDR</p>
+    <p>✔ Descargas ilimitadas</p>
+    <p>✔ Contenido sin anuncios</p>
+    <a href="#" class="btn-comprar">Comprar plan PREMIUM</a>
+  `,
+  "ESTÁNDAR": `
+    <h3>Detalles del plan ESTÁNDAR</h3>
+    <p>✔ 2 pantallas simultáneas</p>
+    <p>✔ Calidad Full HD</p>
+    <p>✔ Descargas disponibles</p>
+    <p>✔ Sin anuncios</p>
+    <a href="#" class="btn-comprar">Comprar plan ESTÁNDAR</a>
+  `,
+  "ESTÁNDAR CON ANUNCIOS": `
+    <h3>Detalles del plan ESTÁNDAR CON ANUNCIOS</h3>
+    <p>✔ 2 pantallas simultáneas</p>
+    <p>✔ Calidad HD</p>
+    <p>✔ Incluye anuncios moderados</p>
+    <p>✔ No permite descargas</p>
+    <a href="#" class="btn-comprar">Comprar plan CON ANUNCIOS</a>
+  `
+};
+
+const cards = document.querySelectorAll(".plan-card");
+const detalleBox = document.getElementById("detalle-plan");
+
+cards.forEach(card => {
+  card.addEventListener("click", () => {
+
+    cards.forEach(c => c.classList.remove("active"));
+    card.classList.add("active");
+
+    const planTitle = card.getAttribute("data-plan");
+
+    detalleBox.innerHTML = detallesPlanes[planTitle];
+    detalleBox.style.display = "block";
+
+    detalleBox.scrollIntoView({ behavior: "smooth" });
+  });
+});
+</script>
+
+</body>
+</html>
