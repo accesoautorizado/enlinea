@@ -23,27 +23,16 @@ header {
     align-items: center;
 }
 
-header img {
-    height: 34px;
-}
+header img { height: 34px; }
+header a { color: #bbb; font-size: 15px; text-decoration: none; }
 
-header a {
-    color: #bbb;
-    font-size: 15px;
-    text-decoration: none;
-}
-
-/* CONTENEDOR PRINCIPAL */
 .main-container {
     padding: 20px;
     max-width: 600px;
     margin: auto;
 }
 
-.step {
-    font-size: 14px;
-    color: #9ca3af;
-}
+.step { font-size: 14px; color: #9ca3af; }
 
 h1 {
     font-size: 28px;
@@ -51,7 +40,7 @@ h1 {
     margin-bottom: 25px;
 }
 
-/* TABS DE MÉTODO DE PAGO */
+/* TAB MÉTODO DE PAGO */
 .tabs {
     display: flex;
     margin-bottom: 20px;
@@ -92,10 +81,8 @@ input, select {
     box-sizing: border-box;
 }
 
-/* INPUT ESPECIAL PARA TARJETA */
-.input-card {
-    position: relative;
-}
+/* INPUT TARJETA */
+.input-card { position: relative; }
 
 .card-icons {
     position: absolute;
@@ -111,17 +98,14 @@ input, select {
     opacity: .9;
 }
 
-/* FILA FECHA / CVV */
+/* ROW DOBLE */
 .row-double {
     display: flex;
     gap: 15px;
     margin-top: 5px;
 }
 
-.field-group {
-    flex: 1;
-    min-width: 0;
-}
+.field-group { flex: 1; min-width: 0; }
 
 /* CAJA PRECIO */
 #price-box {
@@ -132,7 +116,7 @@ input, select {
     border-radius: 10px;
 }
 
-/* BOTÓN FINAL */
+/* BOTÓN */
 button {
     width: 100%;
     padding: 16px;
@@ -156,41 +140,32 @@ footer {
     font-size: 13px;
 }
 
-footer a {
-    color: #00c8ff;
-    text-decoration: none;
-}
+footer a { color: #00c8ff; text-decoration: none; }
 
 /* RESPONSIVE */
 @media (max-width: 480px) {
-    .row-double {
-        flex-direction: column;
-        gap: 0;
-    }
+    .row-double { flex-direction: column; gap: 0; }
 }
 </style>
 </head>
 
 <body>
 
-<!-- HEADER -->
 <header>
     <img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Disney%2B_logo.svg">
     <a href="#">Cerrar sesión</a>
 </header>
 
-<!-- CONTENIDO PRINCIPAL -->
 <div class="main-container">
 
     <div class="step">PASO 3 DE 3</div>
     <h1>¡A disfrutar!</h1>
 
-    <!-- TAB SOLO TARJETA -->
     <div class="tabs">
         <div class="tab active">Crédito/Débito</div>
     </div>
 
-    <!-- CAJA CON EL PLAN Y PRECIO -->
+    <!-- PRECIO ANTES DEL BOTÓN -->
     <div id="price-box">
         <div style="color:#9ca3af; font-size:15px;">Total a pagar</div>
 
@@ -202,12 +177,11 @@ footer a {
             text-shadow: 0 0 8px rgba(0,200,255,.35);
         "></div>
 
-        <div id="planName" style="margin-top: 4px; font-size: 14px; color:#6b7280;"></div>
+        <div id="planName" style="margin-top:4px; font-size:14px; color:#6b7280;"></div>
 
-        <div id="planSummary" style="margin-top:12px; font-size:14px; color:#9ca3af;"></div>
+        <div id="planSummary" style="margin-top:10px; font-size:14px; color:#9ca3af;"></div>
     </div>
 
-    <!-- FORMULARIO -->
     <label>NOMBRE EN LA TARJETA</label>
     <input type="text" placeholder="Nombre del titular">
 
@@ -249,10 +223,11 @@ footer a {
     <label>RUT (OPCIONAL)</label>
     <input type="text" placeholder="Opcional">
 
+    <!-- BOTÓN FINAL -->
     <button>INICIAR SUSCRIPCIÓN</button>
+
 </div>
 
-<!-- FOOTER -->
 <footer>
     © 2025 Disney+. Todos los derechos reservados. · 
     <a href="#">Términos de uso</a> · 
@@ -261,9 +236,7 @@ footer a {
 </footer>
 
 <script>
-/* ================================
-   CARGAR PLAN DESDE localStorage
-================================ */
+// Datos guardados por el usuario
 const plan = localStorage.getItem("plan") || "standard_ads";
 
 const planData = {
@@ -284,7 +257,7 @@ const planData = {
     }
 };
 
-// Mostrar en pantalla
+// Mostrar precio en pantalla
 document.getElementById("finalPrice").innerText = planData[plan].price;
 document.getElementById("planName").innerText = planData[plan].name;
 document.getElementById("planSummary").innerText = planData[plan].desc;
