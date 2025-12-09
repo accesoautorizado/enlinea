@@ -110,7 +110,6 @@ p {
   font-weight: 300;
 }
 
-/* Botón Suscribirme */
 .btn {
   width: 100%;
   background: #00C8FF;
@@ -142,7 +141,6 @@ p {
   scroll-snap-type: x mandatory;
 }
 
-/* scrollbar */
 .populares-planes::-webkit-scrollbar {
   height: 4px;
 }
@@ -151,7 +149,6 @@ p {
   border-radius: 50px;
 }
 
-/* CARD PLAN */
 .plan-card {
   min-width: 180px;
   background: #111827;
@@ -165,26 +162,24 @@ p {
   position: relative;
 }
 
-/* ---- SOLO LA PALABRA (ESTILO DISNEY+) ---- */
 .plan-title {
-    font-size: 17px;
-    letter-spacing: 1px;
-    font-weight: 300;
-    color: white;
-    padding: 14px 37px;
-    border-radius: 6px;
-    border: 1.5px solid #02d6e8;
-    display: inline-block;
-    margin-bottom: 8px;
-    transition: .3s ease;
+  font-size: 17px;
+  letter-spacing: 1px;
+  font-weight: 300;
+  color: white;
+  padding: 14px 37px;
+  border-radius: 6px;
+  border: 1.5px solid #02d6e8;
+  display: inline-block;
+  margin-bottom: 8px;
+  transition: .3s ease;
 }
-/* ACTIVO (relleno azul) */
+
 .plan-card.active .plan-title {
   background: #00C8FF;
   color: black;
 }
 
-/* Precio */
 .plan-price {
   margin-top: 10px;
   font-size: 14px;
@@ -193,7 +188,6 @@ p {
   line-height: 1.4;
 }
 
-/* Badge “Más popular” */
 .badge-popular {
   position: absolute;
   top: -14px;
@@ -207,7 +201,6 @@ p {
   border-radius: 20px;
 }
 
-/* ---- DETALLE DEL PLAN ---- */
 #detalle-plan {
   background: #111;
   border: 1px solid #222;
@@ -223,82 +216,6 @@ p {
   from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
 }
-
-.btn-comprar {
-  width: 100%;
-  background: #00C8FF;
-  color: black;
-  border: none;
-  padding: 13px;
-  border-radius: 6px;
-  font-weight: 300;
-  margin-top: 15px;
-  cursor: pointer;
-  letter-spacing: 1px;
-}
-
-/* ================================================= */
-/*               SECCIÓN ESPN + DISNEY+              */
-/* ================================================= */
-
-.espn-section {
-  padding: 40px 20px;
-  text-align: center;
-}
-
-.espn-section a {
-  color: #00C8FF;
-  text-decoration: underline;
-}
-
-.espn-logos img {
-  height: 26px;
-  margin: 5px 6px;
-  opacity: 0.9;
-}
-
-.espn-arrow {
-  margin: 20px 0;
-  opacity: .7;
-}
-
-.plan-premium-btn {
-  margin-top: 20px;
-  border: 1.5px solid #fff;
-  background: none;
-  color: #fff;
-  padding: 10px 28px;
-  border-radius: 20px;
-  font-weight: 300;
-  cursor: pointer;
-}
-
-/* ====================== FOOTER ====================== */
-
-footer {
-  padding: 50px 20px;
-  text-align: center;
-  background: #000;
-  margin-top: 40px;
-}
-
-footer .logos {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 18px;
-  opacity: .75;
-  margin-bottom: 20px;
-}
-
-footer .logos img {
-  height: 32px;
-}
-
-footer p {
-  opacity: .7;
-  font-size: 14px;
-}
 </style>
 </head>
 
@@ -308,14 +225,11 @@ footer p {
   <a href="#">INICIAR SESIÓN</a>
 </header>
 
-<!-- HERO -->
 <div class="hero" id="hero">
   <div class="overlay"></div>
   <div class="content">
     <img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Disney%2B_logo.svg" class="logo">
-
     <h2>Series exclusivas, éxitos del cine, el deporte de ESPN y más</h2>
-
     <p>Planes desde <b>COP 24.900/mes</b></p>
 
     <div class="form">
@@ -325,9 +239,7 @@ footer p {
   </div>
 </div>
 
-<!-- PLANES DEBAJO -->
 <div class="populares-container">
-
   <div class="populares-planes">
 
     <div class="plan-card active" data-plan="PREMIUM">
@@ -349,7 +261,156 @@ footer p {
   </div>
 
   <div id="detalle-plan"></div>
+</div>
+<!-- ======================================================= -->
+<!--        TABLA COMPARATIVA ADAPTADA ESTILO DISNEY+        -->
+<!-- ======================================================= -->
 
+<div class="comparison-section">
+  <h3 class="comparison-title">Compara nuestros planes</h3>
+
+  <div class="comparison-table-body">
+
+    <!-- FILA 1 - PLAN ANUAL -->
+    <div class="comparison-row">
+      <div class="comparison-feature">
+        <p><strong>Plan anual</strong><br>Disfruta de 12 meses al precio de 9**</p>
+      </div>
+
+      <div class="comparison-cell cell-highlight">
+        <p class="comparison-price">
+          <a href="#">COP 418.900/año (final)**</a>
+        </p>
+      </div>
+
+      <div class="comparison-cell">
+        <p class="comparison-price">
+          <a href="#">COP 309.900/año (final)**</a>
+        </p>
+      </div>
+
+      <div class="comparison-cell">
+        <div class="dash-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="37" height="37">
+            <path d="M28.875 17.525v1.953a1.307 1.307 0 0 1-1.306 1.305H10.18a1.306 1.306 0 0 1-1.306-1.305v-1.956c0-.72.585-1.305 1.306-1.305l17.389.002c.721 0 1.306.584 1.305 1.306z"
+            fill="white" fill-opacity=".3"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- FILA 2 - ESPN -->
+    <div class="comparison-row">
+      <div class="comparison-feature">
+        <p>Todos los canales de ESPN, torneos y más de 500 eventos exclusivos por mes***</p>
+      </div>
+
+      <div class="comparison-cell cell-highlight">
+        <div class="check-icon">
+          <svg width="25" height="18">
+            <path d="M20.814 0.734L9.272 12.275 3.852 6.854A1.5 1.5 0 0 0 1.617 6.854l-.821.821a1.5 1.5 0 0 0 0 2.057l7.36 7.357a1.5 1.5 0 0 0 2.236 0L23.87 3.789a1.5 1.5 0 0 0 0-2.057l-.821-.821a1.5 1.5 0 0 0-2.235 0z"
+            fill="#00C8FF"/>
+          </svg>
+        </div>
+      </div>
+
+      <div class="comparison-cell">
+        <div class="dash-icon">
+          <svg width="37" height="37">
+            <path d="M28.875 17.525v1.953a1.307 1.307 0 0 1-1.306 1.305H10.18a1.306 1.306 0 0 1-1.306-1.305v-1.956c0-.72.585-1.305 1.306-1.305l17.389.002c.721 0 1.306.584 1.305 1.306z"
+            fill="white" fill-opacity=".3"/>
+          </svg>
+        </div>
+      </div>
+
+      <div class="comparison-cell">
+        <div class="dash-icon">
+          <svg width="37" height="37">
+            <path d="M28.875 17.525v1.953a1.307 1.307 0 0 1-1.306 1.305H10.18a1.306 1.306 0 0 1-1.306-1.305v-1.956c0-.72.585-1.305 1.306-1.305l17.389.002c.721 0 1.306.584 1.305 1.306z"
+            fill="white" fill-opacity=".3"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- FILA 3 - CATÁLOGO -->
+    <div class="comparison-row">
+      <div class="comparison-feature">
+        <p>Estrenos de películas, series originales y clásicos de Disney, Pixar, Marvel, Star Wars y más</p>
+      </div>
+
+      <div class="comparison-cell cell-highlight">
+        <div class="check-icon">
+          <svg width="25" height="18">
+            <path d="M20.814 0.734L9.272 12.275 3.852 6.854A1.5 1.5 0 0 0 1.617 6.854l-.821.821a1.5 1.5 0 0 0 0 2.057l7.36 7.357a1.5 1.5 0 0 0 2.236 0L23.87 3.789a1.5 1.5 0 0 0 0-2.057l-.821-.821a1.5 1.5 0 0 0-2.235 0z"
+            fill="#00C8FF"/>
+          </svg>
+        </div>
+      </div>
+
+      <div class="comparison-cell">
+        <div class="check-icon">
+          <svg width="25" height="18"><path d="M20.814 0.734L9.272 12.275 3.852 6.854A1.5 1.5 0 0 0 1.617 6.854l-.821.821a1.5 1.5 0 0 0 0 2.057l7.36 7.357a1.5 1.5 0 0 0 2.236 0L23.87 3.789a1.5 1.5 0 0 0 0-2.057l-.821-.821a1.5 1.5 0 0 0-2.235 0z" fill="#00C8FF"/></svg>
+        </div>
+      </div>
+
+      <div class="comparison-cell">
+        <div class="check-icon">
+          <svg width="25" height="18"><path d="M20.814 0.734L9.272 12.275 3.852 6.854A1.5 1.5 0 0 0 1.617 6.854l-.821.821a1.5 1.5 0 0 0 0 2.057l7.36 7.357a1.5 1.5 0 0 0 2.236 0L23.87 3.789a1.5 1.5 0 0 0 0-2.057l-.821-.821a1.5 1.5 0 0 0-2.235 0z" fill="#00C8FF"/></svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- FILA 4 - SIN ANUNCIOS -->
+    <div class="comparison-row">
+      <div class="comparison-feature">
+        <p>Películas y series sin interrupciones publicitarias</p>
+      </div>
+
+      <div class="comparison-cell cell-highlight">
+        <div class="check-icon"><svg width="25" height="18"><path d="M20.814 0.734L9.272 12.275 3.852 6.854..." fill="#00C8FF"/></svg></div>
+      </div>
+
+      <div class="comparison-cell">
+        <div class="check-icon"><svg width="25" height="18"><path d="M20.814 0.734..." fill="#00C8FF"/></svg></div>
+      </div>
+
+      <div class="comparison-cell">
+        <div class="dash-icon">
+          <svg width="37" height="37"><path d="M28.875 17.525..." fill="white" fill-opacity=".3"/></svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- FILA 5 - 4K -->
+    <div class="comparison-row">
+      <div class="comparison-feature">
+        <p>Calidad hasta 4K UHD / HDR y Dolby Atmos</p>
+      </div>
+
+      <div class="comparison-cell cell-highlight">
+        <div class="check-icon"><svg width="25" height="18"><path d="..." fill="#00C8FF"/></svg></div>
+      </div>
+
+      <div class="comparison-cell">
+        <div class="dash-icon"><svg width="37" height="37"><path d="..." fill="white" fill-opacity=".3"/></svg></div>
+      </div>
+
+      <div class="comparison-cell">
+        <div class="dash-icon"><svg width="37" height="37"><path d="..." fill="white" fill-opacity=".3"/></svg></div>
+      </div>
+    </div>
+
+    <!-- FILA 6 -->
+    <div class="comparison-row">
+      <div class="comparison-feature"><p>Dispositivos simultáneos</p></div>
+
+      <div class="comparison-cell cell-highlight"><span class="comparison-number">4</span></div>
+      <div class="comparison-cell"><span class="comparison-number">2</span></div>
+      <div class="comparison-cell"><span class="comparison-number">2</span></div>
+    </div>
+
+  </div>
 </div>
 
 <!-- ESPN + DISNEY SECTION -->
@@ -370,7 +431,7 @@ footer p {
   </div>
 
   <div class="espn-arrow">
-    <svg width="26" height="26" fill="#fff" viewBox="0 0 24 24">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="#fff">
       <path d="M12 16.5l-8-8h16l-8 8z"/>
     </svg>
   </div>
@@ -386,22 +447,173 @@ footer p {
   </p>
 
 </div>
+<!-- FOOTER ESTILO DISNEY+ REAL -->
+<footer class="footer-disney">
 
-<!-- FOOTER -->
-<footer>
-  <div class="logos">
+  <!-- LOGO PRINCIPAL -->
+  <div class="footer-logo">
     <img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Disney%2B_logo.svg">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/6/69/Pixar_logo.svg">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/MarvelLogo.svg">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/9/9e/Star_Wars_Logo.svg">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/8/8f/National-Geographic-Logo.svg">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/ESPN_wordmark.svg">
   </div>
 
-  <p>© 2025 Plataforma+. Todos los derechos reservados.</p>
+  <!-- MENÚS PRINCIPALES -->
+  <div class="footer-menus">
+
+    <div class="footer-column">
+      <h4>Más información</h4>
+      <a href="#">Términos de uso</a>
+      <a href="#">Política de privacidad</a>
+      <a href="#">Publicidad personalizada</a>
+      <a href="#">Acuerdo de Suscripción</a>
+    </div>
+
+    <div class="footer-column">
+      <h4>Ayuda</h4>
+      <a href="#">Centro de ayuda</a>
+      <a href="#">Dispositivos compatibles</a>
+    </div>
+
+    <div class="footer-column">
+      <h4>Colecciones</h4>
+      <a href="#">Disney</a>
+      <a href="#">Pixar</a>
+      <a href="#">Marvel</a>
+      <a href="#">Star Wars</a>
+      <a href="#">National Geographic</a>
+    </div>
+
+  </div>
+
+  <!-- REDES SOCIALES -->
+  <div class="footer-social">
+      <a class="circle"><img src="https://cdn-icons-png.flaticon.com/512/1384/1384063.png"></a>
+      <a class="circle"><img src="https://cdn-icons-png.flaticon.com/512/1384/1384005.png"></a>
+      <a class="circle"><img src="https://cdn-icons-png.flaticon.com/512/1384/1384017.png"></a>
+      <a class="circle"><img src="https://cdn-icons-png.flaticon.com/512/1384/1384031.png"></a>
+  </div>
+
+  <!-- SELECTOR DE IDIOMA -->
+  <div class="footer-lang">
+    <select>
+      <option>Español</option>
+      <option>English</option>
+      <option>Português</option>
+    </select>
+  </div>
+
+  <!-- COPYRIGHT REALISTA -->
+  <p class="footer-copy">
+    © 2025 Disney y su familia de compañías afiliadas. Todos los derechos reservados.<br>
+    La programación del contenido deportivo difiere según el plan.<br>
+    Disney+ requiere una suscripción y ser mayor de 18 años. Contenidos sujetos a disponibilidad.<br>
+    El servicio Disney+ es comercializado por The Walt Disney Company Colombia S.A.S., Bogotá D.C., NIT 800.236.937-1.
+  </p>
+
 </footer>
 
-<!-- SCRIPT -->
+<!-- ============= ESTILOS DEL FOOTER ============= -->
+<style>
+.footer-disney {
+  padding: 50px 25px;
+  background: #000;
+  color: #fff;
+  text-align: center;
+  margin-top: 50px;
+  border-top: 1px solid #111;
+  font-weight: 300;
+}
+
+.footer-logo img {
+  height: 55px;
+  opacity: .9;
+  margin-bottom: 30px;
+}
+
+.footer-menus {
+  display: flex;
+  justify-content: center;
+  gap: 60px;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+}
+
+.footer-column {
+  min-width: 150px;
+  text-align: left;
+}
+
+.footer-column h4 {
+  font-size: 15px;
+  opacity: .7;
+  margin-bottom: 12px;
+}
+
+.footer-column a {
+  display: block;
+  color: #fff;
+  opacity: .7;
+  font-size: 14px;
+  margin-bottom: 6px;
+  text-decoration: none;
+}
+
+.footer-column a:hover {
+  opacity: 1;
+}
+
+.footer-social {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  margin-bottom: 30px;
+}
+
+.footer-social .circle {
+  width: 45px;
+  height: 45px;
+  background: #1a1a1a;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer-social img {
+  width: 22px;
+  opacity: .85;
+}
+
+.footer-lang select {
+  background: #111;
+  color: #fff;
+  padding: 10px 18px;
+  border-radius: 6px;
+  border: 1px solid #333;
+  font-size: 14px;
+  outline: none;
+  margin-bottom: 25px;
+}
+
+.footer-copy {
+  font-size: 13px;
+  opacity: .6;
+  line-height: 1.6;
+}
+
+/* MÓVIL */
+@media (max-width: 600px) {
+  .footer-menus {
+    flex-direction: column;
+    text-align: center;
+    gap: 25px;
+  }
+
+  .footer-column {
+    text-align: center;
+  }
+}
+</style>
+
+<!-- ============= SCRIPT FINAL ============= -->
 <script>
 const imagenes = [
   "https://disney.images.edge.bamgrid.com/ripcut-delivery/v2/variant/disney/306F5EDFDA4042AE78A10D7B3534E05CB3E2828EF9538023A13C968C7EE44309/compose?format=webp&width=660",
@@ -440,10 +652,10 @@ const detallesPlanes = {
     <a href="#" class="btn-comprar">Comprar plan ESTÁNDAR</a>
   `,
   "ESTÁNDAR CON ANUNCIOS": `
-    <h3>Detalles del plan ESTÁNDAR CON ANUNCIOS</h3>
+    <h3>Detalles del plan CON ANUNCIOS</h3>
     <p>✔ 2 pantallas simultáneas</p>
     <p>✔ Calidad HD</p>
-    <p>✔ Incluye anuncios moderados</p>
+    <p>✔ Incluye anuncios</p>
     <p>✔ No permite descargas</p>
     <a href="#" class="btn-comprar">Comprar plan CON ANUNCIOS</a>
   `
@@ -454,7 +666,6 @@ const detalleBox = document.getElementById("detalle-plan");
 
 cards.forEach(card => {
   card.addEventListener("click", () => {
-
     cards.forEach(c => c.classList.remove("active"));
     card.classList.add("active");
 
