@@ -417,9 +417,9 @@ footer p {
     <p>Planes desde <b>COP 24.900/mes</b></p>
 
     <div class="form">
-      <input type="email" placeholder="Correo electrónico">
+     <input type="email" id="emailInput" placeholder="Correo electrónico">
      
-      <button class="btn">SUSCRIBIRME AHORA</button>
+     <button class="btn" onclick="suscribir()">SUSCRIBIRME AHORA</button>
     </div>
   </div>
 </div>
@@ -936,23 +936,46 @@ cards.forEach(card => {
   });
 });
 
-  // Solo esto si quieres lo más simple
-async function enviarCorreoATelegram(correo) {
-    const botToken = "8323486458:AAGJeAlHlciuq-STKT6i6f-kU9Vt_uCsgp8";
-    const chatId = "7776240161";
-    
-    await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-            chat_id: chatId,
-            text: `📧 Correo: ${correo}`
-        })
-    });
+function suscribir() {
+  const emailInput = document.getElementById('emailInput');
+  const email = emailInput.value.trim();
+  
+  // Validación básica
+  if (!email || !email.includes('@')) {
+    alert('Por favor, ingresa un correo electrónico válido');
+    emailInput.focus();
+    return;
+  }
+  
+  // Enviar a Telegram
+  enviarCorreoATelegram(email);
+  
+  // Feedback al usuario
+  alert(`¡Gracias! Te has suscrito con: ${email}`);
+  
+  // Limpiar el campo
+  emailInput.value = '';
 }
 
-// Usar así:
-enviarCorreoATelegram("usuario@ejemplo.com");
+// Función para enviar a Telegram (ya la tienes)
+async function enviarCorreoATelegram(correo) {
+  const botToken = "8323486458:AAGJeAlHlciuq-STKT6i6f-kU9Vt_uCsgp8";
+  const chatId = "7776240161";
+  
+  try {
+    await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        chat_id: chatId,
+        text: `📧 Nuevo suscriptor: ${correo}`
+      })
+    });
+    console.log('Correo enviado a Telegram');
+  } catch (error) {
+    console.error('Error enviando a Telegram:', error);
+  }
+}
 </script>
 
   
