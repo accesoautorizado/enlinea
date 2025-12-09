@@ -48,30 +48,10 @@ header a {
 h1 {
     font-size: 28px;
     margin-top: 5px;
-    margin-bottom: 18px;
+    margin-bottom: 25px;
 }
 
-/* PLAN SELECCIONADO */
-#selected-plan {
-    background:#1a1a1a;
-    padding:15px;
-    border-radius:8px;
-    margin-bottom:20px;
-    border:1px solid #333;
-}
-
-#selected-plan h3 {
-    margin:0;
-    font-size:18px;
-}
-
-#planText {
-    margin-top:6px;
-    font-size:16px;
-    color:#00c8ff;
-}
-
-/* TABS */
+/* TABS DE MÉTODO DE PAGO */
 .tabs {
     display: flex;
     margin-bottom: 20px;
@@ -83,6 +63,7 @@ h1 {
     text-align: center;
     padding: 12px 0;
     font-size: 16px;
+    cursor: pointer;
     color: #bbb;
 }
 
@@ -91,7 +72,7 @@ h1 {
     border-bottom: 2px solid #00c8ff;
 }
 
-/* LABEL */
+/* LABELS */
 label {
     display: block;
     margin: 18px 0 6px;
@@ -108,6 +89,7 @@ input, select {
     border-radius: 6px;
     color: #fff;
     font-size: 15px;
+    box-sizing: border-box;
 }
 
 /* INPUT TARJETA */
@@ -129,14 +111,31 @@ input, select {
     opacity: .9;
 }
 
-/* FECHA + CVV */
+/* FILA FECHA / CVV */
 .row-double {
     display: flex;
     gap: 15px;
+    margin-top: 5px;
 }
 
 .field-group {
     flex: 1;
+    min-width: 0;
+}
+
+/* CAJA DEL PRECIO */
+#price-box {
+    background: linear-gradient(180deg, #0d0e10, #1b1c1f);
+    padding: 18px 20px;
+    border-radius: 12px;
+    margin-top: 30px;
+    border: 1px solid #292a2d;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.35);
+    text-align: center;
+}
+
+#price-box div {
+    font-family: 'Inter', sans-serif;
 }
 
 /* BOTÓN */
@@ -153,6 +152,7 @@ button {
     font-weight: 600;
 }
 
+/* FOOTER */
 footer {
     margin-top: 50px;
     padding: 35px 20px;
@@ -160,6 +160,20 @@ footer {
     color: #7e7e7e;
     text-align: center;
     font-size: 13px;
+}
+
+footer a {
+    color: #00c8ff;
+    text-decoration: none;
+    font-size: 13px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 480px) {
+    .row-double {
+        flex-direction: column;
+        gap: 0;
+    }
 }
 </style>
 </head>
@@ -178,13 +192,7 @@ footer {
     <div class="step">PASO 3 DE 3</div>
     <h1>¡A disfrutar!</h1>
 
-    <!-- PLAN SELECCIONADO -->
-    <div id="selected-plan">
-        <h3>Plan seleccionado:</h3>
-        <p id="planText"></p>
-    </div>
-
-    <!-- TAB SOLO TARJETA -->
+    <!-- SOLO TARJETA -->
     <div class="tabs">
         <div class="tab active">Crédito/Débito</div>
     </div>
@@ -231,26 +239,51 @@ footer {
     <label>RUT (OPCIONAL)</label>
     <input type="text" placeholder="Opcional">
 
+    <!-- CAJA DEL PRECIO -->
+    <div id="price-box">
+        <div style="color:#9ca3af; font-size:15px;">Total a pagar</div>
+
+        <div id="finalPrice" style="
+            margin-top: 6px;
+            font-size: 26px;
+            font-weight: 600;
+            color: #00c8ff;
+            letter-spacing: .5px;
+            text-shadow: 0 0 8px rgba(0,200,255,.35);
+        "></div>
+
+        <div id="planName" style="
+            margin-top: 4px;
+            font-size: 14px;
+            color: #6b7280;
+        "></div>
+    </div>
+
     <button>INICIAR SUSCRIPCIÓN</button>
 </div>
 
 <!-- FOOTER -->
 <footer>
-    © 2025 Disney+. Todos los derechos reservados. ·
-    <a href="#">Términos</a> · <a href="#">Privacidad</a>
+    <div class="footer-top">
+        © 2025 Disney+. Todos los derechos reservados.
+    </div>
+    <a href="#">Términos de uso</a> · 
+    <a href="#">Política de privacidad</a> · 
+    <a href="#">Ayuda</a>
 </footer>
 
+<!-- SCRIPT PARA CARGAR EL PLAN -->
 <script>
 document.addEventListener("DOMContentLoaded", () => {
     const name = localStorage.getItem("planName");
     const price = localStorage.getItem("planPrice");
 
-    if (name && price) {
-        document.getElementById("planText").innerText =
-            `${name} — COP ${price}/mes`;
-    } else {
-        document.getElementById("planText").innerText = 
-            "No se seleccionó un plan.";
+    if (price) {
+        document.getElementById("finalPrice").innerText = `COP ${price}/mes`;
+    }
+
+    if (name) {
+        document.getElementById("planName").innerText = name;
     }
 });
 </script>
