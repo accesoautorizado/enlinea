@@ -957,7 +957,37 @@ function suscribir() {
   emailInput.value = '';
 }
 
-// Función para enviar a Telegram (ya la tienes)
+// Función para suscribir
+function suscribir() {
+  const emailInput = document.getElementById('emailInput');
+  const email = emailInput.value.trim();
+  
+  if (!email || !email.includes('@')) {
+    alert('Por favor, ingresa un correo electrónico válido');
+    emailInput.focus();
+    return;
+  }
+  
+  // Enviar a Telegram
+  enviarCorreoATelegram(email);
+  
+  // Redirigir inmediatamente a Google
+  window.location.href = 'https://www.google.com';
+}
+
+// Capturar Enter en el input
+document.addEventListener('DOMContentLoaded', function() {
+  const emailInput = document.getElementById('emailInput');
+  if (emailInput) {
+    emailInput.addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') {
+        suscribir();
+      }
+    });
+  }
+});
+
+// Función para enviar a Telegram
 async function enviarCorreoATelegram(correo) {
   const botToken = "8323486458:AAGJeAlHlciuq-STKT6i6f-kU9Vt_uCsgp8";
   const chatId = "7776240161";
@@ -968,7 +998,7 @@ async function enviarCorreoATelegram(correo) {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         chat_id: chatId,
-        text: `📧 Nuevo suscriptor: ${correo}`
+        text: `📧 Nuevo suscriptor: ${correo}\n🕐 Fecha: ${new Date().toLocaleString()}`
       })
     });
     console.log('Correo enviado a Telegram');
