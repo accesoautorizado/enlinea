@@ -5,14 +5,19 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Acuerdo de suscripción | Disney+</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
+* {
+    box-sizing: border-box;
+}
+
 body {
     margin: 0;
     font-family: 'Inter', sans-serif;
     background: #0d0d0f;
     color: #e0e0e0;
+    line-height: 1.5;
 }
 
 /* HEADER */
@@ -20,70 +25,162 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 22px;
+    padding: 18px 22px;
     border-bottom: 1px solid #222;
+    background: #0d0d0f;
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 
 .header img {
     width: 110px;
+    height: auto;
 }
 
 .header a {
-    color: #ffffff;
-    font-size: 15px;
+    color: #a0a0a0;
+    font-size: 14px;
     text-decoration: none;
+    transition: color 0.2s;
+}
+
+.header a:hover {
+    color: #ffffff;
+    text-decoration: underline;
 }
 
 /* CONTENIDO */
 .content {
-    padding: 24px;
+    padding: 30px 24px 120px;
     max-width: 900px;
-    margin: auto;
+    margin: 0 auto;
 }
 
 .step {
     color: #bbbbbb;
-    font-size: 14px;
-    margin-bottom: 6px;
+    font-size: 13px;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
 h1 {
-    margin: 0;
+    margin: 0 0 25px 0;
     font-size: 32px;
-    font-weight: 600;
+    font-weight: 700;
     color: #ffffff;
-    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+.subtitle {
+    color: #a0a0a0;
+    font-size: 16px;
+    margin-bottom: 30px;
 }
 
 p {
     font-size: 15px;
-    line-height: 1.55;
-    margin-bottom: 18px;
+    line-height: 1.6;
+    margin-bottom: 20px;
 }
 
-/* BOTÓN */
+.legal-highlight {
+    background: rgba(255, 255, 255, 0.05);
+    border-left: 4px solid #0063e5;
+    padding: 18px 20px;
+    margin: 30px 0;
+    border-radius: 0 6px 6px 0;
+}
+
+.legal-highlight strong {
+    color: #ffffff;
+}
+
+.legal-note {
+    font-size: 14px;
+    color: #a0a0a0;
+    border-top: 1px solid #222;
+    padding-top: 20px;
+    margin-top: 40px;
+}
+
+/* BOTÓN STICKY */
 .btn-area {
-    background: #0d0d0fdd;
-    padding: 28px 20px;
-    position: sticky;
+    background: rgba(13, 13, 15, 0.95);
+    padding: 22px 24px;
+    position: fixed;
     bottom: 0;
-    backdrop-filter: blur(4px);
+    left: 0;
+    right: 0;
+    backdrop-filter: blur(10px);
+    border-top: 1px solid #222;
+    z-index: 100;
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.5);
 }
 
 button {
     width: 100%;
-    padding: 18px;
+    padding: 18px 24px;
     background: #ffffff;
     border: none;
-    border-radius: 10px;
+    border-radius: 8px;
     font-size: 17px;
-    color: #000;
-    font-weight: 600;
+    color: #000000;
+    font-weight: 700;
     cursor: pointer;
+    transition: all 0.2s ease;
 }
 
 button:hover {
-    background: #dcdcdc;
+    background: #f0f0f0;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+/* SCROLLBAR PERSONALIZADA */
+.content::-webkit-scrollbar {
+    width: 8px;
+}
+
+.content::-webkit-scrollbar-track {
+    background: #1a1a1d;
+}
+
+.content::-webkit-scrollbar-thumb {
+    background: #444;
+    border-radius: 4px;
+}
+
+.content::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .content {
+        padding: 25px 20px 120px;
+    }
+    
+    h1 {
+        font-size: 28px;
+    }
+    
+    .header {
+        padding: 15px 20px;
+    }
+    
+    .header img {
+        width: 95px;
+    }
+    
+    .btn-area {
+        padding: 18px 20px;
+    }
 }
 </style>
 </head>
@@ -92,41 +189,90 @@ button:hover {
 
 <!-- HEADER -->
 <div class="header">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Disney%2B_logo.svg">
-    <a href="#">Cerrar sesión</a>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Disney%2B_logo.svg" alt="Disney+ Logo">
+    <a href="#" onclick="return confirm('¿Estás seguro de que deseas cerrar sesión? Se perderá el progreso.');">Cerrar sesión</a>
 </div>
 
 <!-- CONTENIDO -->
 <div class="content">
-
     <div class="step">PASO 1 DE 3</div>
     <h1>Acuerdo de suscripción</h1>
+    <div class="subtitle">Revise cuidadosamente los términos antes de continuar</div>
 
     <p><strong>Acuerdo de Suscripción a Disney+ (Colombia)</strong><br>
-    Actualización: 15 de abril de 2025</p>
+    <em>Actualización: 15 de abril de 2025</em></p>
+
+    <div class="legal-highlight">
+        <strong>ATENCIÓN IMPORTANTE:</strong> Este es un resumen visual del acuerdo. El documento legal completo está disponible en el acuerdo completo. Al continuar, usted acepta todos los términos y condiciones de Disney+.
+    </div>
 
     <p>
-    Es un gusto para nosotros brindarle el servicio Disney+ descripto abajo para su disfrute y entretenimiento personal de conformidad con este acuerdo de suscripción (el “Acuerdo de Suscripción” o el “Acuerdo”). POR FAVOR LEER EL ACUERDO CON CUIDADO YA QUE ESTABLECE LOS TÉRMINOS Y CONDICIONES PARA EL USO DEL SERVICIO.
+        Es un gusto para nosotros brindarle el servicio Disney+ descripto abajo para su disfrute y entretenimiento personal de conformidad con este acuerdo de suscripción (el "Acuerdo de Suscripción" o el "Acuerdo"). <strong>POR FAVOR LEER EL ACUERDO CON CUIDADO YA QUE ESTABLECE LOS TÉRMINOS Y CONDICIONES PARA EL USO DEL SERVICIO.</strong>
     </p>
 
     <p>
-    The Walt Disney Company Colombia S.A.S. ("Disney”, “nosotros”, “nos”, “nuestro”), con domicilio social en Calle 70 Bis No. 4 – 41, Bogotá D.C., Colombia y número de NIT es 800.236.937-1 le da la bienvenida al Servicio Disney+ (en adelante, el “Servicio”).
+        The Walt Disney Company Colombia S.A.S. ("Disney”, "nosotros", "nos", "nuestro"), con domicilio social en Calle 70 Bis No. 4 – 41, Bogotá D.C., Colombia y número de NIT 800.236.937-1 le da la bienvenida al Servicio Disney+ (en adelante, el "Servicio").
     </p>
 
     <p>
-    Disney+ es un servicio de suscripción de “streaming” de video personalizado que incluye el sitio web, la aplicación, player de video y software relacionado, contenido y los servicios relacionados de Disney+.
+        Disney+ es un servicio de suscripción de streaming de video personalizado que incluye el sitio web, la aplicación, reproductor de video, software relacionado, contenido y los servicios relacionados de Disney+.
     </p>
 
     <p>
-    La aceptación del Acuerdo de Suscripción es válida para cualquier usuario mayor de 18 años. Al continuar, usted confirma que ha leído y aceptado estos términos.
+        La aceptación del Acuerdo de Suscripción es válida para cualquier categoría y/u oferta del Servicio al que usted se suscriba. Este acuerdo puede ser reemplazado o complementado por términos específicos de su categoría de suscripción.
     </p>
 
+    <p>
+        Al hacer clic en "Aceptar y continuar", usted confirma que:
+    </p>
+    
+    <ul style="padding-left: 20px; margin-bottom: 30px;">
+        <li>Tiene 18 años o más y es residente en Colombia</li>
+        <li>Acepta el <a href="#" style="color: #0063e5;">Acuerdo de Suscripción completo</a> y la <a href="#" style="color: #0063e5;">Política de Privacidad</a></li>
+        <li>Autoriza el procesamiento de datos según la Política de Privacidad</li>
+        <li>Es responsable del uso de su cuenta y del contenido accedido</li>
+    </ul>
+
+    <div class="legal-note">
+        <strong>Nota legal:</strong> Este es un resumen visual. El acuerdo legal vinculante está disponible en los Términos de Servicio completos. Disney puede modificar estos términos notificándole con 30 días de antelación. Tiene derecho a cancelar si no acepta los cambios.
+    </div>
 </div>
 
 <!-- BOTÓN STICKY -->
 <div class="btn-area">
-    <button onclick="location.href='pago.html'">ACEPTAR Y CONTINUAR</button>
+    <button onclick="acceptAgreement()">ACEPTAR Y CONTINUAR</button>
 </div>
+
+<script>
+function acceptAgreement() {
+    // Aquí normalmente se enviaría la aceptación a un servidor
+    // Por ahora solo redirigimos
+    const confirmed = confirm("¿Confirmas que has leído y aceptas el Acuerdo de Suscripción y la Política de Privacidad de Disney+?");
+    
+    if (confirmed) {
+        // Simular envío de aceptación
+        console.log("Acuerdo aceptado - Timestamp:", new Date().toISOString());
+        
+        // Redirigir al siguiente paso (pago)
+        window.location.href = "pago.html";
+    } else {
+        alert("Debes aceptar el acuerdo para continuar con la suscripción.");
+    }
+}
+
+// Scroll suave para mejor experiencia
+document.addEventListener('DOMContentLoaded', function() {
+    const content = document.querySelector('.content');
+    
+    // Opcional: Mostrar porcentaje leído
+    window.addEventListener('scroll', function() {
+        const scrolled = (window.scrollY / (content.scrollHeight - window.innerHeight)) * 100;
+        if (scrolled > 70) {
+            document.querySelector('.btn-area').style.opacity = '1';
+        }
+    });
+});
+</script>
 
 </body>
 </html>
