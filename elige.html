@@ -130,7 +130,7 @@ button:hover {
             <h3>Premium</h3>
             <p class="price">COP 49.900/mes</p>
             <p class="small">(precio final)<br>o COP 418.900/año</p>
-            <button onclick="selectPlan('Premium', '49.900')">Seleccionar</button>
+            <button onclick="selectPlan('premium')">Seleccionar</button>
         </div>
 
         <!-- ESTÁNDAR -->
@@ -138,7 +138,7 @@ button:hover {
             <h3>Estándar</h3>
             <p class="price">COP 36.900/mes</p>
             <p class="small">(precio final)<br>o COP 309.900/año</p>
-            <button onclick="selectPlan('Estándar', '36.900')">Seleccionar</button>
+            <button onclick="selectPlan('standard')">Seleccionar</button>
         </div>
 
         <!-- ESTÁNDAR CON ANUNCIOS -->
@@ -146,16 +146,41 @@ button:hover {
             <h3>Estándar con anuncios</h3>
             <p class="price">COP 24.900/mes</p>
             <p class="small">(precio final)</p>
-            <button onclick="selectPlan('Estándar con anuncios', '24.900')">Seleccionar</button>
+            <button onclick="selectPlan('standard_ads')">Seleccionar</button>
         </div>
 
     </div>
 </div>
 
 <script>
-function selectPlan(name, price) {
-    localStorage.setItem("planName", name);
-    localStorage.setItem("planPrice", price);
+function selectPlan(code) {
+
+    const plans = {
+
+        premium: {
+            name: "Premium",
+            price: "49.900",
+            summary: "4 dispositivos • 4K UHD • Sin anuncios • Descargas ilimitadas"
+        },
+
+        standard: {
+            name: "Estándar",
+            price: "36.900",
+            summary: "2 dispositivos • Full HD • Sin anuncios"
+        },
+
+        standard_ads: {
+            name: "Estándar con anuncios",
+            price: "24.900",
+            summary: "2 dispositivos • HD • Con anuncios"
+        }
+    };
+
+    localStorage.setItem("plan", code);
+    localStorage.setItem("planName", plans[code].name);
+    localStorage.setItem("planPrice", plans[code].price);
+    localStorage.setItem("planSummary", plans[code].summary);
+
     window.location.href = "tc.html";
 }
 </script>
