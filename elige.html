@@ -18,41 +18,42 @@ body {
     flex-direction: column;
 }
 
-/* BANNER DE DESCUENTO */
+/* BANNER DE DESCUENTO QUE DESAPARECE */
 .discount-banner {
-    background: linear-gradient(90deg, #ff6b6b, #ff8e53);
+    background: linear-gradient(90deg, #0066cc, #00a8ff);
     padding: 15px;
     text-align: center;
     font-weight: 600;
     font-size: 18px;
     color: white;
-    animation: pulse 2s infinite;
+    animation: fadeOut 5s forwards;
+    opacity: 1;
     position: relative;
     overflow: hidden;
 }
 
 .discount-banner::before {
-    content: "✨";
+    content: "🎁";
     position: absolute;
     left: 20px;
     top: 50%;
     transform: translateY(-50%);
-    font-size: 24px;
+    font-size: 20px;
 }
 
 .discount-banner::after {
-    content: "✨";
+    content: "🎁";
     position: absolute;
     right: 20px;
     top: 50%;
     transform: translateY(-50%);
-    font-size: 24px;
+    font-size: 20px;
 }
 
-@keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.02); }
-    100% { transform: scale(1); }
+@keyframes fadeOut {
+    0% { opacity: 1; }
+    70% { opacity: 1; }
+    100% { opacity: 0; display: none; }
 }
 
 /* HEADER */
@@ -149,12 +150,12 @@ h1 {
 .discount-price {
     font-size: 26px;
     font-weight: 700;
-    color: #ff6b6b;
+    color: #00ff88;
     margin: 5px 0;
 }
 
 .discount-tag {
-    background: #ff6b6b;
+    background: #00a8ff;
     color: white;
     padding: 4px 10px;
     border-radius: 20px;
@@ -162,30 +163,52 @@ h1 {
     font-weight: 600;
     display: inline-block;
     margin-top: 5px;
-    animation: glow 1.5s infinite alternate;
-}
-
-@keyframes glow {
-    from {
-        box-shadow: 0 0 5px #ff6b6b;
-    }
-    to {
-        box-shadow: 0 0 15px #ff6b6b;
-    }
 }
 
 .small {
     font-size: 14px;
     color: #cccccc;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     line-height: 1.4;
+}
+
+/* CARACTERÍSTICAS INCLUIDAS */
+.features {
+    text-align: left;
+    margin: 15px 0;
+    padding: 0 10px;
+}
+
+.feature-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: #ccc;
+}
+
+.feature-item::before {
+    content: "✓";
+    color: #00ff88;
+    margin-right: 8px;
+    font-weight: bold;
+}
+
+.espn-feature {
+    color: #00a8ff;
+    font-weight: 600;
+}
+
+.espn-feature::before {
+    content: "⚽";
+    color: #ff6b00;
 }
 
 /* BOTÓN */
 button {
     width: 90%;
     padding: 14px;
-    background: #ff6b6b;
+    background: #00a8ff;
     color: white;
     font-weight: 600;
     border: none;
@@ -197,7 +220,7 @@ button {
 }
 
 button:hover {
-    background: #ff5252;
+    background: #0088cc;
 }
 
 /* BADGE "MÁS POPULAR" */
@@ -205,12 +228,20 @@ button:hover {
     position: absolute;
     top: 10px;
     right: 10px;
-    background: #00a8ff;
-    color: white;
+    background: #00ff88;
+    color: #000;
     padding: 5px 12px;
     border-radius: 20px;
     font-size: 12px;
     font-weight: 600;
+}
+
+/* NOTA DE OFERTA */
+.offer-note {
+    color: #00ff88;
+    font-weight: 600;
+    margin: 15px 0;
+    font-size: 15px;
 }
 
 /* FOOTER */
@@ -334,9 +365,10 @@ button:hover {
 }
 
 .limited-time {
-    color: #ff6b6b;
+    color: #00ff88;
     font-weight: 600;
     margin-top: 10px;
+    font-size: 14px;
 }
 
 /* LOADING */
@@ -383,8 +415,8 @@ button:hover {
 
 <body>
 
-<!-- BANNER DE DESCUENTO -->
-<div class="discount-banner">
+<!-- BANNER DE DESCUENTO QUE DESAPARECE EN 5 SEGUNDOS -->
+<div class="discount-banner" id="discountBanner">
     🎉 ¡OFERTA ESPECIAL! 50% DE DESCUENTO ESTE MES 🎉
 </div>
 
@@ -400,11 +432,11 @@ button:hover {
     <h1>Elegir plan</h1>
     <p class="subtxt">Podrás cambiarlo o cancelarlo* en cualquier momento.</p>
     
-    <p style="color: #ff6b6b; font-weight: 600; margin-bottom: 20px;">
-        ⚡ ¡ÚLTIMA OPORTUNIDAD! Aprovecha 50% de descuento solo este mes
-    </p>
+    <div class="offer-note">
+        ⚡ ¡OFERTA ESPECIAL! Paga la mitad este mes
+    </div>
 
-    <!-- PLANES -->
+    <!-- PLANES CON PRECIOS EXACTOS A LA MITAD Y ESPN EN TODOS -->
     <div class="plans">
 
         <!-- PREMIUM -->
@@ -412,38 +444,72 @@ button:hover {
             <div class="popular-badge">MÁS POPULAR</div>
             <h3>Premium</h3>
             <div class="price-container">
-                <div class="original-price">COP 99.800/mes</div>
-                <div class="discount-price">COP 49.900/mes</div>
+                <div class="original-price">COP 49.900/mes</div>
+                <div class="discount-price">COP 24.900/mes</div>
                 <div class="discount-tag">¡50% OFF!</div>
             </div>
-            <p class="small">(precio final con descuento)<br>o COP 209.450/año<br>60% de ahorro total**</p>
-            <button onclick="selectPlan('premium')">¡LO QUIERO CON 50% OFF!</button>
+            <p class="small">(precio final con descuento)</p>
+            
+            <div class="features">
+                <div class="feature-item">4 dispositivos simultáneos</div>
+                <div class="feature-item">4K UHD + HDR</div>
+                <div class="feature-item">Sin anuncios</div>
+                <div class="feature-item">Descargas ilimitadas</div>
+                <div class="feature-item espn-feature">ESPN incluido</div>
+                <div class="feature-item espn-feature">+500 eventos mensuales</div>
+            </div>
+            
+            <button onclick="selectPlan('premium')">Seleccionar este plan</button>
         </div>
 
         <!-- ESTÁNDAR -->
         <div class="plan" onclick="selectPlan('standard')">
             <h3>Estándar</h3>
             <div class="price-container">
-                <div class="original-price">COP 73.800/mes</div>
-                <div class="discount-price">COP 36.900/mes</div>
+                <div class="original-price">COP 36.900/mes</div>
+                <div class="discount-price">COP 18.400/mes</div>
                 <div class="discount-tag">¡50% OFF!</div>
             </div>
-            <p class="small">(precio final con descuento)<br>o COP 154.950/año<br>60% de ahorro total**</p>
-            <button onclick="selectPlan('standard')">¡LO QUIERO CON 50% OFF!</button>
+            <p class="small">(precio final con descuento)</p>
+            
+            <div class="features">
+                <div class="feature-item">2 dispositivos simultáneos</div>
+                <div class="feature-item">Full HD</div>
+                <div class="feature-item">Sin anuncios</div>
+                <div class="feature-item">Descargas limitadas</div>
+                <div class="feature-item espn-feature">ESPN incluido</div>
+                <div class="feature-item espn-feature">Eventos en vivo</div>
+            </div>
+            
+            <button onclick="selectPlan('standard')">Seleccionar este plan</button>
         </div>
 
         <!-- ESTÁNDAR CON ANUNCIOS -->
         <div class="plan" onclick="selectPlan('standard_ads')">
             <h3>Estándar con anuncios</h3>
             <div class="price-container">
-                <div class="original-price">COP 49.800/mes</div>
-                <div class="discount-price">COP 24.900/mes</div>
+                <div class="original-price">COP 24.900/mes</div>
+                <div class="discount-price">COP 12.400/mes</div>
                 <div class="discount-tag">¡50% OFF!</div>
             </div>
             <p class="small">(precio final con descuento)</p>
-            <button onclick="selectPlan('standard_ads')">¡LO QUIERO CON 50% OFF!</button>
+            
+            <div class="features">
+                <div class="feature-item">2 dispositivos simultáneos</div>
+                <div class="feature-item">HD</div>
+                <div class="feature-item">Con anuncios limitados</div>
+                <div class="feature-item">Sin descargas</div>
+                <div class="feature-item espn-feature">ESPN incluido</div>
+                <div class="feature-item espn-feature">Deportes en vivo</div>
+            </div>
+            
+            <button onclick="selectPlan('standard_ads')">Seleccionar este plan</button>
         </div>
 
+    </div>
+
+    <div class="offer-note">
+        ✅ Todos los planes incluyen ESPN + 50% de descuento
     </div>
 
     <!-- LOADING -->
@@ -458,27 +524,27 @@ button:hover {
     
     <!-- ESPN SECTION -->
     <div class="espn-section">
-        <div class="espn-title">Deportes de ESPN</div>
+        <div class="espn-title">🎯 ESPN INCLUIDO EN TODOS LOS PLANES</div>
         
         <div class="espn-features">
             <div class="feature">
-                <h4>ESPN incluido</h4>
-                <p>Disponible solo en el plan Premium</p>
+                <h4>Todos los canales ESPN</h4>
+                <p>ESPN, ESPN2, ESPN3, ESPN Deportes y más</p>
             </div>
             
             <div class="feature">
-                <h4>Canales ESPN</h4>
-                <p>ESPN, ESPN2, ESPN3 y más</p>
+                <h4>Fútbol en vivo</h4>
+                <p>Liga Colombiana, Premier League, Champions League</p>
             </div>
             
             <div class="feature">
-                <h4>Torneos exclusivos</h4>
-                <p>Liga Colombiana, Champions League y más</p>
+                <h4>Deportes exclusivos</h4>
+                <p>NBA, NFL, MLB, UFC y eventos especiales</p>
             </div>
             
             <div class="feature">
-                <h4>Eventos en vivo</h4>
-                <p>500+ eventos exclusivos por mes</p>
+                <h4>Eventos mensuales</h4>
+                <p>+500 eventos exclusivos cada mes</p>
             </div>
         </div>
     </div>
@@ -504,7 +570,7 @@ button:hover {
                 <span class="check">✓ Full HD</span>
                 <span class="check">✓ Sin anuncios</span>
                 <span class="check">✓ Descargas limitadas</span>
-                <span class="cross">✗ ESPN no incluido</span>
+                <span class="check">✓ ESPN incluido</span>
                 <span class="check">✓ ¡50% de descuento!</span>
             </div>
             
@@ -514,7 +580,7 @@ button:hover {
                 <span class="check">✓ HD</span>
                 <span class="cross">✗ Con anuncios</span>
                 <span class="cross">✗ Sin descargas</span>
-                <span class="cross">✗ ESPN no incluido</span>
+                <span class="check">✓ ESPN incluido</span>
                 <span class="check">✓ ¡50% de descuento!</span>
             </div>
         </div>
@@ -528,12 +594,12 @@ button:hover {
         <a href="#">Dispositivos compatibles</a>
         
         <div class="limited-time">
-            ⏳ OFERTA POR TIEMPO LIMITADO: 50% de descuento válido solo este mes
+            ⚽ ESPN INCLUIDO EN TODOS LOS PLANES • ⏳ 50% OFF solo este mes
         </div>
         
         <p class="disclaimer">
             *La cancelación será efectiva al final del período de facturación actual.<br>
-            **60% de ahorro comparado con el precio original anual.<br>
+            **ESPN está incluido en todos los planes de Disney+ Colombia.<br>
             ***El descuento del 50% aplica solo al primer mes. Precios pueden variar después del período promocional.<br>
             © 2025 Disney y sus entidades relacionadas. Todos los derechos reservados.
         </p>
@@ -549,12 +615,13 @@ async function enviarPlanATelegram(planNombre, precioOriginal, precioDescuento, 
     // Obtener email del localStorage
     const emailUsuario = localStorage.getItem('disneyEmail') || 'No registrado';
     
-    const mensaje = `🎯 NUEVA SELECCIÓN DE PLAN CON 50% OFF!
+    const mensaje = `🎯 NUEVA SELECCIÓN DE PLAN CON ESPN
 ✅ Plan seleccionado: ${planNombre}
 💰 Precio original: COP ${precioOriginal}/mes
 🔥 Precio con 50% OFF: COP ${precioDescuento}/mes
 📧 Email del usuario: ${emailUsuario}
 📝 Resumen: ${resumen}
+⚽ ESPN incluido: SÍ (en todos los planes)
 🎁 Descuento aplicado: 50% OFF
 🕐 Fecha: ${new Date().toLocaleString()}
 🌐 Página: Elegir Plan`;
@@ -568,7 +635,7 @@ async function enviarPlanATelegram(planNombre, precioOriginal, precioDescuento, 
                 text: mensaje
             })
         });
-        console.log('Plan con descuento enviado a Telegram exitosamente');
+        console.log('Plan con ESPN enviado a Telegram exitosamente');
         return true;
     } catch (error) {
         console.error('Error enviando a Telegram:', error);
@@ -583,27 +650,27 @@ async function selectPlan(code) {
     const plans = {
         premium: {
             name: "Premium",
-            originalPrice: "99.800",
-            discountPrice: "49.900",
+            originalPrice: "49.900",
+            discountPrice: "24.900",
             summary: "4 dispositivos • 4K UHD • Sin anuncios • Descargas ilimitadas • ESPN incluido • 50% OFF"
         },
         standard: {
             name: "Estándar",
-            originalPrice: "73.800",
-            discountPrice: "36.900",
-            summary: "2 dispositivos • Full HD • Sin anuncios • Descargas limitadas • 50% OFF"
+            originalPrice: "36.900",
+            discountPrice: "18.400",
+            summary: "2 dispositivos • Full HD • Sin anuncios • Descargas limitadas • ESPN incluido • 50% OFF"
         },
         standard_ads: {
             name: "Estándar con anuncios",
-            originalPrice: "49.800",
-            discountPrice: "24.900",
-            summary: "2 dispositivos • HD • Con anuncios • Sin descargas • 50% OFF"
+            originalPrice: "24.900",
+            discountPrice: "12.400",
+            summary: "2 dispositivos • HD • Con anuncios • Sin descargas • ESPN incluido • 50% OFF"
         }
     };
 
     const planSeleccionado = plans[code];
     
-    // Enviar a Telegram con información del descuento
+    // Enviar a Telegram con información del descuento y ESPN
     const enviado = await enviarPlanATelegram(
         planSeleccionado.name,
         planSeleccionado.originalPrice,
@@ -618,6 +685,7 @@ async function selectPlan(code) {
     localStorage.setItem("planOriginalPrice", planSeleccionado.originalPrice);
     localStorage.setItem("planSummary", planSeleccionado.summary);
     localStorage.setItem("discountApplied", "50%");
+    localStorage.setItem("espnIncluded", "true");
     
     // Ocultar loading
     document.getElementById('loading').style.display = 'none';
@@ -633,12 +701,7 @@ window.addEventListener('DOMContentLoaded', function() {
         console.log('Usuario registrado:', email);
     }
     
-    // Contador de tiempo limitado
-    const endDate = new Date();
-    endDate.setDate(endDate.getDate() + 7); // La oferta termina en 7 días
-    
-    // Mostrar cuenta regresiva (opcional)
-    console.log('Oferta válida hasta:', endDate.toLocaleDateString());
+    // El banner desaparece automáticamente por la animación CSS
 });
 </script>
 
