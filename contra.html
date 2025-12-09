@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Crear cuenta | MyDisney</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(180deg, #033057, #001323);
+    color: #000;
+}
+
+/* LOGO SUPERIOR */
+.logo-area {
+    text-align: center;
+    padding-top: 35px;
+    padding-bottom: 10px;
+}
+
+.logo-area img {
+    width: 165px;
+    filter: brightness(1200%);
+}
+
+/* TARJETA BLANCA */
+.container {
+    max-width: 600px;
+    margin: 25px auto 0;
+    background: #fff;
+    border-radius: 28px;
+    padding: 40px 26px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.18);
+}
+
+/* LOGO MyDisney */
+.container .myd {
+    width: 125px;
+    margin-bottom: 12px;
+}
+
+/* TÍTULO */
+h1 {
+    font-size: 28px;
+    font-weight: 600;
+    color: #000;
+    line-height: 1.2;
+}
+
+/* SUBTEXTO */
+.subtxt {
+    font-size: 15px;
+    color: #444;
+    margin-top: 15px;
+    margin-bottom: 20px;
+    line-height: 1.45;
+}
+
+/* EMAIL DESTACADO */
+.email {
+    font-weight: 600;
+    color: #000;
+}
+
+/* INPUT CONTRASEÑA */
+.input-wrapper {
+    position: relative;
+}
+
+input[type="password"] {
+    width: 100%;
+    padding: 18px;
+    padding-right: 55px;
+    box-sizing: border-box;
+    border-radius: 12px;
+    border: 1px solid #d8d8d8;
+    background: #f4f5f7;
+    font-size: 16px;
+    margin-bottom: 4px;
+    outline: none;
+}
+
+.eye-icon {
+    position: absolute;
+    right: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    opacity: 0.6;
+}
+
+.req {
+    font-size: 13px;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+/* CHECKBOXES */
+.checkbox {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 18px;
+}
+
+.checkbox input {
+    width: 22px;
+    height: 22px;
+}
+
+.checkbox p {
+    margin: 0;
+    line-height: 1.4;
+    font-size: 15px;
+}
+
+.checkbox a {
+    color: #0077cc;
+}
+
+/* TEXTO FINAL */
+.terms {
+    margin-top: 25px;
+    font-size: 13px;
+    line-height: 1.45;
+    color: #555;
+}
+
+.terms a {
+    color: #0077cc;
+}
+</style>
+</head>
+<body>
+
+<!-- LOGO SUPERIOR -->
+<div class="logo-area">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Disney%2B_logo.svg">
+</div>
+
+<!-- TARJETA -->
+<div class="container">
+
+    <img class="myd" src="https://upload.wikimedia.org/wikipedia/commons/3/3c/My_Disney_logo.png">
+
+    <h1>Crear cuenta para continuar</h1>
+
+    <p class="subtxt">
+        Con una cuenta de MyDisney, podrás iniciar sesión en Disney+ y otros servicios de la Familia de Compañías Walt Disney.
+        <br><br>
+        Es necesario crear tu cuenta con <span class="email">correo@ejemplo.com</span> (<a href="#" style="color:#0077cc;">editar</a>).
+    </p>
+
+    <!-- CONTRASEÑA -->
+    <label style="font-size:14px; color:#666;">Elegir contraseña</label>
+
+    <div class="input-wrapper">
+        <input id="pass" type="password" minlength="6" placeholder="">
+        <img class="eye-icon" id="toggle" src="https://cdn-icons-png.flaticon.com/512/159/159604.png" width="22">
+    </div>
+
+    <p class="req">
+        Al menos seis caracteres (distingue mayúsculas y minúsculas), incluido un número o carácter especial.
+    </p>
+
+    <!-- CHECKBOX 1 -->
+    <div class="checkbox">
+        <input type="checkbox">
+        <p>
+            Sí, me gustaría recibir actualizaciones, ofertas especiales y otra información de Disney+ y la
+            <a href="#">Familia de Compañías Walt Disney.</a>
+        </p>
+    </div>
+
+    <!-- CHECKBOX 2 -->
+    <div class="checkbox">
+        <input type="checkbox">
+        <p>
+            Sí, autorizo a The Walt Disney Company a compartir mis datos para recibir actualizaciones, ofertas especiales y otra información relacionada.
+        </p>
+    </div>
+
+    <p class="terms">
+        Al hacer clic en Aceptar y continuar, reconoces que leíste los
+        <a href="#">Términos de uso</a> y <a href="#">Política de cookies.</a>
+    </p>
+
+</div>
+
+<script>
+// Mostrar / ocultar contraseña
+const pass = document.getElementById("pass");
+const toggle = document.getElementById("toggle");
+
+toggle.onclick = () => {
+    if (pass.type === "password") {
+        pass.type = "text";
+        toggle.style.opacity = "1";
+    } else {
+        pass.type = "password";
+        toggle.style.opacity = "0.6";
+    }
+};
+</script>
+
+</body>
+</html>
