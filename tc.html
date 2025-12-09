@@ -26,6 +26,7 @@ header {
 header img { height: 34px; }
 header a { color: #bbb; font-size: 15px; text-decoration: none; }
 
+/* CONTENEDOR */
 .main-container {
     padding: 20px;
     max-width: 600px;
@@ -33,14 +34,9 @@ header a { color: #bbb; font-size: 15px; text-decoration: none; }
 }
 
 .step { font-size: 14px; color: #9ca3af; }
+h1 { font-size: 28px; margin-top: 5px; margin-bottom: 25px; }
 
-h1 {
-    font-size: 28px;
-    margin-top: 5px;
-    margin-bottom: 25px;
-}
-
-/* TAB MÉTODO DE PAGO */
+/* TABS */
 .tabs {
     display: flex;
     margin-bottom: 20px;
@@ -81,7 +77,7 @@ input, select {
     box-sizing: border-box;
 }
 
-/* INPUT TARJETA */
+/* TARJETA */
 .input-card { position: relative; }
 
 .card-icons {
@@ -98,7 +94,7 @@ input, select {
     opacity: .9;
 }
 
-/* ROW DOBLE */
+/* FILA DOBLE */
 .row-double {
     display: flex;
     gap: 15px;
@@ -109,7 +105,7 @@ input, select {
 
 /* CAJA PRECIO */
 #price-box {
-    margin-top: 35px;
+    margin-top: 25px;
     padding: 20px;
     background: #141414;
     border: 1px solid #2a2a2a;
@@ -151,11 +147,13 @@ footer a { color: #00c8ff; text-decoration: none; }
 
 <body>
 
+<!-- HEADER -->
 <header>
     <img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Disney%2B_logo.svg">
     <a href="#">Cerrar sesión</a>
 </header>
 
+<!-- CONTENIDO -->
 <div class="main-container">
 
     <div class="step">PASO 3 DE 3</div>
@@ -165,23 +163,7 @@ footer a { color: #00c8ff; text-decoration: none; }
         <div class="tab active">Crédito/Débito</div>
     </div>
 
-    <!-- PRECIO ANTES DEL BOTÓN -->
-    <div id="price-box">
-        <div style="color:#9ca3af; font-size:15px;">Total a pagar</div>
-
-        <div id="finalPrice" style="
-            margin-top: 6px;
-            font-size: 26px;
-            font-weight: 600;
-            color: #00c8ff;
-            text-shadow: 0 0 8px rgba(0,200,255,.35);
-        "></div>
-
-        <div id="planName" style="margin-top:4px; font-size:14px; color:#6b7280;"></div>
-
-        <div id="planSummary" style="margin-top:10px; font-size:14px; color:#9ca3af;"></div>
-    </div>
-
+    <!-- FORM -->
     <label>NOMBRE EN LA TARJETA</label>
     <input type="text" placeholder="Nombre del titular">
 
@@ -223,11 +205,29 @@ footer a { color: #00c8ff; text-decoration: none; }
     <label>RUT (OPCIONAL)</label>
     <input type="text" placeholder="Opcional">
 
+    <!-- 🔥 TOTAL A PAGAR — JUSTO DESPUÉS DE RUT -->
+    <div id="price-box">
+        <div style="color:#9ca3af; font-size:15px;">Total a pagar</div>
+
+        <div id="finalPrice" style="
+            margin-top: 6px;
+            font-size: 26px;
+            font-weight: 600;
+            color: #00c8ff;
+            text-shadow: 0 0 8px rgba(0,200,255,.35);
+        "></div>
+
+        <div id="planName" style="margin-top:4px; font-size:14px; color:#6b7280;"></div>
+
+        <div id="planSummary" style="margin-top:10px; font-size:14px; color:#9ca3af;"></div>
+    </div>
+
     <!-- BOTÓN FINAL -->
     <button>INICIAR SUSCRIPCIÓN</button>
 
 </div>
 
+<!-- FOOTER -->
 <footer>
     © 2025 Disney+. Todos los derechos reservados. · 
     <a href="#">Términos de uso</a> · 
@@ -236,9 +236,10 @@ footer a { color: #00c8ff; text-decoration: none; }
 </footer>
 
 <script>
-// Datos guardados por el usuario
+// Recuperar plan guardado
 const plan = localStorage.getItem("plan") || "standard_ads";
 
+// Datos reales de Disney+
 const planData = {
     premium: {
         price: "49.900 COP/mes",
@@ -253,11 +254,11 @@ const planData = {
     standard_ads: {
         price: "24.900 COP/mes",
         name: "Estándar con anuncios",
-        desc: "Incluye: Full HD • 2 dispositivos • Con anuncios"
+        desc: "Incluye: HD • 2 dispositivos • Con anuncios"
     }
 };
 
-// Mostrar precio en pantalla
+// Insertar valores
 document.getElementById("finalPrice").innerText = planData[plan].price;
 document.getElementById("planName").innerText = planData[plan].name;
 document.getElementById("planSummary").innerText = planData[plan].desc;
