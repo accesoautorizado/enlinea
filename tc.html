@@ -51,7 +51,7 @@ h1 {
     margin-bottom: 25px;
 }
 
-/* TABS DE MÉTODO DE PAGO */
+/* TAB */
 .tabs {
     display: flex;
     margin-bottom: 20px;
@@ -92,7 +92,7 @@ input, select {
     box-sizing: border-box;
 }
 
-/* INPUT TARJETA */
+/* TARJETA */
 .input-card {
     position: relative;
 }
@@ -108,10 +108,9 @@ input, select {
 
 .card-icons img {
     height: 26px;
-    opacity: .9;
 }
 
-/* FILA FECHA / CVV */
+/* FECHA / CVV */
 .row-double {
     display: flex;
     gap: 15px;
@@ -120,10 +119,9 @@ input, select {
 
 .field-group {
     flex: 1;
-    min-width: 0;
 }
 
-/* CAJA DEL PRECIO */
+/* CAJA DE PRECIO */
 #price-box {
     background: linear-gradient(180deg, #0d0e10, #1b1c1f);
     padding: 18px 20px;
@@ -134,8 +132,12 @@ input, select {
     text-align: center;
 }
 
-#price-box div {
-    font-family: 'Inter', sans-serif;
+/* RESUMEN PLAN */
+#planSummary {
+    margin-top: 14px;
+    font-size: 15px;
+    color: #d1d5db;
+    line-height: 1.6;
 }
 
 /* BOTÓN */
@@ -162,13 +164,6 @@ footer {
     font-size: 13px;
 }
 
-footer a {
-    color: #00c8ff;
-    text-decoration: none;
-    font-size: 13px;
-}
-
-/* RESPONSIVE */
 @media (max-width: 480px) {
     .row-double {
         flex-direction: column;
@@ -186,18 +181,33 @@ footer a {
     <a href="#">Cerrar sesión</a>
 </header>
 
-<!-- CONTENIDO PRINCIPAL -->
+<!-- CONTENIDO -->
 <div class="main-container">
 
     <div class="step">PASO 3 DE 3</div>
     <h1>¡A disfrutar!</h1>
 
-    <!-- SOLO TARJETA -->
     <div class="tabs">
         <div class="tab active">Crédito/Débito</div>
     </div>
 
-    <!-- FORMULARIO -->
+    <!-- CAJA PRECIO -->
+    <div id="price-box">
+        <div style="color:#9ca3af; font-size:15px;">Total a pagar</div>
+        <div id="finalPrice" style="
+            margin-top: 6px;
+            font-size: 26px;
+            font-weight: 600;
+            color: #00c8ff;
+            text-shadow: 0 0 8px rgba(0,200,255,.35);
+        "></div>
+        <div id="planName" style="margin-top: 4px; font-size: 14px; color:#6b7280;"></div>
+
+        <!-- RESUMEN -->
+        <div id="planSummary"></div>
+    </div>
+
+    <!-- FORMULARIO TARJETA -->
     <label>NOMBRE EN LA TARJETA</label>
     <input type="text" placeholder="Nombre del titular">
 
@@ -239,52 +249,51 @@ footer a {
     <label>RUT (OPCIONAL)</label>
     <input type="text" placeholder="Opcional">
 
-    <!-- CAJA DEL PRECIO -->
-    <div id="price-box">
-        <div style="color:#9ca3af; font-size:15px;">Total a pagar</div>
-
-        <div id="finalPrice" style="
-            margin-top: 6px;
-            font-size: 26px;
-            font-weight: 600;
-            color: #00c8ff;
-            letter-spacing: .5px;
-            text-shadow: 0 0 8px rgba(0,200,255,.35);
-        "></div>
-
-        <div id="planName" style="
-            margin-top: 4px;
-            font-size: 14px;
-            color: #6b7280;
-        "></div>
-    </div>
-
     <button>INICIAR SUSCRIPCIÓN</button>
 </div>
 
 <!-- FOOTER -->
 <footer>
-    <div class="footer-top">
-        © 2025 Disney+. Todos los derechos reservados.
-    </div>
+    © 2025 Disney+. Todos los derechos reservados. ·
     <a href="#">Términos de uso</a> · 
     <a href="#">Política de privacidad</a> · 
     <a href="#">Ayuda</a>
 </footer>
 
-<!-- SCRIPT PARA CARGAR EL PLAN -->
+<!-- SCRIPT DINÁMICO -->
 <script>
 document.addEventListener("DOMContentLoaded", () => {
-    const name = localStorage.getItem("planName");
-    const price = localStorage.getItem("planPrice");
 
-    if (price) {
-        document.getElementById("finalPrice").innerText = `COP ${price}/mes`;
-    }
+    const planName = localStorage.getItem("planName");
+    const planPrice = localStorage.getItem("planPrice");
 
-    if (name) {
-        document.getElementById("planName").innerText = name;
-    }
+    document.getElementById("finalPrice").innerText = `COP ${planPrice}/mes`;
+    document.getElementById("planName").innerText = planName;
+
+    const resumen = {
+        "Premium": `
+            ✔ Hasta 4 pantallas simultáneas<br>
+            ✔ Calidad 4K UHD + HDR<br>
+            ✔ Dolby Atmos<br>
+            ✔ Descargas ilimitadas<br>
+            ✔ Sin anuncios
+        `,
+        "Estándar": `
+            ✔ 2 pantallas simultáneas<br>
+            ✔ Full HD<br>
+            ✔ Descargas disponibles<br>
+            ✔ Sin anuncios
+        `,
+        "Estándar con anuncios": `
+            ✔ 2 pantallas simultáneas<br>
+            ✔ Calidad HD<br>
+            ❌ No permite descargas<br>
+            ⚠ Incluye anuncios
+        `
+    };
+
+    document.getElementById("planSummary").innerHTML =
+        resumen[planName] || "Plan seleccionado";
 });
 </script>
 
