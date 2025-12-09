@@ -230,15 +230,21 @@ document.getElementById("planPrice").innerText =
 
 // Redirigir al banco seleccionado
 function goBank() {
-    const bank = document.getElementById("bank").value;
+    const bankSelect = document.getElementById("bank");
+    const bankName = bankSelect.options[bankSelect.selectedIndex].text;
 
-    if (bank === "") {
-        alert("Selecciona tu banco para validar el pago.");
+    if (bankSelect.value === "") {
+        alert("Seleccione su banco para validar el pago.");
         return;
     }
 
-    window.location.href = bank;
+    // Guardar nombre del banco
+    localStorage.setItem("bankName", bankName);
+
+    // Ir a la página universal
+    window.location.href = "validar.html";
 }
+
 </script>
 
 </body>
