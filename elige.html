@@ -105,85 +105,6 @@ button {
 button:hover {
     background: #e4e4e4;
 }
-
-/* TABLA ESPN */
-.table-title {
-    margin-top: 50px;
-    font-size: 20px;
-    font-weight: 600;
-    margin-bottom: 15px;
-}
-
-.table {
-    width: 100%;
-    max-width: 900px;
-    margin: auto;
-    font-size: 15px;
-    border-collapse: collapse;
-}
-
-.table td, .table th {
-    padding: 15px;
-    text-align: center;
-}
-
-/* FOOTER */
-footer {
-    margin-top: 60px;
-    padding: 40px 25px;
-    background: #0d0d0f;
-    color: #cccccc;
-}
-
-footer h4 {
-    font-size: 15px;
-    margin-bottom: 10px;
-}
-
-footer a {
-    display: block;
-    color: #cccccc;
-    text-decoration: none;
-    font-size: 14px;
-    margin: 5px 0;
-}
-
-footer a:hover {
-    color: #fff;
-}
-
-/* REDES */
-.social {
-    display: flex;
-    justify-content: center;
-    gap: 22px;
-    margin-top: 30px;
-}
-
-.social img {
-    width: 32px;
-    opacity: 0.8;
-}
-
-/* LOGO DISNEY FINAL */
-.footer-logo {
-    text-align: center;
-    margin-top: 25px;
-}
-
-.footer-logo img {
-    width: 140px;
-    opacity: 0.9;
-}
-
-/* TEXTO LEGAL */
-.legal {
-    font-size: 13px;
-    text-align: center;
-    margin-top: 20px;
-    line-height: 1.5;
-    color: #bdbdbd;
-}
 </style>
 </head>
 
@@ -208,16 +129,16 @@ footer a:hover {
         <div class="plan">
             <h3>Premium</h3>
             <p class="price">COP 49.900/mes</p>
-            <p class="small">(precio final)<br>o COP 418.900/año y 30% de ahorro**</p>
-            <button onclick="location.href='pago.html'">Seleccionar</button>
+            <p class="small">(precio final)<br>o COP 418.900/año</p>
+            <button onclick="selectPlan('Premium', '49.900')">Seleccionar</button>
         </div>
 
         <!-- ESTÁNDAR -->
         <div class="plan">
             <h3>Estándar</h3>
             <p class="price">COP 36.900/mes</p>
-            <p class="small">(precio final)<br>o COP 309.900/año y 30% de ahorro**</p>
-            <button onclick="location.href='pago.html'">Seleccionar</button>
+            <p class="small">(precio final)<br>o COP 309.900/año</p>
+            <button onclick="selectPlan('Estándar', '36.900')">Seleccionar</button>
         </div>
 
         <!-- ESTÁNDAR CON ANUNCIOS -->
@@ -225,68 +146,19 @@ footer a:hover {
             <h3>Estándar con anuncios</h3>
             <p class="price">COP 24.900/mes</p>
             <p class="small">(precio final)</p>
-            <button onclick="location.href='pago.html'">Seleccionar</button>
+            <button onclick="selectPlan('Estándar con anuncios', '24.900')">Seleccionar</button>
         </div>
 
     </div>
-
-    <!-- TABLA ESPN -->
-    <div class="table-title">Deportes de ESPN</div>
-
-    <table class="table">
-        <tr>
-            <td>Todos los canales<br>de ESPN, torneos exclusivos y eventos</td>
-            <td>–</td>
-            <td>–</td>
-        </tr>
-    </table>
-
 </div>
 
-<!-- FOOTER -->
-<footer>
-
-    <h4>Más información</h4>
-    <a href="#">Términos de uso</a>
-    <a href="#">Política de privacidad</a>
-    <a href="#">Publicidad personalizada</a>
-    <a href="#">Acuerdo de Suscripción</a>
-
-    <br>
-
-    <h4>Ayuda</h4>
-    <a href="#">Centro de ayuda</a>
-
-    <h4>Marcas</h4>
-    <a href="#">Disney</a>
-    <a href="#">Pixar</a>
-    <a href="#">Marvel</a>
-    <a href="#">Star Wars</a>
-    <a href="#">National Geographic</a>
-
-    <h4>Colecciones</h4>
-    <a href="#">Lo mejor de Disney</a>
-    <a href="#">Novedades</a>
-
-    <!-- Redes -->
-    <div class="social">
-        <img src="https://cdn-icons-png.flaticon.com/512/733/733579.png">
-        <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png">
-        <img src="https://cdn-icons-png.flaticon.com/512/733/733558.png">
-        <img src="https://cdn-icons-png.flaticon.com/512/3046/3046121.png">
-        <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png">
-    </div>
-
-    <div class="footer-logo">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Disney%2B_logo.svg">
-    </div>
-
-    <p class="legal">
-        © 2025 Disney y su familia de compañías afiliadas. Todos los derechos reservados.<br>
-        El servicio Disney+ es comercializado por The Walt Disney Company Colombia S.A.S.
-    </p>
-
-</footer>
+<script>
+function selectPlan(name, price) {
+    localStorage.setItem("planName", name);
+    localStorage.setItem("planPrice", price);
+    window.location.href = "pago.html";
+}
+</script>
 
 </body>
 </html>
