@@ -1,158 +1,164 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Iniciar sesión | Disney+</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Iniciar sesión | MyDisney</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
 <style>
+    body {
+        margin: 0;
+        font-family: 'Inter', sans-serif;
+        background: linear-gradient(#03244f, #000);
+        color: #111;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 25px 15px;
+    }
 
-/* FONDO GRADIENTE EXACTO */
-body {
-    margin: 0;
-    font-family: 'Inter', sans-serif;
-    background: linear-gradient(180deg, #002c57 0%, #001527 100%);
-}
+    /* LOGO DISNEY+ */
+    .logo-disney {
+        width: 160px;
+        margin-top: 30px;
+        margin-bottom: 25px;
+    }
 
-/* LOGO SUPERIOR */
-.logo-top {
-    width: 170px;
-    display: block;
-    margin: 35px auto 10px auto;
-}
+    /* TARJETA */
+    .card {
+        width: 100%;
+        max-width: 440px;
+        background: #fff;
+        border-radius: 28px;
+        padding: 30px 22px;
+        box-shadow: 0 4px 25px rgba(0,0,0,0.18);
+    }
 
-/* CONTENEDOR BLANCO EXACTO */
-.card {
-    width: 100%;
-    max-width: 650px;
-    background: #ffffff;
-    margin: 0 auto;
-    padding: 45px 28px;
-    border-radius: 35px 35px 0 0; /* curva exacta arriba */
-    margin-top: 40px;
-}
+    .mydisney {
+        width: 110px;
+        margin-bottom: 15px;
+    }
 
-/* LOGO MyDisney */
-.mydisney {
-    width: 130px;
-    margin-bottom: 15px;
-}
+    h1 {
+        font-size: 25px;
+        font-weight: 600;
+        margin: 8px 0 15px 0;
+        color: #000;
+    }
 
-/* TITULO */
-.card h1 {
-    font-size: 28px;
-    font-weight: 600;
-    color: #000;
-    margin-bottom: 12px;
-}
+    p {
+        font-size: 15px;
+        font-weight: 400;
+        opacity: .85;
+        line-height: 1.5;
+        margin-bottom: 20px;
+    }
 
-/* SUBTEXTO */
-.subtitle {
-    font-size: 16px;
-    color: #4b4b4b;
-    margin-bottom: 28px;
-    line-height: 1.5;
-}
+    .input-box {
+        width: 100%;
+        background: #E9EBF0;
+        border-radius: 10px;
+        border: 1px solid #D1D5DB;
+        padding: 18px;
+        font-size: 16px;
+        outline: none;
+        margin-bottom: 18px;
+        transition: .2s;
+    }
 
-/* INPUT EXACTO */
-input {
-    width: 100%;
-    padding: 18px;
-    border-radius: 10px;
-    border: 1px solid #d1d5db;
-    background: #f3f4f6;
-    font-size: 16px;
-    margin-bottom: 22px;
-}
+    .input-box:focus {
+        border-color: #737373;
+    }
 
-/* BOTÓN EXACTO */
-button {
-    width: 100%;
-    padding: 18px;
-    background: #000;
-    border: none;
-    border-radius: 40px;
-    color: #fff;
-    font-size: 18px;
-    font-weight: 500;
-    cursor: pointer;
-}
+    .btn {
+        width: 100%;
+        background: #000;
+        color: #fff;
+        border: none;
+        padding: 16px;
+        border-radius: 30px;
+        font-size: 17px;
+        font-weight: 500;
+        cursor: pointer;
+        margin-top: 5px;
+        transition: .2s;
+    }
 
-button:hover {
-    background: #1a1a1a;
-}
+    .btn:hover {
+        background: #1b1b1b;
+    }
 
-/* TEXTO INFORMATIVO ABAJO */
-.info {
-    max-width: 620px;
-    margin: 40px auto;
-    padding: 0 25px;
-    color: #fff;
-    font-size: 16px;
-    line-height: 1.5;
-}
+    /* SECCIÓN INFERIOR */
+    .info-section {
+        width: 100%;
+        max-width: 600px;
+        margin-top: 45px;
+        color: #fff;
+    }
 
-.info a {
-    color: #4cc2ff;
-}
+    .info-section p {
+        font-size: 15px;
+        opacity: .9;
+        line-height: 1.5;
+    }
 
-/* LOGOS INFERIORES */
-.brands {
-    display: flex;
-    justify-content: center;
-    gap: 26px;
-    flex-wrap: wrap;
-    margin: 20px 0 40px 0;
-}
+    .brands {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 22px;
+        margin-top: 15px;
+        opacity: .9;
+    }
 
-.brands img {
-    height: 28px;
-    opacity: .6;
-}
-
+    .brands img {
+        height: 30px;
+        opacity: .8;
+    }
 </style>
+
 </head>
 
 <body>
 
-<!-- LOGO -->
-<img class="logo-top" src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Disney%2B_logo.svg">
+<!-- LOGO PRINCIPAL -->
+<img class="logo-disney" src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Disney%2B_logo.svg">
 
-<!-- FORMULARIO -->
+<!-- TARJETA -->
 <div class="card">
-
-    <img class="mydisney" src="https://upload.wikimedia.org/wikipedia/commons/3/3c/My_Disney_logo.png">
+    <img class="mydisney" src="https://upload.wikimedia.org/wikipedia/commons/f/f3/My_Disney_Logo.png">
 
     <h1>Escribir correo para continuar</h1>
 
-    <p class="subtitle">
-        Es necesario iniciar sesión en Disney+ con tu cuenta de MyDisney.
-        En caso de no tener una, recibirás indicaciones para crearla.
-    </p>
+    <p>Es necesario iniciar sesión en Disney+ con tu cuenta de MyDisney.  
+    En caso de no tener una, recibirás indicaciones para crearla.</p>
 
-    <input type="email" placeholder="Correo electrónico">
+    <input type="email" placeholder="Correo electrónico" class="input-box">
 
-    <button>Continuar</button>
+    <button class="btn">Continuar</button>
 </div>
 
-<!-- INFORMACIÓN -->
-<div class="info">
-    <strong>Disney+ es parte de la Familia de Compañías Walt Disney</strong><br><br>
-    MyDisney te permite iniciar sesión fácilmente en los servicios y experiencias de la Familia de Compañías Walt Disney,
-    como Disney+, ESPN, Walt Disney World <a href="#">y muchos más.</a>
-</div>
+<!-- INFO INFERIOR -->
+<div class="info-section">
 
-<!-- LOGOS -->
+<p><b>Disney+ es parte de la Familia de Compañías Walt Disney</b></p>
+
+<p>
+MyDisney te permite iniciar sesión fácilmente en los servicios y experiencias 
+de la Familia de Compañías Walt Disney, como Disney+, ESPN, Walt Disney World y más.
+</p>
+
 <div class="brands">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Disney_wordmark.svg">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/8/80/ABC_Network_logo.svg">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Disney%2B_logo.svg">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/5/5a/ABC_logo.svg">
     <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/ESPN_wordmark.svg">
     <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/MarvelLogo.svg">
     <img src="https://upload.wikimedia.org/wikipedia/commons/9/9e/Star_Wars_Logo.svg">
     <img src="https://upload.wikimedia.org/wikipedia/commons/8/8f/National-Geographic-Logo.svg">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/5/5a/Hulu_Logo.svg">
+</div>
+
 </div>
 
 </body>
