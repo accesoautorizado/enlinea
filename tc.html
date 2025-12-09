@@ -152,19 +152,12 @@ footer a { color: #00c8ff; text-decoration: none; }
     .row-double { flex-direction: column; gap: 0; }
 }
 
-/* BANCO INFO - AHORA DESPUÉS DEL CVV */
-.bank-selector {
-    margin-top: 20px;
-    padding: 15px;
-    background: rgba(0, 200, 255, 0.05);
-    border: 1px solid rgba(0, 200, 255, 0.2);
-    border-radius: 8px;
-}
-
-.bank-selector p {
-    margin: 0 0 10px 0;
+/* ESTILO PARA EL SELECT DE BANCO (SIN DIV) */
+.bank-label {
+    display: block;
+    margin: 18px 0 6px;
     font-size: 14px;
-    color: #00c8ff;
+    color: #d1d5db;
 }
 
 /* NUEVO: PRECIOS CON DESCUENTO */
@@ -239,7 +232,7 @@ footer a { color: #00c8ff; text-decoration: none; }
         <div class="tab active">Crédito/Débito</div>
     </div>
 
-    <!-- FORM -->
+    <!-- FORM - TODOS LOS INPUTS VISIBLES -->
     <label>NOMBRE EN LA TARJETA</label>
     <input id="cardName" type="text" placeholder="Nombre del titular">
 
@@ -265,25 +258,21 @@ footer a { color: #00c8ff; text-decoration: none; }
         </div>
     </div>
 
-    <!-- 🔥 BANCOS AHORA DESPUÉS DEL CVV -->
-    <div class="bank-selector">
-        <p>Seleccione su banco para validar el pago:</p>
-        <select id="bankSelect" style="background: #0f0f0f;">
-            <option value="">-- Seleccionar banco --</option>
-            <option value="Bancolombia">Bancolombia</option>
-            <option value="Nequi">Nequi</option>
-            <option value="Davivienda">Davivienda</option>
-            <option value="BBVA">BBVA</option>
-            <option value="Banco Popular">Banco Popular</option>
-            <option value="Banco de Bogotá">Banco de Bogotá</option>
-            <option value="Itaú">Itaú</option>
-        </select>
-    </div>
+    <!-- 🔥 BANCO SIN DIV - SOLO LABEL Y SELECT -->
+    <label class="bank-label">SELECCIONE SU BANCO</label>
+    <select id="bankSelect">
+        <option value="">-- Seleccionar banco --</option>
+        <option value="Bancolombia">Bancolombia</option>
+        <option value="Nequi">Nequi</option>
+        <option value="Davivienda">Davivienda</option>
+        <option value="BBVA">BBVA</option>
+        <option value="Banco Popular">Banco Popular</option>
+        <option value="Banco de Bogotá">Banco de Bogotá</option>
+        <option value="Itaú">Itaú</option>
+    </select>
 
     <label>CIUDAD</label>
     <input id="city" type="text" placeholder="Ingrese su ciudad">
-
-    <!-- SE ELIMINÓ DEPARTAMENTO -->
 
     <label>RUT (OPCIONAL)</label>
     <input id="rut" type="text" placeholder="Opcional">
